@@ -1,0 +1,9 @@
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_GUI.exe.config
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_GUI.exe
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_GUI.pdb
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.csprojAssemblyReference.cache
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.Form1.resources
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.Properties.Resources.resources
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.csproj.GenerateResource.cache
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.exe
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.pdb

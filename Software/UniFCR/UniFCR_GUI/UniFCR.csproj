@@ -33,6 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Emgu.CV">
+      <HintPath>C:\Users\lukas\Desktop\Project\GUI\libemgucv-windows-universal-cuda-2.9.0.1922-beta\bin\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI">
+      <HintPath>C:\Users\lukas\Desktop\Project\GUI\libemgucv-windows-universal-cuda-2.9.0.1922-beta\bin\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util">
+      <HintPath>C:\Users\lukas\Desktop\Project\GUI\libemgucv-windows-universal-cuda-2.9.0.1922-beta\bin\Emgu.Util.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

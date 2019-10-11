@@ -19,13 +19,13 @@ namespace UniFCR_GUI {
             this.CenterToScreen();
         }
 
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        private void MenuScreen_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
             lastLocation = e.Location;
         }
 
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        private void MenuScreen_MouseMove(object sender, MouseEventArgs e)
         {
             if (mouseDown) {
                 this.Location = new Point(
@@ -35,7 +35,7 @@ namespace UniFCR_GUI {
             }
         }
 
-        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        private void MenuScreen_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDown = false;
         }
@@ -65,7 +65,13 @@ namespace UniFCR_GUI {
         {
             this.Visible = false;
             AttendanceScreen attendanceScreen = new AttendanceScreen(this);
+
+            //the attendance screen should show on the same monitor as the menu
+            attendanceScreen.StartPosition = FormStartPosition.Manual;
+            Screen screen = Screen.FromPoint(this.Location);
+            attendanceScreen.Location = screen.Bounds.Location;
             attendanceScreen.WindowState = FormWindowState.Maximized;
+
             attendanceScreen.Show();
         }
 

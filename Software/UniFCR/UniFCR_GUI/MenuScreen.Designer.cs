@@ -28,23 +28,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.titlePanel = new System.Windows.Forms.Panel();
-            this.titleLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.buttonPanel = new System.Windows.Forms.Panel();
             this.startButton = new System.Windows.Forms.Button();
+            this.trainButton = new System.Windows.Forms.Button();
             this.optionsButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
-            this.trainButton = new System.Windows.Forms.Button();
-            this.buttonPanel = new System.Windows.Forms.Panel();
             this.optionsPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
+            this.titlePanel = new System.Windows.Forms.Panel();
+            this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
-            this.titlePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuPanel.SuspendLayout();
             this.buttonPanel.SuspendLayout();
             this.optionsPanel.SuspendLayout();
+            this.titlePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -56,39 +56,6 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(800, 500);
             this.mainPanel.TabIndex = 0;
-            // 
-            // titlePanel
-            // 
-            this.titlePanel.BackColor = System.Drawing.Color.White;
-            this.titlePanel.Controls.Add(this.pictureBox1);
-            this.titlePanel.Controls.Add(this.titleLabel);
-            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titlePanel.Location = new System.Drawing.Point(0, 0);
-            this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(800, 157);
-            this.titlePanel.TabIndex = 0;
-            this.titlePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
-            this.titlePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
-            // 
-            // titleLabel
-            // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(409, 20);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(374, 115);
-            this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "UniFCR";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(221, 115);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // menuPanel
             // 
@@ -103,6 +70,21 @@
             this.menuPanel.TabIndex = 1;
             this.menuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.menuPanel_Paint);
             // 
+            // buttonPanel
+            // 
+            this.buttonPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonPanel.Controls.Add(this.startButton);
+            this.buttonPanel.Controls.Add(this.trainButton);
+            this.buttonPanel.Controls.Add(this.optionsButton);
+            this.buttonPanel.Controls.Add(this.exitButton);
+            this.buttonPanel.Location = new System.Drawing.Point(173, 97);
+            this.buttonPanel.MaximumSize = new System.Drawing.Size(452, 150);
+            this.buttonPanel.MinimumSize = new System.Drawing.Size(452, 150);
+            this.buttonPanel.Name = "buttonPanel";
+            this.buttonPanel.Size = new System.Drawing.Size(452, 150);
+            this.buttonPanel.TabIndex = 4;
+            this.buttonPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.buttonPanel_Paint);
+            // 
             // startButton
             // 
             this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -115,6 +97,20 @@
             this.startButton.Text = "START";
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // trainButton
+            // 
+            this.trainButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.trainButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.trainButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.trainButton.Location = new System.Drawing.Point(3, 102);
+            this.trainButton.Name = "trainButton";
+            this.trainButton.Size = new System.Drawing.Size(170, 48);
+            this.trainButton.TabIndex = 3;
+            this.trainButton.Text = "TRAIN";
+            this.trainButton.UseVisualStyleBackColor = true;
+            this.trainButton.Click += new System.EventHandler(this.trainButton_Click);
             // 
             // optionsButton
             // 
@@ -144,35 +140,6 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // trainButton
-            // 
-            this.trainButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.trainButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.trainButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trainButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.trainButton.Location = new System.Drawing.Point(3, 102);
-            this.trainButton.Name = "trainButton";
-            this.trainButton.Size = new System.Drawing.Size(170, 48);
-            this.trainButton.TabIndex = 3;
-            this.trainButton.Text = "TRAIN";
-            this.trainButton.UseVisualStyleBackColor = true;
-            this.trainButton.Click += new System.EventHandler(this.trainButton_Click);
-            // 
-            // buttonPanel
-            // 
-            this.buttonPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonPanel.Controls.Add(this.startButton);
-            this.buttonPanel.Controls.Add(this.trainButton);
-            this.buttonPanel.Controls.Add(this.optionsButton);
-            this.buttonPanel.Controls.Add(this.exitButton);
-            this.buttonPanel.Location = new System.Drawing.Point(173, 97);
-            this.buttonPanel.MaximumSize = new System.Drawing.Size(452, 150);
-            this.buttonPanel.MinimumSize = new System.Drawing.Size(452, 150);
-            this.buttonPanel.Name = "buttonPanel";
-            this.buttonPanel.Size = new System.Drawing.Size(452, 150);
-            this.buttonPanel.TabIndex = 4;
-            this.buttonPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.buttonPanel_Paint);
-            // 
             // optionsPanel
             // 
             this.optionsPanel.Controls.Add(this.backButton);
@@ -194,7 +161,41 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // Form1
+            // titlePanel
+            // 
+            this.titlePanel.BackColor = System.Drawing.Color.White;
+            this.titlePanel.Controls.Add(this.uniFCRLogoBox);
+            this.titlePanel.Controls.Add(this.titleLabel);
+            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titlePanel.Location = new System.Drawing.Point(0, 0);
+            this.titlePanel.Name = "titlePanel";
+            this.titlePanel.Size = new System.Drawing.Size(800, 157);
+            this.titlePanel.TabIndex = 0;
+            this.titlePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseDown);
+            this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseMove);
+            this.titlePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseUp);
+            // 
+            // uniFCRLogoBox
+            // 
+            this.uniFCRLogoBox.Image = ((System.Drawing.Image)(resources.GetObject("uniFCRLogoBox.Image")));
+            this.uniFCRLogoBox.Location = new System.Drawing.Point(130, 15);
+            this.uniFCRLogoBox.Name = "uniFCRLogoBox";
+            this.uniFCRLogoBox.Size = new System.Drawing.Size(133, 120);
+            this.uniFCRLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.uniFCRLogoBox.TabIndex = 2;
+            this.uniFCRLogoBox.TabStop = false;
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(284, 20);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(374, 115);
+            this.titleLabel.TabIndex = 0;
+            this.titleLabel.Text = "UniFCR";
+            // 
+            // MenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -202,16 +203,16 @@
             this.ClientSize = new System.Drawing.Size(800, 500);
             this.Controls.Add(this.mainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "MenuScreen";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.mainPanel.ResumeLayout(false);
-            this.titlePanel.ResumeLayout(false);
-            this.titlePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuPanel.ResumeLayout(false);
             this.buttonPanel.ResumeLayout(false);
             this.optionsPanel.ResumeLayout(false);
+            this.titlePanel.ResumeLayout(false);
+            this.titlePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -221,7 +222,6 @@
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Panel menuPanel;
         private System.Windows.Forms.Panel titlePanel;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Button trainButton;
         private System.Windows.Forms.Button exitButton;
@@ -230,6 +230,7 @@
         private System.Windows.Forms.Panel buttonPanel;
         private System.Windows.Forms.Panel optionsPanel;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.PictureBox uniFCRLogoBox;
     }
 }
 

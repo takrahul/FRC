@@ -30,26 +30,26 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendanceScreen));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.infoPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.backButton = new System.Windows.Forms.Button();
-            this.camPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
             this.nameLabel = new System.Windows.Forms.Label();
-            this.imageBoxFrameGrabber = new Emgu.CV.UI.ImageBox();
+            this.buttonPanel = new System.Windows.Forms.Panel();
+            this.backButton = new System.Windows.Forms.Button();
+            this.camPanel = new System.Windows.Forms.Panel();
+            this.camView = new Emgu.CV.UI.ImageBox();
             this.mainPanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.camPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFrameGrabber)).BeginInit();
+            this.buttonPanel.SuspendLayout();
+            this.camPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.camView)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
             this.mainPanel.Controls.Add(this.infoPanel);
-            this.mainPanel.Controls.Add(this.panel1);
+            this.mainPanel.Controls.Add(this.buttonPanel);
             this.mainPanel.Controls.Add(this.camPanel);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
@@ -66,42 +66,6 @@
             this.infoPanel.Name = "infoPanel";
             this.infoPanel.Size = new System.Drawing.Size(200, 551);
             this.infoPanel.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.backButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(1000, 551);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(198, 75);
-            this.panel1.TabIndex = 1;
-            // 
-            // backButton
-            // 
-            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.backButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.backButton.FlatAppearance.BorderSize = 0;
-            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.backButton.Location = new System.Drawing.Point(0, 0);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(198, 75);
-            this.backButton.TabIndex = 1;
-            this.backButton.Text = "BACK";
-            this.backButton.UseVisualStyleBackColor = false;
-            this.backButton.Click += new System.EventHandler(this.exitButton_Click);
-            // 
-            // camPanel
-            // 
-            this.camPanel.BackColor = System.Drawing.Color.Black;
-            this.camPanel.Controls.Add(this.imageBoxFrameGrabber);
-            this.camPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.camPanel.Location = new System.Drawing.Point(0, 0);
-            this.camPanel.Name = "camPanel";
-            this.camPanel.Size = new System.Drawing.Size(1000, 626);
-            this.camPanel.TabIndex = 0;
-            this.camPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.camPanel_Paint);
             // 
             // tableLayoutPanel1
             // 
@@ -140,15 +104,52 @@
             this.nameLabel.TabIndex = 4;
             this.nameLabel.Text = "Name goes Here";
             // 
-            // imageBoxFrameGrabber
+            // buttonPanel
             // 
-            this.imageBoxFrameGrabber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imageBoxFrameGrabber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageBoxFrameGrabber.Location = new System.Drawing.Point(0, 0);
-            this.imageBoxFrameGrabber.Name = "imageBoxFrameGrabber";
-            this.imageBoxFrameGrabber.Size = new System.Drawing.Size(1000, 626);
-            this.imageBoxFrameGrabber.TabIndex = 5;
-            this.imageBoxFrameGrabber.TabStop = false;
+            this.buttonPanel.Controls.Add(this.backButton);
+            this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonPanel.Location = new System.Drawing.Point(1000, 551);
+            this.buttonPanel.Name = "buttonPanel";
+            this.buttonPanel.Size = new System.Drawing.Size(198, 75);
+            this.buttonPanel.TabIndex = 1;
+            // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.backButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.backButton.FlatAppearance.BorderSize = 0;
+            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.backButton.Location = new System.Drawing.Point(0, 0);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(198, 75);
+            this.backButton.TabIndex = 1;
+            this.backButton.Text = "BACK";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // camPanel
+            // 
+            this.camPanel.BackColor = System.Drawing.Color.Black;
+            this.camPanel.Controls.Add(this.camView);
+            this.camPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.camPanel.Location = new System.Drawing.Point(0, 0);
+            this.camPanel.Name = "camPanel";
+            this.camPanel.Size = new System.Drawing.Size(1000, 626);
+            this.camPanel.TabIndex = 0;
+            this.camPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.camPanel_Paint);
+            // 
+            // camView
+            // 
+            this.camView.BackColor = System.Drawing.Color.White;
+            this.camView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.camView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.camView.Location = new System.Drawing.Point(0, 0);
+            this.camView.Name = "camView";
+            this.camView.Size = new System.Drawing.Size(1000, 626);
+            this.camView.TabIndex = 5;
+            this.camView.TabStop = false;
             // 
             // AttendanceScreen
             // 
@@ -162,11 +163,11 @@
             this.Text = "Form2";
             this.mainPanel.ResumeLayout(false);
             this.infoPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.camPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFrameGrabber)).EndInit();
+            this.buttonPanel.ResumeLayout(false);
+            this.camPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.camView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -175,12 +176,12 @@
 
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Panel camPanel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel buttonPanel;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.FlowLayoutPanel infoPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.PictureBox uniFCRLogoBox;
         private System.Windows.Forms.Label nameLabel;
-        private Emgu.CV.UI.ImageBox imageBoxFrameGrabber;
+        private Emgu.CV.UI.ImageBox camView;
     }
 }

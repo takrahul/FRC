@@ -75,11 +75,6 @@ namespace UniFCR_GUI {
             attendanceScreen.Show();
         }
 
-        private void buttonPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-            
-        }
 
         private void menuPanel_Paint(object sender, PaintEventArgs e)
         {

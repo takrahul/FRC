@@ -83,7 +83,6 @@
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(452, 150);
             this.buttonPanel.TabIndex = 4;
-            this.buttonPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.buttonPanel_Paint);
             // 
             // startButton
             // 

@@ -1,5 +1,5 @@
 ﻿namespace UniFCR_GUI {
-    partial class Form1 {
+    partial class MenuScreen {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -26,7 +26,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.titlePanel = new System.Windows.Forms.Panel();
             this.titleLabel = new System.Windows.Forms.Label();

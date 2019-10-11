@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UniFCR_GUI {
-    public partial class Form1 : Form {
+    public partial class MenuScreen : Form {
         private bool mouseDown;
         private Point lastLocation;
-        public Form1()
+        public MenuScreen()
         {
             InitializeComponent();
             optionsPanel.Visible = false;
+            this.CenterToScreen();
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -62,7 +63,10 @@ namespace UniFCR_GUI {
 
         private void startButton_Click(object sender, EventArgs e)
         {
-
+            this.Visible = false;
+            AttendanceScreen attendanceScreen = new AttendanceScreen(this);
+            attendanceScreen.WindowState = FormWindowState.Maximized;
+            attendanceScreen.Show();
         }
 
         private void buttonPanel_Paint(object sender, PaintEventArgs e)

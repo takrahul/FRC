@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -26,13 +26,21 @@ namespace UniFCR_GUI {
         {
             this.menuScreen = menuScreen;
             InitializeComponent();
+
+            //show loading screen first
+            loadingPanel.BringToFront();
         }
 
-        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        //while the attendance screen is preparing (calculating size, loading camera) show a loading screen
+        private void loadingPanel_Paint(object sender, PaintEventArgs e)
         {
+            //center the logo and the text on the loading screen
+            int textLogoX = (this.Size.Width / 2) - (logoTextPanel.Size.Width / 2);
+            int textLogoY = (this.Size.Height / 2) - (logoTextPanel.Size.Height / 2);
+            logoTextPanel.Location = new Point(textLogoX, textLogoY);
+            
             //the camera feed may take up 3/4 of the screen
-            camPanel.Width = (int) (mainPanel.Size.Width * 0.75);
-
+            camPanel.Width = (int)(mainPanel.Size.Width * 0.75);
         }
 
         private void camPanel_Paint(object sender, PaintEventArgs e)
@@ -41,6 +49,9 @@ namespace UniFCR_GUI {
             cam.QueryFrame();
             Application.Idle += new EventHandler(FrameGrabber);
 
+            //hide the loading screen when the camera feed is set up
+            Thread.Sleep(1000);
+            loadingPanel.Visible = false;
         }
 
         void FrameGrabber(object sender, EventArgs e)
@@ -53,14 +64,11 @@ namespace UniFCR_GUI {
 
         }
 
-
-
-
-
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
             menuScreen.Visible = true;            
         }
+
     }
 }

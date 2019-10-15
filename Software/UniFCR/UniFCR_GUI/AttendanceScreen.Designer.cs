@@ -33,6 +33,7 @@
             this.infoPanel = new System.Windows.Forms.TableLayoutPanel();
             this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
             this.nameLabel = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
             this.camPanel = new System.Windows.Forms.Panel();
@@ -79,7 +80,8 @@
             this.infoPanel.ColumnCount = 1;
             this.infoPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.infoPanel.Controls.Add(this.uniFCRLogoBox, 0, 0);
-            this.infoPanel.Controls.Add(this.nameLabel, 0, 1);
+            this.infoPanel.Controls.Add(this.nameLabel, 0, 2);
+            this.infoPanel.Controls.Add(this.titleLabel, 0, 1);
             this.infoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infoPanel.Location = new System.Drawing.Point(0, 0);
             this.infoPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -109,11 +111,22 @@
             this.nameLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.nameLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.nameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.nameLabel.Location = new System.Drawing.Point(3, 156);
+            this.nameLabel.Location = new System.Drawing.Point(3, 501);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(192, 166);
+            this.nameLabel.Size = new System.Drawing.Size(192, 70);
             this.nameLabel.TabIndex = 4;
             this.nameLabel.Text = "Name goes Here";
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(3, 156);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(191, 345);
+            this.titleLabel.TabIndex = 5;
+            this.titleLabel.Text = "UniFCR";
             // 
             // buttonPanel
             // 
@@ -165,6 +178,7 @@
             // 
             // loadingPanel
             // 
+            this.loadingPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
             this.loadingPanel.Controls.Add(this.logoTextPanel);
             this.loadingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.loadingPanel.Location = new System.Drawing.Point(0, 0);
@@ -203,6 +217,7 @@
             this.loadingLabel.AutoSize = true;
             this.loadingLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.loadingLabel.Font = new System.Drawing.Font("Century Gothic", 69F);
+            this.loadingLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.loadingLabel.Location = new System.Drawing.Point(0, 250);
             this.loadingLabel.MaximumSize = new System.Drawing.Size(370, 100);
             this.loadingLabel.Name = "loadingLabel";
@@ -224,6 +239,7 @@
             this.mainPanel.ResumeLayout(false);
             this.sidePanel.ResumeLayout(false);
             this.infoPanel.ResumeLayout(false);
+            this.infoPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
             this.buttonPanel.ResumeLayout(false);
             this.camPanel.ResumeLayout(false);
@@ -251,5 +267,6 @@
         private System.Windows.Forms.PictureBox loadingLogo;
         private System.Windows.Forms.Label loadingLabel;
         private System.Windows.Forms.Panel logoTextPanel;
+        private System.Windows.Forms.Label titleLabel;
     }
 }

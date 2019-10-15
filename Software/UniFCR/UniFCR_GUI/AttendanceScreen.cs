@@ -27,48 +27,67 @@ namespace UniFCR_GUI {
             this.menuScreen = menuScreen;
             InitializeComponent();
 
-            //show loading screen first
+            //Show loading screen first
             loadingPanel.BringToFront();
         }
 
-        //while the attendance screen is preparing (calculating size, loading camera) show a loading screen
+        //While the attendance screen is preparing (calculating size, loading camera) show a loading screen
         private void loadingPanel_Paint(object sender, PaintEventArgs e)
         {
-            //center the logo and the text on the loading screen
+            //Center the logo and the text on the loading screen
             int textLogoX = (this.Size.Width / 2) - (logoTextPanel.Size.Width / 2);
             int textLogoY = (this.Size.Height / 2) - (logoTextPanel.Size.Height / 2);
             logoTextPanel.Location = new Point(textLogoX, textLogoY);
             
-            //the camera feed may take up 3/4 of the screen
+            //The camera feed may take up 3/4 of the screen
             camPanel.Width = (int)(mainPanel.Size.Width * 0.75);
         }
 
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
             cam = new Capture();
-            cam.QueryFrame();
-            Application.Idle += new EventHandler(FrameGrabber);
+            cam.Start();
+            cam.ImageGrabbed += ProcessFrame;
 
-            //hide the loading screen when the camera feed is set up
+            //Hide the loading screen when the camera feed is set up
             Thread.Sleep(1000);
             loadingPanel.Visible = false;
         }
 
-        void FrameGrabber(object sender, EventArgs e)
+        private void ProcessFrame(object sender, EventArgs arg)
         {
-            //Get the current frame form capture device
-            currentFrame = cam.QueryFrame().Resize(camPanel.Width, camPanel.Height, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+            //***If you want to access the image data the use the following method call***/
+            //Image<Bgr, Byte> frame = new Image<Bgr,byte>(_capture.RetrieveBgrFrame().ToBitmap());
 
-            //Show the faces procesed and recognized
-            camView.Image = currentFrame;
-
+            Image<Bgr, Byte> frame = cam.RetrieveBgrFrame();
+            //because we are using an autosize picturebox we need to do a thread safe update
+            DisplayImage(frame.ToBitmap());
         }
+        private delegate void DisplayImageDelegate(Bitmap Image);
+        private void DisplayImage(Bitmap Image)
+        {
 
+            if (camView.InvokeRequired)
+            {
+                try
+                {
+                    DisplayImageDelegate DI = new DisplayImageDelegate(DisplayImage);
+                    this.BeginInvoke(DI, new object[] { Image });
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            else
+            {
+                camView.Image = new Image<Bgr, Byte>(Image).Resize(camView.Width, camView.Height, INTER.CV_INTER_CUBIC);
+            }
+        }
+        
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
             menuScreen.Visible = true;            
         }
-
     }
 }

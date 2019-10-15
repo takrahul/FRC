@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraCapture.cs" />
     <Compile Include="MenuScreen.cs">
       <SubType>Form</SubType>
     </Compile>

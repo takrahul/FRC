@@ -5,11 +5,11 @@ A system detecting and recognizing faces to mark the attendance of the students 
 # Coding Style 
 1. Indentation - Use 4 Spaces
 2. Naming convention:
-  2.1 Class names begins with a uppercase character, the rest is in CamelCase
-  2.2 Package names begin with a lowercase character, the rest is written in underscore_case
-  2.3 Function names begin with a lowercase character, the rest is written in CamelCase
-  2.4 Variable names begin with a lowercase character, the rest is either in CamelCase or in underscore_case
-  2.5 Constants are written in all uppercase combined with UNDERSCORE_CASE
+  2.1 Class names begins with a uppercase character, the rest is in CamelCase.
+  2.2 Package names begin with a lowercase character, the rest is written in underscore_case.
+  2.3 Function names begin with a lowercase character, the rest is written in CamelCase.
+  2.4 Variable names begin with a lowercase character, the rest is either in CamelCase or in underscore_case.
+  2.5 Constants are written in all uppercase combined with UNDERSCORE_CASE.
 
 3. Documentation
   3.1 Each class needs a brief description of its functionality right after the exports

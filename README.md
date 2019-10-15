@@ -21,10 +21,11 @@ A system detecting and recognizing faces to mark the attendance of the students 
 1. Decide which feature you want to work on.
 2. Create a new branch with for the feature you decided "git checkout -b < branch-name or feature-name >"
 3. Design and finsih the code. 
-4. Commit your changes " git add." and then " git commit -m "The message or comments for the commit" "
+4. Commit your changes " git add." and then " git commit -m "The message or comments for the commit" ".
 
-4a. If someone else is working on your branch always remember to pull it first with "git pull"
-5. Time to push it remotely. When ready to push your changes than "git push origin < your branch >"
+4a. If someone else is working on your branch always remember to pull it first with "git pull".
+
+5. Time to push it remotely. When ready to push your changes than "git push origin < your branch >".
 6. Go to the GUI github online and create an PULL REQUEST. 
 7. Review your code in a pair.
 

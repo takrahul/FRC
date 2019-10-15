@@ -18,9 +18,15 @@ namespace UniFCR_GUI {
     public partial class AttendanceScreen : Form {
 
         Form menuScreen;
-        Image<Bgr, Byte> currentFrame;
+        private Image<Bgr, Byte> currentFrame;
+        public Image<Bgr, Byte> CurrentFrame
+        {
+            get { return currentFrame; }
+            set { currentFrame = value; }
+        }
         Capture cam;
         
+
 
         public AttendanceScreen(Form menuScreen)
         {
@@ -45,7 +51,7 @@ namespace UniFCR_GUI {
 
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
-            cam = new Capture();
+            cam = new Capture(1);
             cam.QueryFrame();
             Application.Idle += new EventHandler(FrameGrabber);
 
@@ -56,11 +62,14 @@ namespace UniFCR_GUI {
 
         void FrameGrabber(object sender, EventArgs e)
         {
-            //Get the current frame form capture device
-            currentFrame = cam.QueryFrame().Resize(camPanel.Width, camPanel.Height, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+            //Get the current frame form capture device and set size
+            currentFrame = cam.QueryFrame().Resize((int)(camPanel.Width*0.7), (int)(camPanel.Height*0.7), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
 
             //Show the faces procesed and recognized
             camView.Image = currentFrame;
+
+            FaceAlgorithm f = new FaceAlgorithm(this);
+            f.detectFaces();
 
         }
 
@@ -69,6 +78,8 @@ namespace UniFCR_GUI {
             this.Close();
             menuScreen.Visible = true;            
         }
+
+        
 
     }
 }

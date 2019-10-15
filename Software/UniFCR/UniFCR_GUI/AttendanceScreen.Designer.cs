@@ -107,7 +107,7 @@
             // nameLabel
             // 
             this.nameLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.nameLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F);
+            this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
             this.nameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
             this.nameLabel.Location = new System.Drawing.Point(3, 156);
             this.nameLabel.Name = "nameLabel";
@@ -131,7 +131,7 @@
             this.backButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backButton.FlatAppearance.BorderSize = 0;
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.ForeColor = System.Drawing.Color.DarkGray;
             this.backButton.Location = new System.Drawing.Point(0, 0);
             this.backButton.Name = "backButton";
@@ -202,11 +202,11 @@
             // 
             this.loadingLabel.AutoSize = true;
             this.loadingLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.loadingLabel.Font = new System.Drawing.Font("Century Gothic", 69F);
+            this.loadingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 69F);
             this.loadingLabel.Location = new System.Drawing.Point(0, 250);
             this.loadingLabel.MaximumSize = new System.Drawing.Size(370, 100);
             this.loadingLabel.Name = "loadingLabel";
-            this.loadingLabel.Size = new System.Drawing.Size(358, 100);
+            this.loadingLabel.Size = new System.Drawing.Size(370, 100);
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
             // 
@@ -244,7 +244,15 @@
         private System.Windows.Forms.TableLayoutPanel infoPanel;
         private System.Windows.Forms.PictureBox uniFCRLogoBox;
         private System.Windows.Forms.Label nameLabel;
+        public System.Windows.Forms.Label NameLabel {
+            get { return nameLabel; }
+            set { nameLabel = value; }
+        }
         private Emgu.CV.UI.ImageBox camView;
+        public Emgu.CV.UI.ImageBox CamView {
+            get { return camView;  }
+            set { camView = value; }
+        }
         private System.Windows.Forms.Panel sidePanel;
         private System.Windows.Forms.Panel buttonPanel;
         private System.Windows.Forms.Panel loadingPanel;

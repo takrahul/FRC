@@ -50,7 +50,7 @@ namespace UniFCR_GUI
             //the camera feed may take up 3/4 of the screen
             //had to comment this out for camera to not switch itself off
             //camPanel.Width = (int) (mainPanel.Size.Width * 0.75);
-            grabber = new Capture();
+            grabber = new Capture(1);
             grabber.QueryFrame();
             Application.Idle += new EventHandler(FrameGrabber);
 
@@ -60,8 +60,8 @@ namespace UniFCR_GUI
 
         void FrameGrabber(object sender, EventArgs e)
         {
-            //Get the current frame form capture device
-            currentFrame = grabber.QueryFrame();
+            //Get the current frame form capture device and set resolution
+            currentFrame = grabber.QueryFrame().Resize(1280, 960, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
             gray = currentFrame.Convert<Gray, Byte>();
             //make sure this xml file is in the debug folder for this to work
             face = new HaarCascade("haarcascade_frontalface_default.xml");
@@ -79,7 +79,6 @@ namespace UniFCR_GUI
             this.nameLabel.Text = "Number of Faces: " + facesDetected[0].Length.ToString();
 
         }
-
 
 
 

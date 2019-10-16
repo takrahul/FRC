@@ -20,8 +20,7 @@ namespace UniFCR_GUI {
         private bool mouseDown;
         private Point lastLocation;
 
-        Image<Bgr, Byte> currentFrame;
-        Capture trainCam;
+        Camera trainingCam;
 
         public MenuScreen()
         {
@@ -29,6 +28,7 @@ namespace UniFCR_GUI {
             optionsPanel.Visible = false;
             trainPanel.SendToBack();
             this.CenterToScreen();
+            trainingCam = new Camera(trainCamView);
         }
 
         private void menuPanel_Paint(object sender, PaintEventArgs e)
@@ -112,8 +112,6 @@ namespace UniFCR_GUI {
         //=================================================================
         private void trainBackButton_Click(object sender, EventArgs e)
         {
-
-
             trainPanel.SendToBack();
             trainPanel.Visible = false;
 
@@ -131,39 +129,7 @@ namespace UniFCR_GUI {
 
         private void trainCamPanel_Paint(object sender, PaintEventArgs e)
         {
-            trainCam = new Capture();
-            trainCam.Start();
-            trainCam.ImageGrabbed += ProcessFrame;
-        }
-
-        private void ProcessFrame(object sender, EventArgs arg)
-        {
-            //***If you want to access the image data the use the following method call***/
-            //Image<Bgr, Byte> frame = new Image<Bgr,byte>(_capture.RetrieveBgrFrame().ToBitmap());
-
-            Image<Bgr, Byte> frame = trainCam.RetrieveBgrFrame();
-            //because we are using an autosize picturebox we need to do a thread safe update
-            DisplayImage(frame.ToBitmap());
-        }
-
-        private delegate void DisplayImageDelegate(Bitmap Image);
-        private void DisplayImage(Bitmap Image)
-        {
-            if (trainCamView.InvokeRequired)
-            {
-                try
-                {
-                    DisplayImageDelegate DI = new DisplayImageDelegate(DisplayImage);
-                    this.BeginInvoke(DI, new object[] { Image });
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-            else
-            {
-                trainCamView.Image = new Image<Bgr, Byte>(Image);
-            }
+            trainingCam.start();
         }
 
         private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)

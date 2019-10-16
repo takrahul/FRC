@@ -462,6 +462,7 @@
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.trainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuScreen";
             this.Text = "Form1";
             this.mainPanel.ResumeLayout(false);

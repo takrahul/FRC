@@ -18,9 +18,15 @@ namespace UniFCR_GUI {
     public partial class AttendanceScreen : Form {
 
         Form menuScreen;
-        Image<Bgr, Byte> currentFrame;
+        private Image<Bgr, Byte> currentFrame;
+        public Image<Bgr, Byte> CurrentFrame
+        {
+            get { return currentFrame; }
+            set { currentFrame = value; }
+        }
         Capture cam;
         
+
 
         public AttendanceScreen(Form menuScreen)
         {
@@ -45,49 +51,35 @@ namespace UniFCR_GUI {
 
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
-            cam = new Capture();
-            cam.Start();
-            cam.ImageGrabbed += ProcessFrame;
+            cam = new Capture(1);
+            cam.QueryFrame();
+            Application.Idle += new EventHandler(FrameGrabber);
 
-            //Hide the loading screen when the camera feed is set up
+            //hide the loading screen when the camera feed is set up
             Thread.Sleep(1000);
             loadingPanel.Visible = false;
         }
 
-        private void ProcessFrame(object sender, EventArgs arg)
+        void FrameGrabber(object sender, EventArgs e)
         {
-            //***If you want to access the image data the use the following method call***/
-            //Image<Bgr, Byte> frame = new Image<Bgr,byte>(_capture.RetrieveBgrFrame().ToBitmap());
+            //Get the current frame form capture device and set size
+            currentFrame = cam.QueryFrame().Resize((int)(camPanel.Width*0.7), (int)(camPanel.Height*0.7), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
 
-            Image<Bgr, Byte> frame = cam.RetrieveBgrFrame();
-            //because we are using an autosize picturebox we need to do a thread safe update
-            DisplayImage(frame.ToBitmap());
-        }
-        private delegate void DisplayImageDelegate(Bitmap Image);
-        private void DisplayImage(Bitmap Image)
-        {
+            //Show the faces procesed and recognized
+            camView.Image = currentFrame;
 
-            if (camView.InvokeRequired)
-            {
-                try
-                {
-                    DisplayImageDelegate DI = new DisplayImageDelegate(DisplayImage);
-                    this.BeginInvoke(DI, new object[] { Image });
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-            else
-            {
-                camView.Image = new Image<Bgr, Byte>(Image).Resize(camView.Width, camView.Height, INTER.CV_INTER_CUBIC);
-            }
+            FaceAlgorithm f = new FaceAlgorithm(this);
+            f.detectFaces();
+
         }
-        
+
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
             menuScreen.Visible = true;            
         }
+
+        
+
     }
 }

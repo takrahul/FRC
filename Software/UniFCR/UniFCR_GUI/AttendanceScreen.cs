@@ -51,7 +51,7 @@ namespace UniFCR_GUI {
 
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
-            cam = new Capture(1);
+            cam = new Capture(0);
             cam.QueryFrame();
             Application.Idle += new EventHandler(FrameGrabber);
 

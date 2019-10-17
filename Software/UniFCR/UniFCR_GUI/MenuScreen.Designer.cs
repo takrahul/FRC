@@ -275,6 +275,7 @@
             this.trainSaveButton.TabIndex = 6;
             this.trainSaveButton.Text = "SAVE";
             this.trainSaveButton.UseVisualStyleBackColor = true;
+            this.trainSaveButton.Click += new System.EventHandler(this.trainSaveButton_Click);
             // 
             // numberLabel
             // 

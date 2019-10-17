@@ -173,5 +173,11 @@ namespace UniFCR_GUI {
             attendanceScreen.Show();
         }
 
+        private void trainSaveButton_Click(object sender, EventArgs e)
+        {
+            String firstName = firstNameBox.Text;
+            String lastName = lastNameBox.Text;
+            trainingCam.faceSaver(firstName + " " + lastName);
+        }
     }
 }

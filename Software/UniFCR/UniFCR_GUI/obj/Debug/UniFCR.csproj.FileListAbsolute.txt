@@ -32,3 +32,5 @@ C:\Users\Abbas\Source\Repos\UniFRC2\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR.
 C:\Users\Abbas\Source\Repos\UniFRC2\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR.csproj.CopyComplete
 C:\Users\Abbas\Source\Repos\UniFRC2\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.exe
 C:\Users\Abbas\Source\Repos\UniFRC2\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.pdb
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\CircularProgressBar.dll
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\WinFormAnimation.dll

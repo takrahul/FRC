@@ -339,7 +339,6 @@
             // trainCamView
             // 
             this.trainCamView.BackColor = System.Drawing.Color.DarkGray;
-            this.trainCamView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.trainCamView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trainCamView.Location = new System.Drawing.Point(0, 0);
             this.trainCamView.Margin = new System.Windows.Forms.Padding(0);

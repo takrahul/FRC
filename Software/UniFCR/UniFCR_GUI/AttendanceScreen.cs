@@ -18,17 +18,7 @@ namespace UniFCR_GUI {
     public partial class AttendanceScreen : Form {
 
         Form menuScreen;
-        private Image<Bgr, Byte> currentFrame;
-        public Image<Bgr, Byte> CurrentFrame
-        {
-            get { return currentFrame; }
-            set { currentFrame = value; }
-        }
-        Capture cam;
-
         Camera attendanceCam;
-        
-
 
         public AttendanceScreen(Form menuScreen)
         {
@@ -50,14 +40,13 @@ namespace UniFCR_GUI {
             
             //The camera feed may take up 3/4 of the screen
             camPanel.Width = (int)(mainPanel.Size.Width * 0.75);
+
+            attendanceLabel.Width = infoPanel.Width;
+            missingStudentsBox.SelectionAlignment = HorizontalAlignment.Center;
         }
 
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
-            //cam = new Capture(0);
-            //cam.QueryFrame();
-            //Application.Idle += new EventHandler(FrameGrabber);
-
             //Making the camera feed fit into the window without changing the aspect ration is kind of difficult
             camView.Width = camPanel.Width;
             camView.Height = (int)(camPanel.Width / 1.8);
@@ -71,19 +60,15 @@ namespace UniFCR_GUI {
             //hide the loading screen when the camera feed is set up
             Thread.Sleep(1000);
             loadingPanel.Visible = false;
-        }
 
-        void FrameGrabber(object sender, EventArgs e)
-        {
-            //Get the current frame form capture device and set size
-            currentFrame = cam.QueryFrame().Resize((int)(camPanel.Width*0.7), (int)(camPanel.Height*0.7), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+            //Testing the attendance precentage circle
+            int attendance = 68;
+            attendancePercentageCircle.Value = attendance;
+            attendancePercentageCircle.Text = attendance + "%";
+            attendancePercentageCircle.Update();
 
-            //Show the faces procesed and recognized
-            camView.Image = currentFrame;
-
-            FaceAlgorithm f = new FaceAlgorithm(this);
-            f.detectFaces();
-
+            //FaceAlgorithm f = new FaceAlgorithm(this);
+            //f.detectFaces();
         }
 
         private void exitButton_Click(object sender, EventArgs e)

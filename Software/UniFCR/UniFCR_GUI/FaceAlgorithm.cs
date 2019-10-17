@@ -21,7 +21,7 @@ namespace UniFCR_GUI
             screen = ac;
         }
 
-        public void detectFaces ()
+        /*public void detectFaces ()
         {
             //make sure this xml file is in the debug folder for this to work
             HaarCascade face = new HaarCascade("haarcascade_frontalface_default.xml");
@@ -41,6 +41,6 @@ namespace UniFCR_GUI
             //Number of faces 
             screen.NameLabel.Text = "Number of Faces: " + facesDetected[0].Length.ToString();
 
-        }
+        }*/
     }
 }

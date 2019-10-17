@@ -34,6 +34,8 @@
             this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
             this.attendanceLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
+            this.attendancePercentageCircle = new CircularProgressBar.CircularProgressBar();
+            this.missingStudentsBox = new System.Windows.Forms.RichTextBox();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
             this.camPanel = new System.Windows.Forms.Panel();
@@ -42,8 +44,6 @@
             this.logoTextPanel = new System.Windows.Forms.Panel();
             this.loadingLogo = new System.Windows.Forms.PictureBox();
             this.loadingLabel = new System.Windows.Forms.Label();
-            this.attendancePercentageCircle = new CircularProgressBar.CircularProgressBar();
-            this.missingStudentsBox = new System.Windows.Forms.RichTextBox();
             this.mainPanel.SuspendLayout();
             this.sidePanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
@@ -137,6 +137,52 @@
             this.titleLabel.Size = new System.Drawing.Size(191, 345);
             this.titleLabel.TabIndex = 5;
             this.titleLabel.Text = "UniFCR";
+            // 
+            // attendancePercentageCircle
+            // 
+            this.attendancePercentageCircle.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attendancePercentageCircle.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
+            this.attendancePercentageCircle.AnimationSpeed = 500;
+            this.attendancePercentageCircle.BackColor = System.Drawing.Color.Transparent;
+            this.attendancePercentageCircle.Font = new System.Drawing.Font("Century Gothic", 32F);
+            this.attendancePercentageCircle.ForeColor = System.Drawing.Color.DarkGray;
+            this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
+            this.attendancePercentageCircle.InnerMargin = 2;
+            this.attendancePercentageCircle.InnerWidth = -1;
+            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 597);
+            this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
+            this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
+            this.attendancePercentageCircle.Name = "attendancePercentageCircle";
+            this.attendancePercentageCircle.OuterColor = System.Drawing.Color.LightSteelBlue;
+            this.attendancePercentageCircle.OuterMargin = -25;
+            this.attendancePercentageCircle.OuterWidth = 26;
+            this.attendancePercentageCircle.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.attendancePercentageCircle.ProgressWidth = 25;
+            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attendancePercentageCircle.Size = new System.Drawing.Size(192, 192);
+            this.attendancePercentageCircle.StartAngle = 270;
+            this.attendancePercentageCircle.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.attendancePercentageCircle.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
+            this.attendancePercentageCircle.SubscriptText = "";
+            this.attendancePercentageCircle.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.attendancePercentageCircle.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
+            this.attendancePercentageCircle.SuperscriptText = "";
+            this.attendancePercentageCircle.TabIndex = 6;
+            this.attendancePercentageCircle.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
+            this.attendancePercentageCircle.Value = 68;
+            // 
+            // missingStudentsBox
+            // 
+            this.missingStudentsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.missingStudentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.missingStudentsBox.Font = new System.Drawing.Font("Century Gothic", 21.75F);
+            this.missingStudentsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.missingStudentsBox.Location = new System.Drawing.Point(0, 822);
+            this.missingStudentsBox.Margin = new System.Windows.Forms.Padding(0);
+            this.missingStudentsBox.Name = "missingStudentsBox";
+            this.missingStudentsBox.Size = new System.Drawing.Size(198, 291);
+            this.missingStudentsBox.TabIndex = 7;
+            this.missingStudentsBox.Text = "Missing Students:";
             // 
             // buttonPanel
             // 
@@ -235,51 +281,6 @@
             this.loadingLabel.Size = new System.Drawing.Size(358, 100);
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
-            // 
-            // attendancePercentageCircle
-            // 
-            this.attendancePercentageCircle.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attendancePercentageCircle.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
-            this.attendancePercentageCircle.AnimationSpeed = 500;
-            this.attendancePercentageCircle.BackColor = System.Drawing.Color.Transparent;
-            this.attendancePercentageCircle.Font = new System.Drawing.Font("Century Gothic", 32F);
-            this.attendancePercentageCircle.ForeColor = System.Drawing.Color.DarkGray;
-            this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
-            this.attendancePercentageCircle.InnerMargin = 2;
-            this.attendancePercentageCircle.InnerWidth = -1;
-            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 597);
-            this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
-            this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
-            this.attendancePercentageCircle.Name = "attendancePercentageCircle";
-            this.attendancePercentageCircle.OuterColor = System.Drawing.Color.LightSteelBlue;
-            this.attendancePercentageCircle.OuterMargin = -25;
-            this.attendancePercentageCircle.OuterWidth = 26;
-            this.attendancePercentageCircle.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.attendancePercentageCircle.ProgressWidth = 25;
-            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.attendancePercentageCircle.Size = new System.Drawing.Size(192, 192);
-            this.attendancePercentageCircle.StartAngle = 270;
-            this.attendancePercentageCircle.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.attendancePercentageCircle.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
-            this.attendancePercentageCircle.SubscriptText = "";
-            this.attendancePercentageCircle.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.attendancePercentageCircle.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
-            this.attendancePercentageCircle.SuperscriptText = "";
-            this.attendancePercentageCircle.TabIndex = 6;
-            this.attendancePercentageCircle.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
-            // 
-            // missingStudentsBox
-            // 
-            this.missingStudentsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.missingStudentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.missingStudentsBox.Font = new System.Drawing.Font("Century Gothic", 21.75F);
-            this.missingStudentsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.missingStudentsBox.Location = new System.Drawing.Point(0, 822);
-            this.missingStudentsBox.Margin = new System.Windows.Forms.Padding(0);
-            this.missingStudentsBox.Name = "missingStudentsBox";
-            this.missingStudentsBox.Size = new System.Drawing.Size(198, 291);
-            this.missingStudentsBox.TabIndex = 7;
-            this.missingStudentsBox.Text = "Missing Students:";
             // 
             // AttendanceScreen
             // 

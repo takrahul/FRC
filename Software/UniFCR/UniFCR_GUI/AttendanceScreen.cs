@@ -19,6 +19,7 @@ namespace UniFCR_GUI {
 
         Form menuScreen;
         Camera attendanceCam;
+        int enrolledStudents = 6; //For testing purposes
 
         public AttendanceScreen(Form menuScreen)
         {
@@ -62,9 +63,10 @@ namespace UniFCR_GUI {
             loadingPanel.Visible = false;
 
             //Testing the attendance precentage circle
-            int attendance = 68;
-            attendancePercentageCircle.Value = attendance;
-            attendancePercentageCircle.Text = attendance + "%";
+            int attendance = 4;
+            double attendancePercentage = ((double) attendance / (double) enrolledStudents) * 100;
+            attendancePercentageCircle.Value = (int) attendancePercentage;
+            attendancePercentageCircle.Text = (int) attendancePercentage + "%";
             attendancePercentageCircle.Update();
 
             //FaceAlgorithm f = new FaceAlgorithm(this);

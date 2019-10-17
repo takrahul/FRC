@@ -29,16 +29,19 @@ namespace UniFCR_GUI {
 
         public void start()
         {
-            cam = new Capture();
+            cam = new Capture(1);
+            cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280); //1280
+            cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720); //720
+            //cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);
             cam.Start();
             cam.ImageGrabbed += ProcessFrame;
         }
 
         private void ProcessFrame(object sender, EventArgs arg)
         {
-           //Get current frame from the camera
+            //Get current frame from the camera
             Image<Bgr, Byte> frame = cam.RetrieveBgrFrame().Resize((int)(cameraBox.Width), (int)(cameraBox.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
-
+            
             //Update the ImageBox to show current frame (if there is one)
             if (frame != null)
             {

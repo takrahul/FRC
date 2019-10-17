@@ -55,6 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camera.cs" />
+    <Compile Include="EigenObjectRecognizer.cs" />
+    <Compile Include="FaceAlgorithm.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="MenuScreen.cs">
       <SubType>Form</SubType>
     </Compile>

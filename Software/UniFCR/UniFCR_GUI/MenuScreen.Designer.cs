@@ -99,9 +99,9 @@
             // uniFCRLogoBox
             // 
             this.uniFCRLogoBox.Image = ((System.Drawing.Image)(resources.GetObject("uniFCRLogoBox.Image")));
-            this.uniFCRLogoBox.Location = new System.Drawing.Point(130, 15);
+            this.uniFCRLogoBox.Location = new System.Drawing.Point(130, 12);
             this.uniFCRLogoBox.Name = "uniFCRLogoBox";
-            this.uniFCRLogoBox.Size = new System.Drawing.Size(133, 120);
+            this.uniFCRLogoBox.Size = new System.Drawing.Size(133, 134);
             this.uniFCRLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.uniFCRLogoBox.TabIndex = 2;
             this.uniFCRLogoBox.TabStop = false;

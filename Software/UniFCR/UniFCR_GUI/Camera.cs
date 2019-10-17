@@ -29,9 +29,9 @@ namespace UniFCR_GUI {
 
         public void start()
         {
-            cam = new Capture(1);
-            cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280); //1280
-            cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720); //720
+            cam = new Capture();
+            cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1919); //1280
+            cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 1079); //720
             //cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);
             cam.Start();
             cam.ImageGrabbed += ProcessFrame;

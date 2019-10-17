@@ -68,9 +68,7 @@ namespace UniFCR_GUI {
             attendancePercentageCircle.Value = (int) attendancePercentage;
             attendancePercentageCircle.Text = (int) attendancePercentage + "%";
             attendancePercentageCircle.Update();
-
-            //FaceAlgorithm f = new FaceAlgorithm(this);
-            //f.detectFaces();
+            attendanceLabel.Text = "Students present: " + attendance;
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -78,8 +76,5 @@ namespace UniFCR_GUI {
             this.Close();
             menuScreen.Visible = true;            
         }
-
-        
-
     }
 }

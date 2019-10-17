@@ -291,6 +291,7 @@
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.loadingPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AttendanceScreen";
             this.Text = "Form2";
             this.mainPanel.ResumeLayout(false);

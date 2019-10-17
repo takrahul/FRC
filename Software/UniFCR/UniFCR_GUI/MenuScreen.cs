@@ -17,6 +17,8 @@ using System.Diagnostics;
 
 namespace UniFCR_GUI {
     public partial class MenuScreen : Form {
+
+        //Variables for moving the window with the mouse
         private bool mouseDown;
         private Point lastLocation;
 
@@ -33,7 +35,7 @@ namespace UniFCR_GUI {
 
         private void menuPanel_Paint(object sender, PaintEventArgs e)
         {
-            //Center the Buttons 
+            //Center the buttons 
             int buttonPanelX = (this.Size.Width / 2) - (buttonPanel.Size.Width / 2);
             int buttonPanelY = (this.Size.Height / 2) - (buttonPanel.Size.Height);
             buttonPanel.Location = new Point(buttonPanelX, buttonPanelY);
@@ -129,23 +131,27 @@ namespace UniFCR_GUI {
 
         private void trainCamPanel_Paint(object sender, PaintEventArgs e)
         {
+            //Making the camera feed fit into the window without changing the aspect ration is kind of difficult
+            trainCamView.Width = trainCamPanel.Width;
+            trainCamView.Height = (int)(trainCamPanel.Width / 1.8);
+            trainCamView.Dock = DockStyle.None;
+            trainCamView.Anchor = AnchorStyles.None;
+            trainCamView.Location = new Point(
+                (trainCamPanel.Width / 2) - (trainCamView.Width / 2), (trainCamPanel.Height / 2) - (trainCamView.Height / 2));
+
             trainingCam.start();
-        }
 
-        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
-        {
-            //Usually called in trainCamPanel_Paint() but programm will crash then 
-            closeLoadingScreen();
-        }
-
-        public void closeLoadingScreen()
-        {
             //Hide the loading screen when the camera feed is set up
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             trainLoadingPanel.Visible = false;
             trainLoadingPanel.SendToBack();
         }
 
+       /*
+        * Clicking the "START" Button takes the 
+        * user from the training window directly
+        * to the Attendance Mode
+        */
         private void trainStartButton_Click(object sender, EventArgs e)
         {
             trainPanel.SendToBack();
@@ -154,7 +160,8 @@ namespace UniFCR_GUI {
             trainLoadingPanel.SendToBack();
             trainLoadingPanel.Visible = false;
 
-            this.Visible = false;
+            this.Visible = false; //Hide the menu screen while Attendance Mode is active
+
             AttendanceScreen attendanceScreen = new AttendanceScreen(this);
 
             //the attendance screen should show on the same monitor as the menu

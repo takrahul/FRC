@@ -25,13 +25,16 @@ namespace UniFCR_GUI {
             set { currentFrame = value; }
         }
         Capture cam;
+
+        Camera attendanceCam;
         
 
 
         public AttendanceScreen(Form menuScreen)
         {
-            this.menuScreen = menuScreen;
             InitializeComponent();
+            this.menuScreen = menuScreen;
+            attendanceCam = new Camera(camView);
 
             //Show loading screen first
             loadingPanel.BringToFront();
@@ -51,9 +54,19 @@ namespace UniFCR_GUI {
 
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
-            cam = new Capture(0);
-            cam.QueryFrame();
-            Application.Idle += new EventHandler(FrameGrabber);
+            //cam = new Capture(0);
+            //cam.QueryFrame();
+            //Application.Idle += new EventHandler(FrameGrabber);
+
+            //Making the camera feed fit into the window without changing the aspect ration is kind of difficult
+            camView.Width = camPanel.Width;
+            camView.Height = (int)(camPanel.Width / 1.8);
+            camView.Dock = DockStyle.None;
+            camView.Anchor = AnchorStyles.None;
+            camView.Location = new Point(
+                (camPanel.Width / 2) - (camView.Width / 2), (camPanel.Height / 2) - (camView.Height / 2));
+
+            attendanceCam.start();
 
             //hide the loading screen when the camera feed is set up
             Thread.Sleep(1000);

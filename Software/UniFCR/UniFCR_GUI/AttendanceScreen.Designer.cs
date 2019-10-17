@@ -167,8 +167,7 @@
             // 
             // camView
             // 
-            this.camView.BackColor = System.Drawing.Color.DarkGray;
-            this.camView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.camView.BackColor = System.Drawing.Color.Black;
             this.camView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.camView.Location = new System.Drawing.Point(0, 0);
             this.camView.Name = "camView";
@@ -221,7 +220,7 @@
             this.loadingLabel.Location = new System.Drawing.Point(0, 250);
             this.loadingLabel.MaximumSize = new System.Drawing.Size(370, 100);
             this.loadingLabel.Name = "loadingLabel";
-            this.loadingLabel.Size = new System.Drawing.Size(370, 100);
+            this.loadingLabel.Size = new System.Drawing.Size(358, 100);
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
             // 

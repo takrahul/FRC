@@ -37,7 +37,7 @@ namespace UniFCR_GUI {
         private void ProcessFrame(object sender, EventArgs arg)
         {
            //Get current frame from the camera
-            Image<Bgr, Byte> frame = cam.RetrieveBgrFrame();
+            Image<Bgr, Byte> frame = cam.RetrieveBgrFrame().Resize((int)(cameraBox.Width), (int)(cameraBox.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
 
             //Update the ImageBox to show current frame (if there is one)
             if (frame != null)

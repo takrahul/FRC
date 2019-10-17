@@ -33,7 +33,7 @@ namespace UniFCR_GUI {
 
         public void start()
         {
-            cam = new Capture(1);
+            cam = new Capture();
             cam.Start();
             cam.ImageGrabbed += ProcessFrame;
         }

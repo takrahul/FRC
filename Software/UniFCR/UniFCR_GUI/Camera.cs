@@ -50,7 +50,7 @@ namespace UniFCR_GUI {
             if (frame != null)
             {
                 f.recognizeFaces();
-                DisplayImage(frame.ToBitmap());
+                //DisplayImage(frame.ToBitmap());
             } else
             {
                 Console.WriteLine("No Camera Found!");

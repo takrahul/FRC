@@ -67,14 +67,12 @@ namespace UniFCR_GUI {
                 result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 //draw the face detected in the 0th (gray) channel with red color
                 frame.Draw(f.rect, new Bgr(Color.Red), 2);
-
             }
         }
 
 
         public void recognizeFaces()
         {
-
             Console.WriteLine(Globals.trainingImages.Count);
 
             NamePersons.Add("");

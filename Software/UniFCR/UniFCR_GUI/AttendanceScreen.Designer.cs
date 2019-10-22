@@ -26,45 +26,173 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendanceScreen));
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.camPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.sidePanel = new System.Windows.Forms.Panel();
+            this.infoPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
+            this.attendanceLabel = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.attendancePercentageCircle = new CircularProgressBar.CircularProgressBar();
+            this.missingStudentsBox = new System.Windows.Forms.RichTextBox();
+            this.buttonPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
-            this.infoPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.camPanel = new System.Windows.Forms.Panel();
+            this.camView = new Emgu.CV.UI.ImageBox();
+            this.loadingPanel = new System.Windows.Forms.Panel();
+            this.logoTextPanel = new System.Windows.Forms.Panel();
+            this.loadingLogo = new System.Windows.Forms.PictureBox();
+            this.loadingLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.sidePanel.SuspendLayout();
+            this.infoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
+            this.buttonPanel.SuspendLayout();
+            this.camPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.camView)).BeginInit();
+            this.loadingPanel.SuspendLayout();
+            this.logoTextPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.infoPanel);
-            this.mainPanel.Controls.Add(this.panel1);
+            this.mainPanel.Controls.Add(this.sidePanel);
             this.mainPanel.Controls.Add(this.camPanel);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1198, 626);
+            this.mainPanel.Size = new System.Drawing.Size(1198, 1183);
             this.mainPanel.TabIndex = 0;
-            this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
-            // camPanel
+            // sidePanel
             // 
-            this.camPanel.BackColor = System.Drawing.Color.Black;
-            this.camPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.camPanel.Location = new System.Drawing.Point(0, 0);
-            this.camPanel.Name = "camPanel";
-            this.camPanel.Size = new System.Drawing.Size(1000, 626);
-            this.camPanel.TabIndex = 0;
-            this.camPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.camPanel_Paint);
+            this.sidePanel.BackColor = System.Drawing.Color.White;
+            this.sidePanel.Controls.Add(this.infoPanel);
+            this.sidePanel.Controls.Add(this.buttonPanel);
+            this.sidePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sidePanel.Location = new System.Drawing.Point(1000, 0);
+            this.sidePanel.Name = "sidePanel";
+            this.sidePanel.Size = new System.Drawing.Size(198, 1183);
+            this.sidePanel.TabIndex = 6;
             // 
-            // panel1
+            // infoPanel
             // 
-            this.panel1.Controls.Add(this.backButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(1000, 551);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(198, 75);
-            this.panel1.TabIndex = 1;
+            this.infoPanel.ColumnCount = 1;
+            this.infoPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.infoPanel.Controls.Add(this.uniFCRLogoBox, 0, 0);
+            this.infoPanel.Controls.Add(this.attendanceLabel, 0, 2);
+            this.infoPanel.Controls.Add(this.titleLabel, 0, 1);
+            this.infoPanel.Controls.Add(this.attendancePercentageCircle, 0, 3);
+            this.infoPanel.Controls.Add(this.missingStudentsBox, 0, 4);
+            this.infoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.infoPanel.Location = new System.Drawing.Point(0, 0);
+            this.infoPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.infoPanel.Name = "infoPanel";
+            this.infoPanel.RowCount = 5;
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.05883F));
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.94118F));
+            this.infoPanel.Size = new System.Drawing.Size(198, 1113);
+            this.infoPanel.TabIndex = 0;
+            // 
+            // uniFCRLogoBox
+            // 
+            this.uniFCRLogoBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.uniFCRLogoBox.Image = ((System.Drawing.Image)(resources.GetObject("uniFCRLogoBox.Image")));
+            this.uniFCRLogoBox.Location = new System.Drawing.Point(24, 0);
+            this.uniFCRLogoBox.Margin = new System.Windows.Forms.Padding(0);
+            this.uniFCRLogoBox.MaximumSize = new System.Drawing.Size(150, 150);
+            this.uniFCRLogoBox.MinimumSize = new System.Drawing.Size(10, 10);
+            this.uniFCRLogoBox.Name = "uniFCRLogoBox";
+            this.uniFCRLogoBox.Size = new System.Drawing.Size(150, 150);
+            this.uniFCRLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.uniFCRLogoBox.TabIndex = 3;
+            this.uniFCRLogoBox.TabStop = false;
+            // 
+            // attendanceLabel
+            // 
+            this.attendanceLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attendanceLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F);
+            this.attendanceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.attendanceLabel.Location = new System.Drawing.Point(3, 495);
+            this.attendanceLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.attendanceLabel.Name = "attendanceLabel";
+            this.attendanceLabel.Size = new System.Drawing.Size(192, 70);
+            this.attendanceLabel.TabIndex = 4;
+            this.attendanceLabel.Text = "Students present: ";
+            this.attendanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(3, 150);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(191, 345);
+            this.titleLabel.TabIndex = 5;
+            this.titleLabel.Text = "UniFCR";
+            // 
+            // attendancePercentageCircle
+            // 
+            this.attendancePercentageCircle.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attendancePercentageCircle.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
+            this.attendancePercentageCircle.AnimationSpeed = 500;
+            this.attendancePercentageCircle.BackColor = System.Drawing.Color.Transparent;
+            this.attendancePercentageCircle.Font = new System.Drawing.Font("Century Gothic", 32F);
+            this.attendancePercentageCircle.ForeColor = System.Drawing.Color.DarkGray;
+            this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
+            this.attendancePercentageCircle.InnerMargin = 2;
+            this.attendancePercentageCircle.InnerWidth = -1;
+            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 597);
+            this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
+            this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
+            this.attendancePercentageCircle.Name = "attendancePercentageCircle";
+            this.attendancePercentageCircle.OuterColor = System.Drawing.Color.LightSteelBlue;
+            this.attendancePercentageCircle.OuterMargin = -25;
+            this.attendancePercentageCircle.OuterWidth = 26;
+            this.attendancePercentageCircle.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.attendancePercentageCircle.ProgressWidth = 25;
+            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attendancePercentageCircle.Size = new System.Drawing.Size(192, 192);
+            this.attendancePercentageCircle.StartAngle = 270;
+            this.attendancePercentageCircle.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.attendancePercentageCircle.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
+            this.attendancePercentageCircle.SubscriptText = "";
+            this.attendancePercentageCircle.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.attendancePercentageCircle.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
+            this.attendancePercentageCircle.SuperscriptText = "";
+            this.attendancePercentageCircle.TabIndex = 6;
+            this.attendancePercentageCircle.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
+            this.attendancePercentageCircle.Value = 68;
+            // 
+            // missingStudentsBox
+            // 
+            this.missingStudentsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.missingStudentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.missingStudentsBox.Font = new System.Drawing.Font("Century Gothic", 21.75F);
+            this.missingStudentsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.missingStudentsBox.Location = new System.Drawing.Point(0, 822);
+            this.missingStudentsBox.Margin = new System.Windows.Forms.Padding(0);
+            this.missingStudentsBox.Name = "missingStudentsBox";
+            this.missingStudentsBox.Size = new System.Drawing.Size(198, 291);
+            this.missingStudentsBox.TabIndex = 7;
+            this.missingStudentsBox.Text = "Missing Students:";
+            // 
+            // buttonPanel
+            // 
+            this.buttonPanel.BackColor = System.Drawing.Color.White;
+            this.buttonPanel.Controls.Add(this.backButton);
+            this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonPanel.Location = new System.Drawing.Point(0, 1113);
+            this.buttonPanel.Name = "buttonPanel";
+            this.buttonPanel.Size = new System.Drawing.Size(198, 70);
+            this.buttonPanel.TabIndex = 6;
             // 
             // backButton
             // 
@@ -72,36 +200,112 @@
             this.backButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backButton.FlatAppearance.BorderSize = 0;
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.ForeColor = System.Drawing.Color.DarkGray;
             this.backButton.Location = new System.Drawing.Point(0, 0);
+            this.backButton.Margin = new System.Windows.Forms.Padding(0);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(198, 75);
+            this.backButton.Size = new System.Drawing.Size(198, 70);
             this.backButton.TabIndex = 1;
             this.backButton.Text = "BACK";
             this.backButton.UseVisualStyleBackColor = false;
             this.backButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // infoPanel
+            // camPanel
             // 
-            this.infoPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.infoPanel.Location = new System.Drawing.Point(998, 0);
-            this.infoPanel.Name = "infoPanel";
-            this.infoPanel.Size = new System.Drawing.Size(200, 551);
-            this.infoPanel.TabIndex = 2;
+            this.camPanel.BackColor = System.Drawing.Color.Black;
+            this.camPanel.Controls.Add(this.camView);
+            this.camPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.camPanel.Location = new System.Drawing.Point(0, 0);
+            this.camPanel.Name = "camPanel";
+            this.camPanel.Size = new System.Drawing.Size(1000, 1183);
+            this.camPanel.TabIndex = 0;
+            this.camPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.camPanel_Paint);
+            // 
+            // camView
+            // 
+            this.camView.BackColor = System.Drawing.Color.Black;
+            this.camView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.camView.Location = new System.Drawing.Point(0, 0);
+            this.camView.Margin = new System.Windows.Forms.Padding(0);
+            this.camView.Name = "camView";
+            this.camView.Size = new System.Drawing.Size(1000, 1183);
+            this.camView.TabIndex = 5;
+            this.camView.TabStop = false;
+            // 
+            // loadingPanel
+            // 
+            this.loadingPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.loadingPanel.Controls.Add(this.logoTextPanel);
+            this.loadingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.loadingPanel.Location = new System.Drawing.Point(0, 0);
+            this.loadingPanel.Name = "loadingPanel";
+            this.loadingPanel.Size = new System.Drawing.Size(1198, 1183);
+            this.loadingPanel.TabIndex = 6;
+            this.loadingPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.loadingPanel_Paint);
+            // 
+            // logoTextPanel
+            // 
+            this.logoTextPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.logoTextPanel.Controls.Add(this.loadingLogo);
+            this.logoTextPanel.Controls.Add(this.loadingLabel);
+            this.logoTextPanel.Location = new System.Drawing.Point(406, 434);
+            this.logoTextPanel.MaximumSize = new System.Drawing.Size(370, 350);
+            this.logoTextPanel.MinimumSize = new System.Drawing.Size(35, 25);
+            this.logoTextPanel.Name = "logoTextPanel";
+            this.logoTextPanel.Size = new System.Drawing.Size(350, 350);
+            this.logoTextPanel.TabIndex = 2;
+            // 
+            // loadingLogo
+            // 
+            this.loadingLogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.loadingLogo.Image = ((System.Drawing.Image)(resources.GetObject("loadingLogo.Image")));
+            this.loadingLogo.Location = new System.Drawing.Point(47, 0);
+            this.loadingLogo.MaximumSize = new System.Drawing.Size(250, 250);
+            this.loadingLogo.MinimumSize = new System.Drawing.Size(10, 10);
+            this.loadingLogo.Name = "loadingLogo";
+            this.loadingLogo.Size = new System.Drawing.Size(250, 250);
+            this.loadingLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.loadingLogo.TabIndex = 0;
+            this.loadingLogo.TabStop = false;
+            // 
+            // loadingLabel
+            // 
+            this.loadingLabel.AutoSize = true;
+            this.loadingLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.loadingLabel.Font = new System.Drawing.Font("Century Gothic", 69F);
+            this.loadingLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.loadingLabel.Location = new System.Drawing.Point(0, 250);
+            this.loadingLabel.MaximumSize = new System.Drawing.Size(370, 100);
+            this.loadingLabel.Name = "loadingLabel";
+            this.loadingLabel.Size = new System.Drawing.Size(358, 100);
+            this.loadingLabel.TabIndex = 1;
+            this.loadingLabel.Text = "UniFCR";
             // 
             // AttendanceScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1198, 626);
+            this.ClientSize = new System.Drawing.Size(1198, 1183);
             this.Controls.Add(this.mainPanel);
+            this.Controls.Add(this.loadingPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AttendanceScreen";
             this.Text = "Form2";
             this.mainPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.sidePanel.ResumeLayout(false);
+            this.infoPanel.ResumeLayout(false);
+            this.infoPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
+            this.buttonPanel.ResumeLayout(false);
+            this.camPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.camView)).EndInit();
+            this.loadingPanel.ResumeLayout(false);
+            this.logoTextPanel.ResumeLayout(false);
+            this.logoTextPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -110,8 +314,27 @@
 
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Panel camPanel;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.FlowLayoutPanel infoPanel;
+        private System.Windows.Forms.TableLayoutPanel infoPanel;
+        private System.Windows.Forms.PictureBox uniFCRLogoBox;
+        private System.Windows.Forms.Label attendanceLabel;
+        public System.Windows.Forms.Label NameLabel {
+            get { return attendanceLabel; }
+            set { attendanceLabel = value; }
+        }
+        private Emgu.CV.UI.ImageBox camView;
+        public Emgu.CV.UI.ImageBox CamView {
+            get { return camView;  }
+            set { camView = value; }
+        }
+        private System.Windows.Forms.Panel sidePanel;
+        private System.Windows.Forms.Panel buttonPanel;
+        private System.Windows.Forms.Panel loadingPanel;
+        private System.Windows.Forms.PictureBox loadingLogo;
+        private System.Windows.Forms.Label loadingLabel;
+        private System.Windows.Forms.Panel logoTextPanel;
+        private System.Windows.Forms.Label titleLabel;
+        private CircularProgressBar.CircularProgressBar attendancePercentageCircle;
+        private System.Windows.Forms.RichTextBox missingStudentsBox;
     }
 }

@@ -347,6 +347,7 @@
             this.trainCamView.Size = new System.Drawing.Size(532, 414);
             this.trainCamView.TabIndex = 5;
             this.trainCamView.TabStop = false;
+            this.trainCamView.BackColorChanged += new System.EventHandler(this.trainCamView_BackColorChanged);
             // 
             // trainStartButton
             // 

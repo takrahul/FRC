@@ -14,18 +14,42 @@ using Emgu.CV.CvEnum;
 using Emgu.Util;
 using System.IO;
 using System.Diagnostics;
+using Emgu.CV.UI;
 
 namespace UniFCR_GUI {
     class Camera {
 
         private Capture cam = null; //Camera
         private bool captureInProgress = false; //Variable to track camera state
-        private PictureBox cameraBox = null;
+        public ImageBox cameraBox = null;
         HaarCascade face;
         Image<Bgr, Byte> currentFrame;
         Image<Gray, byte> result, TrainedFace = null;
+        public Image<Bgr, Byte> frame = null;
+        int camPerformanceCounter = 0;
 
-        public Camera (PictureBox box)
+        private  int _newImageArrived;
+        public int newImageArrived
+        {
+            get { return _newImageArrived; }
+            set
+            {
+                if (_newImageArrived != value)
+                {
+                    _newImageArrived = value;
+                    OnValueChanged();
+                }
+            }
+        }
+
+        public event EventHandler ValueChanged;
+        protected void OnValueChanged()
+        {
+            if (ValueChanged != null)
+                ValueChanged(this, EventArgs.Empty);
+        }
+
+        public Camera (ImageBox box)
         {
             this.cameraBox = box;
         }
@@ -43,14 +67,26 @@ namespace UniFCR_GUI {
         private void ProcessFrame(object sender, EventArgs arg)
         {
             //Get current frame from the camera
-            Image<Bgr, Byte> frame = cam.RetrieveBgrFrame().Resize((int)(cameraBox.Width), (int)(cameraBox.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+            frame = cam.RetrieveBgrFrame().Resize((int)(cameraBox.Width), (int)(cameraBox.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
 
             //Update the ImageBox to show current frame (if there is one)
-            FaceAlgorithm f = new FaceAlgorithm(frame, null, cameraBox);
             if (frame != null)
             {
-                f.recognizeFaces();
+
                 //DisplayImage(frame.ToBitmap());
+                if (camPerformanceCounter % 10 == 0)
+                {
+                    if (newImageArrived < 255)
+                    {
+                        newImageArrived += 1;
+                    }
+                    else
+                    {
+                        newImageArrived = 0;
+                    }
+                }
+                camPerformanceCounter++;
+
             } else
             {
                 Console.WriteLine("No Camera Found!");
@@ -108,8 +144,8 @@ namespace UniFCR_GUI {
 
         }
 
-        private delegate void DisplayImageDelegate(Bitmap Image);
-        private void DisplayImage(Bitmap Image)
+        private delegate void DisplayImageDelegate(Image<Bgr, Byte> Image);
+        public void DisplayImage(Image<Bgr, Byte> Image)
         {
             if (cameraBox.InvokeRequired)
             {

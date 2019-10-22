@@ -18,9 +18,6 @@ namespace UniFCR_GUI {
     class FaceAlgorithm {
         //private AttendanceScreen screen;
         int t = 0;
-        private Image<Bgr, Byte> frame;
-        private Label nameLabel;
-        private PictureBox camView;
         String name, names;
         MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
         List<string> NamePersons = new List<string>();
@@ -28,11 +25,8 @@ namespace UniFCR_GUI {
 
 
 
-        public FaceAlgorithm(Image<Bgr, Byte> f, Label l, PictureBox c)
+        public FaceAlgorithm()
         {
-            frame = f;
-            nameLabel = l;
-            camView = c;
             // DO NOT TOUCH
             if (Globals.created == true)
             {
@@ -54,7 +48,7 @@ namespace UniFCR_GUI {
             }
 
         }
-        public void detectFaces()
+        public void detectFaces(Image<Bgr, Byte> frame)
         {
             //make sure this xml file is in the debug folder for this to work
             Image<Gray, byte> gray = null;
@@ -71,10 +65,8 @@ namespace UniFCR_GUI {
         }
 
 
-        public void recognizeFaces()
+        public Image<Bgr, Byte> recognizeFaces(Image<Bgr, Byte> frame)
         {
-            Console.WriteLine(Globals.trainingImages.Count);
-
             NamePersons.Add("");
             Image<Gray, byte> gray = null;
             Image<Gray, byte> result = null;
@@ -117,11 +109,13 @@ namespace UniFCR_GUI {
                 names = names + NamePersons[nnn] + ", ";
             }
             //Show the faces procesed and recognized
-            camView.Image = frame.ToBitmap();
+            //camView.Image = frame.ToBitmap();
             //List the names
             //nameLabel.Text += "\n " + names;
             names = "";
             NamePersons.Clear();
+
+            return frame;
 
         }
     }

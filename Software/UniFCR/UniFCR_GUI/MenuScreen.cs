@@ -139,12 +139,26 @@ namespace UniFCR_GUI {
             trainCamView.Location = new Point(
                 (trainCamPanel.Width / 2) - (trainCamView.Width / 2), (trainCamPanel.Height / 2) - (trainCamView.Height / 2));
 
+            
             trainingCam.start();
+            trainingCam.ValueChanged += newImageListener;
 
             //Hide the loading screen when the camera feed is set up
             Thread.Sleep(2000);
             trainLoadingPanel.Visible = false;
             trainLoadingPanel.SendToBack();
+        }
+
+        private void newImageListener(Object sender, EventArgs e)
+        {
+            if (trainingCam.frame != null)
+            {
+                Console.WriteLine("new image found, " + trainingCam.frame.Width);
+                FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+                Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(trainingCam.frame);
+                trainingCam.DisplayImage(frame);
+            }
+            
         }
 
        /*
@@ -178,6 +192,11 @@ namespace UniFCR_GUI {
             String firstName = firstNameBox.Text;
             String lastName = lastNameBox.Text;
             trainingCam.faceSaver(firstName + " " + lastName);
+        }
+
+        private void trainCamView_BackColorChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("success");
         }
     }
 }

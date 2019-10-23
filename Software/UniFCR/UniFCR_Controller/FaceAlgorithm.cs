@@ -9,6 +9,7 @@ using Emgu.CV.CvEnum;
 using System.Drawing;
 using Emgu.CV.UI;
 using System.IO;
+using UniFCR_Database;
 
 
 
@@ -26,22 +27,44 @@ namespace UniFCR_Controller {
 
         public FaceAlgorithm()
         {
+            List<StudentModel> students = new List<StudentModel>();
+            students = SqliteDataAccess.LoadStudents();
+
             // DO NOT TOUCH
             if (Globals.created == true)
             {
 
                 //Load of previus trainned faces and labels for each image
-                string Labelsinfo = File.ReadAllText("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/TrainedLabels.txt");
-                string[] Labels = Labelsinfo.Split('%');
-                Globals.numLabels = Convert.ToInt16(Labels[0]);
+                //string Labelsinfo = File.ReadAllText("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/TrainedLabels.txt");
+                List<String> studentNames = new List<String>();
+
+                foreach (StudentModel m in students) 
+                {
+                    studentNames.Add(m.GivenNames + " " + m.LastName);
+                }
+
+                Globals.numLabels = students.Count();
                 Globals.ContTrain = Globals.numLabels;
                 string LoadFaces;
 
-                for (int tf = 1; tf < Globals.numLabels + 1; tf++)
+                for (int tf = 0; tf < Globals.numLabels; tf++)
                 {
                     LoadFaces = "face" + tf + ".bmp";
-                    Globals.trainingImages.Add(new Image<Gray, byte>("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/" + LoadFaces));
-                    Globals.labels.Add(Labels[tf]);
+
+
+                    ImageConverter converter = new ImageConverter();
+
+                    byte[] studentImage = students.ToArray()[tf].Image;
+                    Bitmap bmp;
+                    using (var ms = new MemoryStream(studentImage))
+                    {
+                        bmp = new Bitmap(ms);
+                    }
+                        //Image<Gray, byte> traindeFaceImage = (Image<Gray, byte>)converter.ConvertTo(studentImage, typeof(Image<Gray, byte>));
+                        Image<Gray, byte> trainedFaceImage = new Image<Gray, byte>(bmp);
+                    Globals.trainingImages.Add(trainedFaceImage);
+                    //Globals.trainingImages.Add(new Image<Gray, byte>("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/" + LoadFaces));
+                    Globals.labels.Add(studentNames.ToArray()[tf]);
                 }
                 Globals.created = false;
             }

@@ -15,6 +15,7 @@ using Emgu.Util;
 using System.IO;
 using System.Diagnostics;
 using UniFCR_Controller;
+using UniFCR_Database;
 
 namespace UniFCR_GUI {
     public partial class MenuScreen : Form {
@@ -26,6 +27,7 @@ namespace UniFCR_GUI {
         static Camera trainingCam;
 
         Boolean camRunning = false;
+        DatabaseController database = new DatabaseController();
 
         public MenuScreen()
         {
@@ -150,6 +152,7 @@ namespace UniFCR_GUI {
                 trainingCam = new Camera(trainCamView);
                 trainingCam.start();
                 camRunning = true;
+                database.LoadStudentsList();
             }
 
 
@@ -207,7 +210,12 @@ namespace UniFCR_GUI {
         {
             String firstName = firstNameBox.Text;
             String lastName = lastNameBox.Text;
-            trainingCam.faceSaver(firstName + " " + lastName);
+            int matNum = Int32.Parse(numberBox.Text);
+            Image<Gray, byte> image = trainingCam.faceSaver(firstName, lastName);
+            database.saveStudentList(firstName, lastName, matNum, image);
+            firstNameBox.Text = "";
+            lastNameBox.Text = "";
+            numberBox.Text = "";
         }
 
         private void trainCamView_BackColorChanged(object sender, EventArgs e)

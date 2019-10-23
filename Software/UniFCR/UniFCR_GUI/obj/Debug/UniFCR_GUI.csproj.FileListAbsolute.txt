@@ -20,3 +20,10 @@ D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Emg
 D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Emgu.CV.UI.xml
 D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Emgu.Util.xml
 D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.csproj.CopyComplete
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_Database.dll
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\System.Data.SQLite.dll
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Dapper.dll
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_Database.pdb
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\System.Data.SQLite.xml
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\System.Data.SQLite.dll.config
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Dapper.xml

@@ -58,7 +58,7 @@ namespace UniFCR_Controller {
         {
             if (!this.captureInProgress)
             {
-                cam = new Capture();
+                cam = new Capture(0);
                 cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280); //1280
                 cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720); //720
                                                                                 //cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);
@@ -100,7 +100,7 @@ namespace UniFCR_Controller {
             {
 
                 //DisplayImage(frame.ToBitmap());
-                if (camPerformanceCounter % 10 == 0)
+                if (camPerformanceCounter % 1 == 0)
                 {
                     if (newImageArrived < 255)
                     {
@@ -119,7 +119,7 @@ namespace UniFCR_Controller {
             }            
         }
 
-        public void faceSaver(String name)
+        public Image<Gray, byte> faceSaver(String firstName, String lastName)
         {
 
             //Trained face counter
@@ -153,21 +153,21 @@ namespace UniFCR_Controller {
             //test image with cubic interpolation type method
             TrainedFace = result.Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
             Globals.trainingImages.Add(TrainedFace);
-            Globals.labels.Add(name);
+            Globals.labels.Add(firstName + " " + lastName);
 
 
             //Write the number of triained faces in a file text for further load
-            File.WriteAllText(Application.StartupPath + "/TrainedFaces/TrainedLabels.txt", Globals.trainingImages.ToArray().Length.ToString() + "%");
+            //File.WriteAllText("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/TrainedLabels.txt", Globals.trainingImages.ToArray().Length.ToString() + "%");
 
             //Write the labels of triained faces in a file text for further load
-            for (int i = 1; i < Globals.trainingImages.ToArray().Length + 1; i++)
+            /*for (int i = 1; i < Globals.trainingImages.ToArray().Length + 1; i++)
             {
-                Globals.trainingImages.ToArray()[i - 1].Save(Application.StartupPath + "/TrainedFaces/face" + i + ".bmp");
-                File.AppendAllText(Application.StartupPath + "/TrainedFaces/TrainedLabels.txt", Globals.labels.ToArray()[i - 1] + "%");
-            }
+                Globals.trainingImages.ToArray()[i - 1].Save("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/face" + i + ".bmp");
+                File.AppendAllText("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/TrainedLabels.txt", Globals.labels.ToArray()[i - 1] + "%");
+            }*/
 
-            MessageBox.Show(name + "´s face detected and added :)", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            MessageBox.Show(firstName + "´s face detected and added :)", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return TrainedFace;
         }
 
         private delegate void DisplayImageDelegate(Image<Bgr, Byte> Image);

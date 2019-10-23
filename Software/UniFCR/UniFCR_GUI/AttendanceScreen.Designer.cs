@@ -63,7 +63,7 @@
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1198, 1183);
+            this.mainPanel.Size = new System.Drawing.Size(1198, 1100);
             this.mainPanel.TabIndex = 0;
             // 
             // sidePanel
@@ -74,7 +74,7 @@
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sidePanel.Location = new System.Drawing.Point(1000, 0);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(198, 1183);
+            this.sidePanel.Size = new System.Drawing.Size(198, 1100);
             this.sidePanel.TabIndex = 6;
             // 
             // infoPanel
@@ -96,7 +96,7 @@
             this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.05883F));
             this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.94118F));
-            this.infoPanel.Size = new System.Drawing.Size(198, 1113);
+            this.infoPanel.Size = new System.Drawing.Size(198, 1030);
             this.infoPanel.TabIndex = 0;
             // 
             // uniFCRLogoBox
@@ -149,7 +149,7 @@
             this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
             this.attendancePercentageCircle.InnerMargin = 2;
             this.attendancePercentageCircle.InnerWidth = -1;
-            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 597);
+            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 578);
             this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
             this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
             this.attendancePercentageCircle.Name = "attendancePercentageCircle";
@@ -177,10 +177,10 @@
             this.missingStudentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.missingStudentsBox.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.missingStudentsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.missingStudentsBox.Location = new System.Drawing.Point(0, 822);
+            this.missingStudentsBox.Location = new System.Drawing.Point(0, 783);
             this.missingStudentsBox.Margin = new System.Windows.Forms.Padding(0);
             this.missingStudentsBox.Name = "missingStudentsBox";
-            this.missingStudentsBox.Size = new System.Drawing.Size(198, 291);
+            this.missingStudentsBox.Size = new System.Drawing.Size(198, 247);
             this.missingStudentsBox.TabIndex = 7;
             this.missingStudentsBox.Text = "Missing Students:";
             // 
@@ -189,7 +189,7 @@
             this.buttonPanel.BackColor = System.Drawing.Color.White;
             this.buttonPanel.Controls.Add(this.backButton);
             this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonPanel.Location = new System.Drawing.Point(0, 1113);
+            this.buttonPanel.Location = new System.Drawing.Point(0, 1030);
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(198, 70);
             this.buttonPanel.TabIndex = 6;
@@ -218,7 +218,7 @@
             this.camPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.camPanel.Location = new System.Drawing.Point(0, 0);
             this.camPanel.Name = "camPanel";
-            this.camPanel.Size = new System.Drawing.Size(1000, 1183);
+            this.camPanel.Size = new System.Drawing.Size(1000, 1100);
             this.camPanel.TabIndex = 0;
             this.camPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.camPanel_Paint);
             // 
@@ -229,7 +229,7 @@
             this.camView.Location = new System.Drawing.Point(0, 0);
             this.camView.Margin = new System.Windows.Forms.Padding(0);
             this.camView.Name = "camView";
-            this.camView.Size = new System.Drawing.Size(1000, 1183);
+            this.camView.Size = new System.Drawing.Size(1000, 1100);
             this.camView.TabIndex = 5;
             this.camView.TabStop = false;
             // 
@@ -240,7 +240,7 @@
             this.loadingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.loadingPanel.Location = new System.Drawing.Point(0, 0);
             this.loadingPanel.Name = "loadingPanel";
-            this.loadingPanel.Size = new System.Drawing.Size(1198, 1183);
+            this.loadingPanel.Size = new System.Drawing.Size(1198, 1100);
             this.loadingPanel.TabIndex = 6;
             this.loadingPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.loadingPanel_Paint);
             // 
@@ -249,7 +249,7 @@
             this.logoTextPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.logoTextPanel.Controls.Add(this.loadingLogo);
             this.logoTextPanel.Controls.Add(this.loadingLabel);
-            this.logoTextPanel.Location = new System.Drawing.Point(406, 434);
+            this.logoTextPanel.Location = new System.Drawing.Point(406, 393);
             this.logoTextPanel.MaximumSize = new System.Drawing.Size(370, 350);
             this.logoTextPanel.MinimumSize = new System.Drawing.Size(35, 25);
             this.logoTextPanel.Name = "logoTextPanel";
@@ -287,7 +287,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1198, 1183);
+            this.ClientSize = new System.Drawing.Size(1198, 1100);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.loadingPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

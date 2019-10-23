@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Emgu.CV;
 using Emgu.CV.Structure;
 
-namespace UniFCR_GUI
+namespace UniFCR_Controller
 {
     public static class Globals
     {

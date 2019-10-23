@@ -61,10 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Camera.cs" />
-    <Compile Include="EigenObjectRecognizer.cs" />
-    <Compile Include="FaceAlgorithm.cs" />
-    <Compile Include="Globals.cs" />
     <Compile Include="MenuScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UniFCR_Controller\UniFCR_Controller.csproj">
+      <Project>{95ffb28c-64b6-4306-8561-42f70bd61f4e}</Project>
+      <Name>UniFCR_Controller</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

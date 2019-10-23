@@ -14,6 +14,7 @@ using Emgu.CV.CvEnum;
 using Emgu.Util;
 using System.IO;
 using System.Diagnostics;
+using UniFCR_Controller;
 
 namespace UniFCR_GUI {
     public partial class MenuScreen : Form {
@@ -22,7 +23,9 @@ namespace UniFCR_GUI {
         private bool mouseDown;
         private Point lastLocation;
 
-        Camera trainingCam;
+        static Camera trainingCam;
+
+        Boolean camRunning = false;
 
         public MenuScreen()
         {
@@ -30,7 +33,6 @@ namespace UniFCR_GUI {
             optionsPanel.Visible = false;
             trainPanel.SendToBack();
             this.CenterToScreen();
-            trainingCam = new Camera(trainCamView);
         }
 
         private void menuPanel_Paint(object sender, PaintEventArgs e)
@@ -114,6 +116,9 @@ namespace UniFCR_GUI {
         //=================================================================
         private void trainBackButton_Click(object sender, EventArgs e)
         {
+            trainingCam.stop();
+            camRunning = false;
+
             trainPanel.SendToBack();
             trainPanel.Visible = false;
 
@@ -139,8 +144,15 @@ namespace UniFCR_GUI {
             trainCamView.Location = new Point(
                 (trainCamPanel.Width / 2) - (trainCamView.Width / 2), (trainCamPanel.Height / 2) - (trainCamView.Height / 2));
 
-            
-            trainingCam.start();
+
+            if (!camRunning)
+            {
+                trainingCam = new Camera(trainCamView);
+                trainingCam.start();
+                camRunning = true;
+            }
+
+
             trainingCam.ValueChanged += newImageListener;
 
             //Hide the loading screen when the camera feed is set up
@@ -153,7 +165,6 @@ namespace UniFCR_GUI {
         {
             if (trainingCam.frame != null)
             {
-                Console.WriteLine("new image found, " + trainingCam.frame.Width);
                 FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
                 Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(trainingCam.frame);
                 trainingCam.DisplayImage(frame);
@@ -168,11 +179,16 @@ namespace UniFCR_GUI {
         */
         private void trainStartButton_Click(object sender, EventArgs e)
         {
+            trainingCam.stop();
+
+            camRunning = false;
+
             trainPanel.SendToBack();
             trainPanel.Visible = false;
 
             trainLoadingPanel.SendToBack();
             trainLoadingPanel.Visible = false;
+
 
             this.Visible = false; //Hide the menu screen while Attendance Mode is active
 

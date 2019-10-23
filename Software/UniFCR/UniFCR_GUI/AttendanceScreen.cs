@@ -13,19 +13,20 @@ using Emgu.CV.CvEnum;
 using Emgu.Util;
 using System.IO;
 using System.Diagnostics;
+using UniFCR_Controller;
 
 namespace UniFCR_GUI {
     public partial class AttendanceScreen : Form {
 
         Form menuScreen;
-        Camera attendanceCam;
+        static Camera attendanceCam;
+        Boolean camRunning = false;
         int enrolledStudents = 6; //For testing purposes
 
         public AttendanceScreen(Form menuScreen)
         {
             InitializeComponent();
             this.menuScreen = menuScreen;
-            attendanceCam = new Camera(camView);
 
             //Show loading screen first
             loadingPanel.BringToFront();
@@ -56,7 +57,13 @@ namespace UniFCR_GUI {
             camView.Location = new Point(
                 (camPanel.Width / 2) - (camView.Width / 2), (camPanel.Height / 2) - (camView.Height / 2));
 
-            attendanceCam.start();
+            if (!camRunning)
+            {
+                attendanceCam = new Camera(camView);
+                attendanceCam.start();
+                attendanceCam.ValueChanged += newImageListener;
+                camRunning = true;
+            }
 
             //hide the loading screen when the camera feed is set up
             Thread.Sleep(1000);
@@ -71,9 +78,21 @@ namespace UniFCR_GUI {
             attendanceLabel.Text = "Students present: " + attendance;
         }
 
+        private void newImageListener(Object sender, EventArgs e)
+        {
+            if (attendanceCam.frame != null)
+            {
+                FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+                Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(attendanceCam.frame);
+                attendanceCam.DisplayImage(frame);
+            }
+        }
+
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+            camRunning = false;
+            attendanceCam.stop();
             menuScreen.Visible = true;            
         }
     }

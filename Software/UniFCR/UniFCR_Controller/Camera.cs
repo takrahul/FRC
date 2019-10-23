@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Threading;
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -15,9 +14,10 @@ using Emgu.Util;
 using System.IO;
 using System.Diagnostics;
 using Emgu.CV.UI;
+using System.Windows.Forms;
 
-namespace UniFCR_GUI {
-    class Camera {
+namespace UniFCR_Controller {
+    public class Camera {
 
         private Capture cam = null; //Camera
         private bool captureInProgress = false; //Variable to track camera state
@@ -56,18 +56,44 @@ namespace UniFCR_GUI {
 
         public void start()
         {
-            cam = new Capture();
-            cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280); //1280
-            cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720); //720
-            //cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);
-            cam.Start();
-            cam.ImageGrabbed += ProcessFrame;
+            if (!this.captureInProgress)
+            {
+                cam = new Capture();
+                cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280); //1280
+                cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720); //720
+                                                                                //cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);
+                cam.Start();
+                captureInProgress = true;
+                Console.WriteLine("camera started");
+                cam.ImageGrabbed += ProcessFrame;
+            }
+        }
+
+        public void stop()
+        {
+            if (this.captureInProgress)
+            {
+                cam.ImageGrabbed -= ProcessFrame;
+                captureInProgress = false;
+                cam.Stop();
+                cam.Dispose();
+                //Thread.Sleep(1000);
+                cam = null;
+                Console.WriteLine("Camera stopped!");
+            }
         }
 
         private void ProcessFrame(object sender, EventArgs arg)
         {
             //Get current frame from the camera
-            frame = cam.RetrieveBgrFrame().Resize((int)(cameraBox.Width), (int)(cameraBox.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+            if (cam != null)
+            {
+                frame = cam.RetrieveBgrFrame();
+                if (frame != null)
+                {
+                    frame = frame.Resize((int)(cameraBox.Width), (int)(cameraBox.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                }                
+            }
 
             //Update the ImageBox to show current frame (if there is one)
             if (frame != null)

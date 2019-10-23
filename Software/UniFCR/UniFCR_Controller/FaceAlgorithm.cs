@@ -7,15 +7,14 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using System.Drawing;
-using System.Windows.Forms;
 using Emgu.CV.UI;
 using System.IO;
 
 
 
 
-namespace UniFCR_GUI {
-    class FaceAlgorithm {
+namespace UniFCR_Controller {
+    public class FaceAlgorithm {
         //private AttendanceScreen screen;
         int t = 0;
         String name, names;
@@ -32,7 +31,7 @@ namespace UniFCR_GUI {
             {
 
                 //Load of previus trainned faces and labels for each image
-                string Labelsinfo = File.ReadAllText(Application.StartupPath + "/TrainedFaces/TrainedLabels.txt");
+                string Labelsinfo = File.ReadAllText("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/TrainedLabels.txt");
                 string[] Labels = Labelsinfo.Split('%');
                 Globals.numLabels = Convert.ToInt16(Labels[0]);
                 Globals.ContTrain = Globals.numLabels;
@@ -41,7 +40,7 @@ namespace UniFCR_GUI {
                 for (int tf = 1; tf < Globals.numLabels + 1; tf++)
                 {
                     LoadFaces = "face" + tf + ".bmp";
-                    Globals.trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "/TrainedFaces/" + LoadFaces));
+                    Globals.trainingImages.Add(new Image<Gray, byte>("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/" + LoadFaces));
                     Globals.labels.Add(Labels[tf]);
                 }
                 Globals.created = false;

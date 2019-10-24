@@ -93,12 +93,7 @@ namespace UniFCR_GUI {
             }
         }
 
-
-
-
-
         delegate void updateAttendanceCallback();
-
         private void updateAttendance()
         {
             // InvokeRequired required compares the thread ID of the
@@ -116,7 +111,6 @@ namespace UniFCR_GUI {
         }
 
         delegate void updatePercentageCallback();
-
         private void updatePercentage()
         {
             // InvokeRequired required compares the thread ID of the

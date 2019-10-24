@@ -13,22 +13,29 @@ using Emgu.CV.CvEnum;
 using Emgu.Util;
 using System.IO;
 using System.Diagnostics;
+using UniFCR_Controller;
+using UniFCR_Database;
 
 namespace UniFCR_GUI {
     public partial class AttendanceScreen : Form {
 
         Form menuScreen;
-        Camera attendanceCam;
-        int enrolledStudents = 6; //For testing purposes
+        static Camera attendanceCam;
+        Boolean camRunning = false;
+        int enrolledStudents;
+        int attendance;
 
         public AttendanceScreen(Form menuScreen)
         {
             InitializeComponent();
             this.menuScreen = menuScreen;
-            attendanceCam = new Camera(camView);
+
+            //Get number of enrolled students
+            enrolledStudents = SqliteDataAccess.LoadStudents().Count;
 
             //Show loading screen first
             loadingPanel.BringToFront();
+
         }
 
         //While the attendance screen is preparing (calculating size, loading camera) show a loading screen
@@ -56,24 +63,87 @@ namespace UniFCR_GUI {
             camView.Location = new Point(
                 (camPanel.Width / 2) - (camView.Width / 2), (camPanel.Height / 2) - (camView.Height / 2));
 
-            attendanceCam.start();
+            if (!camRunning)
+            {
+                attendanceCam = new Camera(camView);
+                attendanceCam.start();
+                attendanceCam.ValueChanged += newImageListener;
+                camRunning = true;
+            }
 
             //hide the loading screen when the camera feed is set up
             Thread.Sleep(1000);
             loadingPanel.Visible = false;
+        }
 
-            //Testing the attendance precentage circle
-            int attendance = 4;
-            double attendancePercentage = ((double) attendance / (double) enrolledStudents) * 100;
-            attendancePercentageCircle.Value = (int) attendancePercentage;
-            attendancePercentageCircle.Text = (int) attendancePercentage + "%";
-            attendancePercentageCircle.Update();
-            attendanceLabel.Text = "Students present: " + attendance;
+        private void newImageListener(Object sender, EventArgs e)
+        {
+            if (attendanceCam.frame != null)
+            {
+                FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+                Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(attendanceCam.frame);
+                attendanceCam.DisplayImage(frame);
+
+                if (Globals.trainingImages.Count() > 0 && enrolledStudents > 0)
+                {
+                    updatePercentage();
+                    updateAttendance();
+                    Console.WriteLine("UPDATE PERCENTAGE");
+                }
+            }
+        }
+
+
+
+
+
+        delegate void updateAttendanceCallback();
+
+        private void updateAttendance()
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.attendanceLabel.InvokeRequired)
+            {
+                updateAttendanceCallback d = new updateAttendanceCallback(updateAttendance);
+                this.Invoke(d, new object[] {  });
+            }
+            else
+            {
+                attendanceLabel.Text = "Students present: " + attendance;
+            }
+        }
+
+        delegate void updatePercentageCallback();
+
+        private void updatePercentage()
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.attendanceLabel.InvokeRequired)
+            {
+                updatePercentageCallback d = new updatePercentageCallback(updatePercentage);
+                this.Invoke(d, new object[] {  });
+            }
+            else
+            {
+                //Testing the attendance precentage circle
+                attendance = Globals.facesDetected[0].Length;
+                double attendancePercentage = ((double)attendance / (double)enrolledStudents) * 100;
+                attendancePercentageCircle.Value = (int)attendancePercentage;
+                attendancePercentageCircle.Text = (int)attendancePercentage + "%";
+                attendancePercentageCircle.Update();
+                attendancePercentageCircle.Update();
+            }
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+            camRunning = false;
+            attendanceCam.stop();
             menuScreen.Visible = true;            
         }
     }

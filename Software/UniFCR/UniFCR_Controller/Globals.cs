@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Emgu.CV;
 using Emgu.CV.Structure;
 
-namespace UniFCR_GUI
+namespace UniFCR_Controller
 {
     public static class Globals
     {
@@ -15,5 +15,6 @@ namespace UniFCR_GUI
         public static int numLabels;
         public static List<string> labels = new List<string>();
         public static Boolean created = true;
+        public static MCvAvgComp[][] facesDetected;
     }
 }

@@ -7,20 +7,17 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using System.Drawing;
-using System.Windows.Forms;
 using Emgu.CV.UI;
 using System.IO;
+using UniFCR_Database;
 
 
 
 
-namespace UniFCR_GUI {
-    class FaceAlgorithm {
+namespace UniFCR_Controller {
+    public class FaceAlgorithm {
         //private AttendanceScreen screen;
         int t = 0;
-        private Image<Bgr, Byte> frame;
-        private Label nameLabel;
-        private PictureBox camView;
         String name, names;
         MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
         List<string> NamePersons = new List<string>();
@@ -28,33 +25,52 @@ namespace UniFCR_GUI {
 
 
 
-        public FaceAlgorithm(Image<Bgr, Byte> f, Label l, PictureBox c)
+        public FaceAlgorithm()
         {
-            frame = f;
-            nameLabel = l;
-            camView = c;
+            List<StudentModel> students = new List<StudentModel>();
+            students = SqliteDataAccess.LoadStudents();
+
             // DO NOT TOUCH
             if (Globals.created == true)
             {
 
                 //Load of previus trainned faces and labels for each image
-                string Labelsinfo = File.ReadAllText(Application.StartupPath + "/TrainedFaces/TrainedLabels.txt");
-                string[] Labels = Labelsinfo.Split('%');
-                Globals.numLabels = Convert.ToInt16(Labels[0]);
+                //string Labelsinfo = File.ReadAllText("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/TrainedLabels.txt");
+                List<String> studentNames = new List<String>();
+
+                foreach (StudentModel m in students) 
+                {
+                    studentNames.Add(m.GivenNames + " " + m.LastName);
+                }
+
+                Globals.numLabels = students.Count();
                 Globals.ContTrain = Globals.numLabels;
                 string LoadFaces;
 
-                for (int tf = 1; tf < Globals.numLabels + 1; tf++)
+                for (int tf = 0; tf < Globals.numLabels; tf++)
                 {
                     LoadFaces = "face" + tf + ".bmp";
-                    Globals.trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "/TrainedFaces/" + LoadFaces));
-                    Globals.labels.Add(Labels[tf]);
+
+
+                    ImageConverter converter = new ImageConverter();
+
+                    byte[] studentImage = students.ToArray()[tf].Image;
+                    Bitmap bmp;
+                    using (var ms = new MemoryStream(studentImage))
+                    {
+                        bmp = new Bitmap(ms);
+                    }
+                        //Image<Gray, byte> traindeFaceImage = (Image<Gray, byte>)converter.ConvertTo(studentImage, typeof(Image<Gray, byte>));
+                        Image<Gray, byte> trainedFaceImage = new Image<Gray, byte>(bmp);
+                    Globals.trainingImages.Add(trainedFaceImage);
+                    //Globals.trainingImages.Add(new Image<Gray, byte>("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/" + LoadFaces));
+                    Globals.labels.Add(studentNames.ToArray()[tf]);
                 }
                 Globals.created = false;
             }
-
         }
-        public void detectFaces()
+
+        public void detectFaces(Image<Bgr, Byte> frame)
         {
             //make sure this xml file is in the debug folder for this to work
             Image<Gray, byte> gray = null;
@@ -71,16 +87,14 @@ namespace UniFCR_GUI {
         }
 
 
-        public void recognizeFaces()
+        public Image<Bgr, Byte> recognizeFaces(Image<Bgr, Byte> frame)
         {
-            Console.WriteLine(Globals.trainingImages.Count);
-
             NamePersons.Add("");
             Image<Gray, byte> gray = null;
             Image<Gray, byte> result = null;
             gray = frame.Convert<Gray, Byte>();
-            MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
-            foreach (MCvAvgComp f in facesDetected[0])
+            Globals.facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
+            foreach (MCvAvgComp f in Globals.facesDetected[0])
             {
                 t = t + 1;
                 result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
@@ -112,16 +126,18 @@ namespace UniFCR_GUI {
 
             }
             t = 0;
-            for (int nnn = 0; nnn < facesDetected[0].Length; nnn++)
+            for (int nnn = 0; nnn < Globals.facesDetected[0].Length; nnn++)
             {
                 names = names + NamePersons[nnn] + ", ";
             }
             //Show the faces procesed and recognized
-            camView.Image = frame.ToBitmap();
+            //camView.Image = frame.ToBitmap();
             //List the names
             //nameLabel.Text += "\n " + names;
             names = "";
             NamePersons.Clear();
+
+            return frame;
 
         }
     }

@@ -14,6 +14,8 @@ using Emgu.CV.CvEnum;
 using Emgu.Util;
 using System.IO;
 using System.Diagnostics;
+using UniFCR_Controller;
+using UniFCR_Database;
 
 namespace UniFCR_GUI {
     public partial class MenuScreen : Form {
@@ -22,7 +24,10 @@ namespace UniFCR_GUI {
         private bool mouseDown;
         private Point lastLocation;
 
-        Camera trainingCam;
+        static Camera trainingCam;
+
+        Boolean camRunning = false;
+        DatabaseController database = new DatabaseController();
 
         public MenuScreen()
         {
@@ -30,7 +35,6 @@ namespace UniFCR_GUI {
             optionsPanel.Visible = false;
             trainPanel.SendToBack();
             this.CenterToScreen();
-            trainingCam = new Camera(trainCamView);
         }
 
         private void menuPanel_Paint(object sender, PaintEventArgs e)
@@ -114,6 +118,9 @@ namespace UniFCR_GUI {
         //=================================================================
         private void trainBackButton_Click(object sender, EventArgs e)
         {
+            trainingCam.stop();
+            camRunning = false;
+
             trainPanel.SendToBack();
             trainPanel.Visible = false;
 
@@ -139,12 +146,33 @@ namespace UniFCR_GUI {
             trainCamView.Location = new Point(
                 (trainCamPanel.Width / 2) - (trainCamView.Width / 2), (trainCamPanel.Height / 2) - (trainCamView.Height / 2));
 
-            trainingCam.start();
+
+            if (!camRunning)
+            {
+                trainingCam = new Camera(trainCamView);
+                trainingCam.start();
+                camRunning = true;
+                database.LoadStudentsList();
+            }
+
+
+            trainingCam.ValueChanged += newImageListener;
 
             //Hide the loading screen when the camera feed is set up
             Thread.Sleep(2000);
             trainLoadingPanel.Visible = false;
             trainLoadingPanel.SendToBack();
+        }
+
+        private void newImageListener(Object sender, EventArgs e)
+        {
+            if (trainingCam.frame != null)
+            {
+                FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+                Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(trainingCam.frame);
+                trainingCam.DisplayImage(frame);
+            }
+            
         }
 
        /*
@@ -154,11 +182,16 @@ namespace UniFCR_GUI {
         */
         private void trainStartButton_Click(object sender, EventArgs e)
         {
+            trainingCam.stop();
+
+            camRunning = false;
+
             trainPanel.SendToBack();
             trainPanel.Visible = false;
 
             trainLoadingPanel.SendToBack();
             trainLoadingPanel.Visible = false;
+
 
             this.Visible = false; //Hide the menu screen while Attendance Mode is active
 
@@ -177,7 +210,17 @@ namespace UniFCR_GUI {
         {
             String firstName = firstNameBox.Text;
             String lastName = lastNameBox.Text;
-            trainingCam.faceSaver(firstName + " " + lastName);
+            int matNum = Int32.Parse(numberBox.Text);
+            Image<Gray, byte> image = trainingCam.faceSaver(firstName, lastName);
+            database.saveStudentList(firstName, lastName, matNum, image);
+            firstNameBox.Text = "";
+            lastNameBox.Text = "";
+            numberBox.Text = "";
+        }
+
+        private void trainCamView_BackColorChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("success");
         }
     }
 }

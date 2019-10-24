@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniFCR", "UniFCR_GUI\UniFCR.csproj", "{2043BE5A-0DC9-4A4E-99EF-7115E44A6EB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniFCR_GUI", "UniFCR_GUI\UniFCR_GUI.csproj", "{2043BE5A-0DC9-4A4E-99EF-7115E44A6EB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniFCR_Controller", "UniFCR_Controller\UniFCR_Controller.csproj", "{95FFB28C-64B6-4306-8561-42F70BD61F4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniFCR_Database", "UniFCR_Database\UniFCR_Database.csproj", "{C4A6895A-E0E2-46C8-AA18-534DA329296C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2043BE5A-0DC9-4A4E-99EF-7115E44A6EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2043BE5A-0DC9-4A4E-99EF-7115E44A6EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2043BE5A-0DC9-4A4E-99EF-7115E44A6EB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95FFB28C-64B6-4306-8561-42F70BD61F4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95FFB28C-64B6-4306-8561-42F70BD61F4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95FFB28C-64B6-4306-8561-42F70BD61F4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95FFB28C-64B6-4306-8561-42F70BD61F4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4A6895A-E0E2-46C8-AA18-534DA329296C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4A6895A-E0E2-46C8-AA18-534DA329296C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4A6895A-E0E2-46C8-AA18-534DA329296C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4A6895A-E0E2-46C8-AA18-534DA329296C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

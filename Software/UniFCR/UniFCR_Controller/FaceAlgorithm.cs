@@ -68,8 +68,8 @@ namespace UniFCR_Controller {
                 }
                 Globals.created = false;
             }
-
         }
+
         public void detectFaces(Image<Bgr, Byte> frame)
         {
             //make sure this xml file is in the debug folder for this to work
@@ -93,8 +93,8 @@ namespace UniFCR_Controller {
             Image<Gray, byte> gray = null;
             Image<Gray, byte> result = null;
             gray = frame.Convert<Gray, Byte>();
-            MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
-            foreach (MCvAvgComp f in facesDetected[0])
+            Globals.facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
+            foreach (MCvAvgComp f in Globals.facesDetected[0])
             {
                 t = t + 1;
                 result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
@@ -126,7 +126,7 @@ namespace UniFCR_Controller {
 
             }
             t = 0;
-            for (int nnn = 0; nnn < facesDetected[0].Length; nnn++)
+            for (int nnn = 0; nnn < Globals.facesDetected[0].Length; nnn++)
             {
                 names = names + NamePersons[nnn] + ", ";
             }

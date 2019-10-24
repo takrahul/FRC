@@ -36,6 +36,9 @@
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="DirectShowLib, Version=2.1.0.1599, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DirectShowLib.1.0.0\lib\DirectShowLib.dll</HintPath>
+    </Reference>
     <Reference Include="Emgu.CV">
       <HintPath>C:\Users\lukas\Desktop\Project\GUI\libemgucv-windows-universal-cuda-2.9.0.1922-beta\bin\Emgu.CV.dll</HintPath>
     </Reference>

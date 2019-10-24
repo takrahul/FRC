@@ -27,3 +27,5 @@ D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Uni
 D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\System.Data.SQLite.xml
 D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\System.Data.SQLite.dll.config
 D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Dapper.xml
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\DirectShowLib.dll
+D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\DirectShowLib.pdb

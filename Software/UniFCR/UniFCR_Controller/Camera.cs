@@ -58,7 +58,7 @@ namespace UniFCR_Controller {
         {
             if (!this.captureInProgress)
             {
-                cam = new Capture(0);
+                cam = new Capture(Globals.selectedCameraIndex);
                 cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280); //1280
                 cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720); //720
                                                                                 //cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);

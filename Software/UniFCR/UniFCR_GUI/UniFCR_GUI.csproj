@@ -38,6 +38,9 @@
     <Reference Include="CircularProgressBar, Version=2.7.0.7, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>..\packages\CircularProgressBar.2.7.0.7\lib\net40\CircularProgressBar.dll</HintPath>
     </Reference>
+    <Reference Include="DirectShowLib, Version=2.1.0.1599, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DirectShowLib.1.0.0\lib\DirectShowLib.dll</HintPath>
+    </Reference>
     <Reference Include="Emgu.CV">
       <HintPath>C:\Users\lukas\Desktop\Project\GUI\libemgucv-windows-universal-cuda-2.9.0.1922-beta\bin\Emgu.CV.dll</HintPath>
     </Reference>

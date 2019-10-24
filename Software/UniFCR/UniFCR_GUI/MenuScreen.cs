@@ -16,6 +16,7 @@ using System.IO;
 using System.Diagnostics;
 using UniFCR_Controller;
 using UniFCR_Database;
+using DirectShowLib;
 
 namespace UniFCR_GUI {
     public partial class MenuScreen : Form {
@@ -28,6 +29,7 @@ namespace UniFCR_GUI {
 
         Boolean camRunning = false;
         DatabaseController database = new DatabaseController();
+        List<string> systemCameraNames = new List<string>();
 
         public MenuScreen()
         {
@@ -35,6 +37,8 @@ namespace UniFCR_GUI {
             optionsPanel.Visible = false;
             trainPanel.SendToBack();
             this.CenterToScreen();
+
+            Globals.systemCameras = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
         }
 
         private void menuPanel_Paint(object sender, PaintEventArgs e)
@@ -63,20 +67,6 @@ namespace UniFCR_GUI {
 
             attendanceScreen.Show();
         }
-        
-        //Show the options menu
-        private void optionsButton_Click(object sender, EventArgs e)
-        {
-            buttonPanel.Visible = false;
-            optionsPanel.Visible = true;
-        }
-
-        //Hide options menu and show main menu again
-        private void optionsBackButton_Click(object sender, EventArgs e)
-        {
-            optionsPanel.Visible = false;
-            buttonPanel.Visible = true;
-        }
 
         //Show training menu
         private void trainButton_Click(object sender, EventArgs e)
@@ -86,6 +76,31 @@ namespace UniFCR_GUI {
 
             trainLoadingPanel.Visible = true;
             trainLoadingPanel.BringToFront();
+        }
+
+        //=================================================================
+        // OPTIONS MENU
+        //=================================================================
+        private void optionsButton_Click(object sender, EventArgs e)
+        {
+            buttonPanel.Visible = false;
+            optionsPanel.Visible = true;
+
+            foreach (DsDevice cam in Globals.systemCameras)
+            {
+                systemCameraNames.Add(cam.Name);
+            }
+
+            cameraListBox.DataSource = systemCameraNames;
+        }
+
+        //Hide options menu and show main menu again
+        private void optionsBackButton_Click(object sender, EventArgs e)
+        {
+            Globals.selectedCameraIndex = cameraListBox.SelectedIndex;     
+
+            optionsPanel.Visible = false;
+            buttonPanel.Visible = true;
         }
 
         //=================================================================

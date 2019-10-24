@@ -29,17 +29,18 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.titlePanel = new System.Windows.Forms.Panel();
-            this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
-            this.titleLabel = new System.Windows.Forms.Label();
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.optionsPanel = new System.Windows.Forms.Panel();
+            this.cameraListBox = new System.Windows.Forms.ComboBox();
+            this.optionsBackButton = new System.Windows.Forms.Button();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.startButton = new System.Windows.Forms.Button();
             this.trainButton = new System.Windows.Forms.Button();
             this.optionsButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
-            this.optionsPanel = new System.Windows.Forms.Panel();
-            this.optionsBackButton = new System.Windows.Forms.Button();
+            this.titlePanel = new System.Windows.Forms.Panel();
+            this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.trainPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.trainSaveButton = new System.Windows.Forms.Button();
@@ -58,11 +59,11 @@
             this.loadingLogo = new System.Windows.Forms.PictureBox();
             this.loadingLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
+            this.menuPanel.SuspendLayout();
+            this.optionsPanel.SuspendLayout();
+            this.buttonPanel.SuspendLayout();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
-            this.menuPanel.SuspendLayout();
-            this.buttonPanel.SuspendLayout();
-            this.optionsPanel.SuspendLayout();
             this.trainPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.trainCamPanel.SuspendLayout();
@@ -74,53 +75,19 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.titlePanel);
             this.mainPanel.Controls.Add(this.menuPanel);
+            this.mainPanel.Controls.Add(this.titlePanel);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(800, 500);
             this.mainPanel.TabIndex = 0;
             // 
-            // titlePanel
-            // 
-            this.titlePanel.BackColor = System.Drawing.Color.White;
-            this.titlePanel.Controls.Add(this.uniFCRLogoBox);
-            this.titlePanel.Controls.Add(this.titleLabel);
-            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titlePanel.Location = new System.Drawing.Point(0, 0);
-            this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(800, 157);
-            this.titlePanel.TabIndex = 0;
-            this.titlePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseDown);
-            this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseMove);
-            this.titlePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseUp);
-            // 
-            // uniFCRLogoBox
-            // 
-            this.uniFCRLogoBox.Image = ((System.Drawing.Image)(resources.GetObject("uniFCRLogoBox.Image")));
-            this.uniFCRLogoBox.Location = new System.Drawing.Point(130, 12);
-            this.uniFCRLogoBox.Name = "uniFCRLogoBox";
-            this.uniFCRLogoBox.Size = new System.Drawing.Size(133, 134);
-            this.uniFCRLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.uniFCRLogoBox.TabIndex = 2;
-            this.uniFCRLogoBox.TabStop = false;
-            // 
-            // titleLabel
-            // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(284, 20);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(374, 115);
-            this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "UniFCR";
-            // 
             // menuPanel
             // 
             this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.menuPanel.Controls.Add(this.buttonPanel);
             this.menuPanel.Controls.Add(this.optionsPanel);
+            this.menuPanel.Controls.Add(this.buttonPanel);
             this.menuPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuPanel.ForeColor = System.Drawing.Color.DarkGray;
             this.menuPanel.Location = new System.Drawing.Point(0, 155);
@@ -128,6 +95,45 @@
             this.menuPanel.Size = new System.Drawing.Size(800, 345);
             this.menuPanel.TabIndex = 1;
             this.menuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.menuPanel_Paint);
+            // 
+            // optionsPanel
+            // 
+            this.optionsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.optionsPanel.Controls.Add(this.cameraListBox);
+            this.optionsPanel.Controls.Add(this.optionsBackButton);
+            this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.optionsPanel.Location = new System.Drawing.Point(0, 0);
+            this.optionsPanel.Name = "optionsPanel";
+            this.optionsPanel.Size = new System.Drawing.Size(800, 345);
+            this.optionsPanel.TabIndex = 5;
+            // 
+            // cameraListBox
+            // 
+            this.cameraListBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cameraListBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraListBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cameraListBox.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.cameraListBox.FormattingEnabled = true;
+            this.cameraListBox.Location = new System.Drawing.Point(191, 111);
+            this.cameraListBox.Name = "cameraListBox";
+            this.cameraListBox.Size = new System.Drawing.Size(434, 38);
+            this.cameraListBox.TabIndex = 2;
+            // 
+            // optionsBackButton
+            // 
+            this.optionsBackButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.optionsBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.optionsBackButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optionsBackButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.optionsBackButton.Location = new System.Drawing.Point(304, 253);
+            this.optionsBackButton.MaximumSize = new System.Drawing.Size(170, 48);
+            this.optionsBackButton.MinimumSize = new System.Drawing.Size(170, 48);
+            this.optionsBackButton.Name = "optionsBackButton";
+            this.optionsBackButton.Size = new System.Drawing.Size(170, 48);
+            this.optionsBackButton.TabIndex = 1;
+            this.optionsBackButton.Text = "BACK";
+            this.optionsBackButton.UseVisualStyleBackColor = true;
+            this.optionsBackButton.Click += new System.EventHandler(this.optionsBackButton_Click);
             // 
             // buttonPanel
             // 
@@ -198,26 +204,39 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // optionsPanel
+            // titlePanel
             // 
-            this.optionsPanel.Controls.Add(this.optionsBackButton);
-            this.optionsPanel.Location = new System.Drawing.Point(130, 48);
-            this.optionsPanel.Name = "optionsPanel";
-            this.optionsPanel.Size = new System.Drawing.Size(528, 232);
-            this.optionsPanel.TabIndex = 5;
+            this.titlePanel.BackColor = System.Drawing.Color.White;
+            this.titlePanel.Controls.Add(this.uniFCRLogoBox);
+            this.titlePanel.Controls.Add(this.titleLabel);
+            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titlePanel.Location = new System.Drawing.Point(0, 0);
+            this.titlePanel.Name = "titlePanel";
+            this.titlePanel.Size = new System.Drawing.Size(800, 157);
+            this.titlePanel.TabIndex = 0;
+            this.titlePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseDown);
+            this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseMove);
+            this.titlePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseUp);
             // 
-            // optionsBackButton
+            // uniFCRLogoBox
             // 
-            this.optionsBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.optionsBackButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optionsBackButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.optionsBackButton.Location = new System.Drawing.Point(174, 84);
-            this.optionsBackButton.Name = "optionsBackButton";
-            this.optionsBackButton.Size = new System.Drawing.Size(170, 48);
-            this.optionsBackButton.TabIndex = 1;
-            this.optionsBackButton.Text = "BACK";
-            this.optionsBackButton.UseVisualStyleBackColor = true;
-            this.optionsBackButton.Click += new System.EventHandler(this.optionsBackButton_Click);
+            this.uniFCRLogoBox.Image = ((System.Drawing.Image)(resources.GetObject("uniFCRLogoBox.Image")));
+            this.uniFCRLogoBox.Location = new System.Drawing.Point(130, 12);
+            this.uniFCRLogoBox.Name = "uniFCRLogoBox";
+            this.uniFCRLogoBox.Size = new System.Drawing.Size(133, 134);
+            this.uniFCRLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.uniFCRLogoBox.TabIndex = 2;
+            this.uniFCRLogoBox.TabStop = false;
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(284, 20);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(374, 115);
+            this.titleLabel.TabIndex = 0;
+            this.titleLabel.Text = "UniFCR";
             // 
             // trainPanel
             // 
@@ -459,19 +478,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 500);
-            this.Controls.Add(this.trainPanel);
             this.Controls.Add(this.mainPanel);
+            this.Controls.Add(this.trainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuScreen";
             this.Text = "Form1";
             this.mainPanel.ResumeLayout(false);
+            this.menuPanel.ResumeLayout(false);
+            this.optionsPanel.ResumeLayout(false);
+            this.buttonPanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);
             this.titlePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
-            this.menuPanel.ResumeLayout(false);
-            this.buttonPanel.ResumeLayout(false);
-            this.optionsPanel.ResumeLayout(false);
             this.trainPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -516,6 +535,7 @@
         private System.Windows.Forms.PictureBox loadingLogo;
         private System.Windows.Forms.Label loadingLabel;
         private System.Windows.Forms.Button trainSaveButton;
+        private System.Windows.Forms.ComboBox cameraListBox;
     }
 }
 

@@ -237,5 +237,10 @@ namespace UniFCR_GUI {
         {
             Console.WriteLine("success");
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

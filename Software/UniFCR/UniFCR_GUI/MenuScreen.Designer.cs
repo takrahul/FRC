@@ -31,8 +31,10 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.menuPanel = new System.Windows.Forms.Panel();
             this.optionsPanel = new System.Windows.Forms.Panel();
-            this.cameraListBox = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.optionsBackButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cameraListBox = new System.Windows.Forms.ComboBox();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.startButton = new System.Windows.Forms.Button();
             this.trainButton = new System.Windows.Forms.Button();
@@ -61,6 +63,8 @@
             this.mainPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.optionsPanel.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.buttonPanel.SuspendLayout();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
@@ -99,25 +103,23 @@
             // optionsPanel
             // 
             this.optionsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.optionsPanel.Controls.Add(this.cameraListBox);
-            this.optionsPanel.Controls.Add(this.optionsBackButton);
+            this.optionsPanel.Controls.Add(this.panel2);
+            this.optionsPanel.Controls.Add(this.panel1);
             this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.optionsPanel.Location = new System.Drawing.Point(0, 0);
             this.optionsPanel.Name = "optionsPanel";
             this.optionsPanel.Size = new System.Drawing.Size(800, 345);
             this.optionsPanel.TabIndex = 5;
             // 
-            // cameraListBox
+            // panel2
             // 
-            this.cameraListBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cameraListBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cameraListBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cameraListBox.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.cameraListBox.FormattingEnabled = true;
-            this.cameraListBox.Location = new System.Drawing.Point(191, 111);
-            this.cameraListBox.Name = "cameraListBox";
-            this.cameraListBox.Size = new System.Drawing.Size(434, 38);
-            this.cameraListBox.TabIndex = 2;
+            this.panel2.Controls.Add(this.optionsBackButton);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 166);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(800, 179);
+            this.panel2.TabIndex = 4;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // optionsBackButton
             // 
@@ -125,7 +127,7 @@
             this.optionsBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.optionsBackButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optionsBackButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.optionsBackButton.Location = new System.Drawing.Point(304, 253);
+            this.optionsBackButton.Location = new System.Drawing.Point(322, 74);
             this.optionsBackButton.MaximumSize = new System.Drawing.Size(170, 48);
             this.optionsBackButton.MinimumSize = new System.Drawing.Size(170, 48);
             this.optionsBackButton.Name = "optionsBackButton";
@@ -134,6 +136,30 @@
             this.optionsBackButton.Text = "BACK";
             this.optionsBackButton.UseVisualStyleBackColor = true;
             this.optionsBackButton.Click += new System.EventHandler(this.optionsBackButton_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cameraListBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 169);
+            this.panel1.TabIndex = 3;
+            // 
+            // cameraListBox
+            // 
+            this.cameraListBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cameraListBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cameraListBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraListBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cameraListBox.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.cameraListBox.FormattingEnabled = true;
+            this.cameraListBox.Location = new System.Drawing.Point(188, 62);
+            this.cameraListBox.MaximumSize = new System.Drawing.Size(434, 0);
+            this.cameraListBox.MinimumSize = new System.Drawing.Size(434, 0);
+            this.cameraListBox.Name = "cameraListBox";
+            this.cameraListBox.Size = new System.Drawing.Size(434, 38);
+            this.cameraListBox.TabIndex = 2;
             // 
             // buttonPanel
             // 
@@ -487,6 +513,8 @@
             this.mainPanel.ResumeLayout(false);
             this.menuPanel.ResumeLayout(false);
             this.optionsPanel.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.buttonPanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);
             this.titlePanel.PerformLayout();
@@ -536,6 +564,8 @@
         private System.Windows.Forms.Label loadingLabel;
         private System.Windows.Forms.Button trainSaveButton;
         private System.Windows.Forms.ComboBox cameraListBox;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

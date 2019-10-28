@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
-using Emgu.Util;
-using System.IO;
-using System.Diagnostics;
 using Emgu.CV.UI;
-using System.Windows.Forms;
 
 namespace UniFCR_Controller {
     public class Camera {
@@ -22,23 +10,21 @@ namespace UniFCR_Controller {
         private Capture cam = null; //Camera
         private bool captureInProgress = false; //Variable to track camera state
         public ImageBox cameraBox = null; //Component of the GUI that shows the cam feed (needed for resizing etc.)
+        public Image<Bgr, Byte> currentFrame; //unchanged image from camera that can be used for detection/recognition
 
-        //Variables for preparing the image for the recognition/detection algorithm
-        HaarCascade face;
-        public Image<Bgr, Byte> currentFrame;
-        Image<Gray, byte> result, TrainedFace = null;
-        public Image<Bgr, Byte> frame = null;
-        int camPerformanceCounter = 0;
+        //=================================================================
+        // EVENT HANDLERS FOR NOTIFYING GUI ABOUT NEW IMAGES
+        //=================================================================
 
-        private  int _newImageArrived;
-        public int newImageArrived
+        private Image<Bgr, Byte> _frame;
+        public Image<Bgr, Byte> frame //changed image from camera used for displaying in the GUI (resized)
         {
-            get { return _newImageArrived; }
+            get { return _frame; }
             set
             {
-                if (_newImageArrived != value)
+                if (_frame != value)
                 {
-                    _newImageArrived = value;
+                    _frame = value;
                     OnValueChanged();
                 }
             }
@@ -51,6 +37,9 @@ namespace UniFCR_Controller {
                 ValueChanged(this, EventArgs.Empty);
         }
 
+        //=================================================================
+        // CAMERA
+        //=================================================================
         public Camera (ImageBox box)
         {
             this.cameraBox = box;
@@ -79,7 +68,6 @@ namespace UniFCR_Controller {
                 captureInProgress = false;
                 cam.Stop();
                 cam.Dispose();
-                //Thread.Sleep(1000);
                 cam = null;
                 Console.WriteLine("Camera stopped!");
             }
@@ -90,36 +78,13 @@ namespace UniFCR_Controller {
             //Get current frame from the camera
             if (cam != null)
             {
-                frame = cam.RetrieveBgrFrame();
-                if (frame != null)
+                Image < Bgr, Byte > grabbedFrame = cam.RetrieveBgrFrame();
+                if (grabbedFrame != null)
                 {
-                    currentFrame = frame;
-                    frame = frame.Resize((int)(cameraBox.Width), (int)(cameraBox.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                    currentFrame = grabbedFrame;
+                    frame = grabbedFrame.Resize((int)(cameraBox.Width), (int)(cameraBox.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 }                
-            }
-
-            //Update the ImageBox to show current frame (if there is one)
-            if (frame != null)
-            {
-
-                //DisplayImage(frame.ToBitmap());
-                if (camPerformanceCounter % 1 == 0)
-                {
-                    if (newImageArrived < 255)
-                    {
-                        newImageArrived += 1;
-                    }
-                    else
-                    {
-                        newImageArrived = 0;
-                    }
-                }
-                camPerformanceCounter++;
-
-            } else
-            {
-                Console.WriteLine("No Camera Found!");
-            }            
+            }         
         }
 
         private delegate void DisplayImageDelegate(Image<Bgr, Byte> Image);

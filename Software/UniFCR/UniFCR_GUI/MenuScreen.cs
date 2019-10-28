@@ -26,8 +26,9 @@ namespace UniFCR_GUI {
         private Point lastLocation;
 
         static Camera trainingCam;
-
+        Image<Bgr, Byte> frame; //Stores the latest frame
         Boolean camRunning = false;
+
         DatabaseController database = new DatabaseController();
         List<string> systemCameraNames = new List<string>();
 
@@ -35,9 +36,12 @@ namespace UniFCR_GUI {
         {
             InitializeComponent();
             optionsPanel.Visible = false;
+            optionsPanel.SendToBack();
+            trainPanel.Visible = false;
             trainPanel.SendToBack();
             this.CenterToScreen();
 
+            //Get all cameras connected to the computer and save them to systemCameras
             Globals.systemCameras = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
         }
 
@@ -59,7 +63,7 @@ namespace UniFCR_GUI {
             this.Visible = false;
             AttendanceScreen attendanceScreen = new AttendanceScreen(this);
 
-            //the attendance screen should show on the same monitor as the menu
+            //The attendance screen should show on the same monitor as the menu
             attendanceScreen.StartPosition = FormStartPosition.Manual;
             Screen screen = Screen.FromPoint(this.Location);
             attendanceScreen.Location = screen.Bounds.Location;
@@ -68,29 +72,26 @@ namespace UniFCR_GUI {
             attendanceScreen.Show();
         }
 
-        //Show training menu
-        private void trainButton_Click(object sender, EventArgs e)
-        {
-            trainPanel.Visible = true;
-            trainPanel.BringToFront();
-
-            trainLoadingPanel.Visible = true;
-            trainLoadingPanel.BringToFront();
-        }
-
         //=================================================================
         // OPTIONS MENU
         //=================================================================
+
+        //Show the options menu
         private void optionsButton_Click(object sender, EventArgs e)
         {
             buttonPanel.Visible = false;
+            buttonPanel.SendToBack();
+
+            optionsPanel.BringToFront();
             optionsPanel.Visible = true;
 
             foreach (DsDevice cam in Globals.systemCameras)
             {
+                //Store the names of all cameras connected to the computer in systemCameraNames
                 systemCameraNames.Add(cam.Name);
             }
 
+            //Show the names in the Dropdown list
             cameraListBox.DataSource = systemCameraNames;
         }
 
@@ -100,6 +101,9 @@ namespace UniFCR_GUI {
             Globals.selectedCameraIndex = cameraListBox.SelectedIndex;     
 
             optionsPanel.Visible = false;
+            optionsPanel.SendToBack();
+
+            buttonPanel.BringToFront();
             buttonPanel.Visible = true;
         }
 
@@ -131,29 +135,29 @@ namespace UniFCR_GUI {
         //=================================================================
         // TRAINING MODE
         //=================================================================
-        private void trainBackButton_Click(object sender, EventArgs e)
+
+        //Show training menu
+        private void trainButton_Click(object sender, EventArgs e)
         {
-            trainingCam.stop();
-            camRunning = false;
+            trainPanel.BringToFront();
+            trainPanel.Visible = true;
 
-            trainPanel.SendToBack();
-            trainPanel.Visible = false;
+            trainLoadingPanel.BringToFront();
+            trainLoadingPanel.Visible = true;
+        }        
 
-            trainLoadingPanel.SendToBack();
-            trainLoadingPanel.Visible = false;
-        }
-
+        //Center the logo and the text on the loading screen
         private void trainLoadingPanel_Paint(object sender, PaintEventArgs e)
         {
-            //Center the logo and the text on the loading screen
             int textLogoX = (this.Size.Width / 2) - (logoTextPanel.Size.Width / 2);
             int textLogoY = (this.Size.Height / 2) - (logoTextPanel.Size.Height / 2);
             logoTextPanel.Location = new Point(textLogoX, textLogoY);
         }
 
+        //Automatically start the camera when the training window is being painted
         private void trainCamPanel_Paint(object sender, PaintEventArgs e)
         {
-            //Making the camera feed fit into the window without changing the aspect ration is kind of difficult
+            //Fit the trainCamView into the trainCamPanel but don't change the aspect ratio (~16:9)
             trainCamView.Width = trainCamPanel.Width;
             trainCamView.Height = (int)(trainCamPanel.Width / 1.8);
             trainCamView.Dock = DockStyle.None;
@@ -161,7 +165,8 @@ namespace UniFCR_GUI {
             trainCamView.Location = new Point(
                 (trainCamPanel.Width / 2) - (trainCamView.Width / 2), (trainCamPanel.Height / 2) - (trainCamView.Height / 2));
 
-
+            //Because of the resizing etc. this methode is called multiple times 
+            //so we check if there is already a camera running before starting one
             if (!camRunning)
             {
                 trainingCam = new Camera(trainCamView);
@@ -170,11 +175,11 @@ namespace UniFCR_GUI {
                 database.LoadStudentsList();
             }
 
-
+            //When the trainingCam grabs a new frame from the webcam call newImageListener
             trainingCam.ValueChanged += newImageListener;
 
             //Hide the loading screen when the camera feed is set up
-            Thread.Sleep(2000);
+            Thread.Sleep(1000); //Give the camera more time to start
             trainLoadingPanel.Visible = false;
             trainLoadingPanel.SendToBack();
         }
@@ -184,29 +189,25 @@ namespace UniFCR_GUI {
             if (trainingCam.frame != null)
             {
                 FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
-                Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(trainingCam.frame);
+                frame = faceAlgorithm.recognizeFaces(trainingCam.frame);
                 trainingCam.DisplayImage(frame);
             }
             
         }
 
-       /*
-        * Clicking the "START" Button takes the 
-        * user from the training window directly
-        * to the Attendance Mode
-        */
+        //Clicking the "START" Button takes the user from 
+        //the training window directly to the Attendance Mode
         private void trainStartButton_Click(object sender, EventArgs e)
         {
             trainingCam.stop();
 
             camRunning = false;
 
-            trainPanel.SendToBack();
             trainPanel.Visible = false;
+            trainPanel.SendToBack();
 
-            trainLoadingPanel.SendToBack();
             trainLoadingPanel.Visible = false;
-
+            trainLoadingPanel.SendToBack();
 
             this.Visible = false; //Hide the menu screen while Attendance Mode is active
 
@@ -221,26 +222,63 @@ namespace UniFCR_GUI {
             attendanceScreen.Show();
         }
 
+        //Saves entered data in the database
         private void trainSaveButton_Click(object sender, EventArgs e)
         {
-            String firstName = firstNameBox.Text;
-            String lastName = lastNameBox.Text;
-            int matNum = Int32.Parse(numberBox.Text);
-            Image<Gray, byte> image = trainingCam.faceSaver(firstName, lastName);
-            database.saveStudentList(firstName, lastName, matNum, image);
-            firstNameBox.Text = "";
-            lastNameBox.Text = "";
-            numberBox.Text = "";
+            Image<Gray, Byte> image = null;
+
+            if (firstNameBox.Text.Equals(""))
+            {
+                MessageBox.Show("Enter your first name!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            } else if (lastNameBox.Text.Equals(""))
+            {
+                MessageBox.Show("Enter your last name!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            } else if (numberBox.Text.Equals(""))
+            {
+                MessageBox.Show("Enter your matriculation number!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            } else if (trainingCam.currentFrame != null)
+            {
+                FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+                List<Image<Gray, Byte>> detectedFaces = new List<Image<Gray, byte>>();
+                detectedFaces = faceAlgorithm.detectFaces(trainingCam.currentFrame);
+
+                if (detectedFaces.Count > 1)
+                {
+                    MessageBox.Show("Too many faces in the picture!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } else if (detectedFaces.Count == 0)
+                {
+                    MessageBox.Show("No face detected!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } else
+                {
+                    image = detectedFaces.ElementAt(0);
+                    String firstName = firstNameBox.Text;
+                    String lastName = lastNameBox.Text;
+                    int matNum = Int32.Parse(numberBox.Text);
+                    database.saveStudentList(firstName, lastName, matNum, image);
+                    firstNameBox.Text = "";
+                    lastNameBox.Text = "";
+                    numberBox.Text = "";
+                    MessageBox.Show(firstName + "´s face detected and added!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            } else
+            {
+
+            }
         }
 
-        private void trainCamView_BackColorChanged(object sender, EventArgs e)
+        private void trainBackButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("success");
-        }
+            trainingCam.stop();
+            camRunning = false;
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
+            trainPanel.SendToBack();
+            trainPanel.Visible = false;
 
+            trainLoadingPanel.SendToBack();
+            trainLoadingPanel.Visible = false;
         }
     }
 }

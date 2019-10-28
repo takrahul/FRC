@@ -70,8 +70,10 @@ namespace UniFCR_Controller {
             }
         }
 
-        public void detectFaces(Image<Bgr, Byte> frame)
+        public List<Image<Gray, byte>> detectFaces(Image<Bgr, Byte> frame)
         {
+            List<Image<Gray, byte>> detectedFacesList = new List<Image<Gray, byte>>();
+
             //make sure this xml file is in the debug folder for this to work
             Image<Gray, byte> gray = null;
             Image<Gray, byte> result = null;
@@ -83,7 +85,10 @@ namespace UniFCR_Controller {
                 result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 //draw the face detected in the 0th (gray) channel with red color
                 frame.Draw(f.rect, new Bgr(Color.Red), 2);
+                detectedFacesList.Add(result);
             }
+
+            return detectedFacesList;
         }
 
 
@@ -138,7 +143,6 @@ namespace UniFCR_Controller {
             NamePersons.Clear();
 
             return frame;
-
         }
     }
 }

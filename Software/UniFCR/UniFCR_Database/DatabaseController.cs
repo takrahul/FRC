@@ -61,8 +61,7 @@ namespace UniFCR_Database
 
            // st.Image = image.ToBitmap();
             
-            SqliteDataAccess.SavePerson(st);            
-            MessageBox.Show("Saved!");
+            SqliteDataAccess.SavePerson(st);
 
             //todo
             // tabbing order in UI

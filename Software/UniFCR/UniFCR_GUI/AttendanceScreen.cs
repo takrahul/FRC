@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.Structure;
-using Emgu.CV.CvEnum;
-using Emgu.Util;
-using System.IO;
-using System.Diagnostics;
 using UniFCR_Controller;
 using UniFCR_Database;
 
@@ -53,9 +45,10 @@ namespace UniFCR_GUI {
             missingStudentsBox.SelectionAlignment = HorizontalAlignment.Center;
         }
 
+        //Automatically start the camera when the window is being painted
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
-            //Making the camera feed fit into the window without changing the aspect ration is kind of difficult
+            //Making the camView fit in the camPanel without changing the aspect ration (~16:9)
             camView.Width = camPanel.Width;
             camView.Height = (int)(camPanel.Width / 1.8);
             camView.Dock = DockStyle.None;
@@ -63,16 +56,20 @@ namespace UniFCR_GUI {
             camView.Location = new Point(
                 (camPanel.Width / 2) - (camView.Width / 2), (camPanel.Height / 2) - (camView.Height / 2));
 
+            //Because of the resizing etc. this methode is called multiple times 
+            //so we check if there is already a camera running before starting one
             if (!camRunning)
             {
                 attendanceCam = new Camera(camView);
                 attendanceCam.start();
-                attendanceCam.ValueChanged += newImageListener;
                 camRunning = true;
+
+                //When the attendanceCam grabs a new frame from the webcam call newImageListener
+                attendanceCam.ValueChanged += newImageListener;
             }
 
             //hide the loading screen when the camera feed is set up
-            Thread.Sleep(1000);
+            Thread.Sleep(1000); //Give the camera more time to start
             loadingPanel.Visible = false;
         }
 
@@ -88,7 +85,6 @@ namespace UniFCR_GUI {
                 {
                     updatePercentage();
                     updateAttendance();
-                    Console.WriteLine("UPDATE PERCENTAGE");
                 }
             }
         }

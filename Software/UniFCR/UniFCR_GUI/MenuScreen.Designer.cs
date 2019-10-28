@@ -380,6 +380,9 @@
             this.trainCamPanel.Size = new System.Drawing.Size(532, 414);
             this.trainCamPanel.TabIndex = 1;
             this.trainCamPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.trainCamPanel_Paint);
+            this.trainCamPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseDown);
+            this.trainCamPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseMove);
+            this.trainCamPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseUp);
             // 
             // trainCamView
             // 

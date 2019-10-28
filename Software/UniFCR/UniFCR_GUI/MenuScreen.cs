@@ -165,10 +165,10 @@ namespace UniFCR_GUI {
                 trainingCam.start();
                 camRunning = true;
                 database.LoadStudentsList();
-            }
 
-            //When the trainingCam grabs a new frame from the webcam call newImageListener
-            trainingCam.ValueChanged += newImageListener;
+                //When the trainingCam grabs a new frame from the webcam call newImageListener
+                trainingCam.ValueChanged += newImageListener;
+            }
 
             //Hide the loading screen when the camera feed is set up
             Thread.Sleep(1000); //Give the camera more time to start

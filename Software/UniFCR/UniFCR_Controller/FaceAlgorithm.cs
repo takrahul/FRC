@@ -77,18 +77,18 @@ namespace UniFCR_Controller {
             Image<Gray, byte> result = null;
             gray = frame.Convert<Gray, Byte>();
             //MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
-            Rectangle[] facesDetected = face.DetectMultiScale(gray, 1.2, 10, new Size(50, 50), Size.Empty);
-            for (int i = 0; i < facesDetected.Length; i++)
+            Globals.facesDetected = face.DetectMultiScale(gray, 1.2, 10, new Size(50, 50), Size.Empty);
+            for (int i = 0; i < Globals.facesDetected.Length; i++)
             {
                 t = t + 1;
-                facesDetected[i].X += (int)(facesDetected[i].Height * 0.15);
-                facesDetected[i].Y += (int)(facesDetected[i].Width * 0.22);
-                facesDetected[i].Height -= (int)(facesDetected[i].Height * 0.3);
-                facesDetected[i].Width -= (int)(facesDetected[i].Width * 0.35);
+                Globals.facesDetected[i].X += (int)(Globals.facesDetected[i].Height * 0.15);
+                Globals.facesDetected[i].Y += (int)(Globals.facesDetected[i].Width * 0.22);
+                Globals.facesDetected[i].Height -= (int)(Globals.facesDetected[i].Height * 0.3);
+                Globals.facesDetected[i].Width -= (int)(Globals.facesDetected[i].Width * 0.35);
                 result = frame.Copy(Globals.facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 result._EqualizeHist();
                 //draw the face detected in the 0th (gray) channel with red color
-                frame.Draw(f.rect, new Bgr(Color.Red), 2);
+                frame.Draw(Globals.facesDetected[i], new Bgr(Color.Red), 2);
                 Globals.processedDetectedFaces.Add(result);
             }
 

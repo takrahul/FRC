@@ -16,6 +16,7 @@ namespace UniFCR_GUI {
         Boolean camRunning = false;
         int enrolledStudents;
         int attendance;
+        DatabaseController database = new DatabaseController();
 
         public AttendanceScreen(Form menuScreen)
         {
@@ -42,7 +43,8 @@ namespace UniFCR_GUI {
             camPanel.Width = (int)(mainPanel.Size.Width * 0.75);
 
             attendanceLabel.Width = infoPanel.Width;
-            missingStudentsBox.SelectionAlignment = HorizontalAlignment.Center;
+            database.LoadStudentsList();
+            studentListBox.DataSource = database.studentNameList();
         }
 
         //Automatically start the camera when the window is being painted

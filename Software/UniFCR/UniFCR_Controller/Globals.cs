@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using DirectShowLib;
 
 namespace UniFCR_Controller
 {
@@ -15,6 +16,10 @@ namespace UniFCR_Controller
         public static int numLabels;
         public static List<string> labels = new List<string>();
         public static Boolean created = true;
-        public static MCvAvgComp[][] facesDetected;
+        public static List<Image<Gray, byte>> processedDetectedFaces;
+
+        //Variables for choosing the camera
+        public static DsDevice[] systemCameras;
+        public static int selectedCameraIndex = 0;
     }
 }

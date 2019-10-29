@@ -61,8 +61,7 @@ namespace UniFCR_Database
 
            // st.Image = image.ToBitmap();
             
-            SqliteDataAccess.SavePerson(st);            
-            MessageBox.Show("Saved!");
+            SqliteDataAccess.SavePerson(st);
 
             //todo
             // tabbing order in UI
@@ -76,10 +75,14 @@ namespace UniFCR_Database
 
         public List<String> studentNameList()
         {
-            List<String> firstNames = new List<String>();
-            List<String> lastNames = new List<String>();
+            List<String> fullNames = new List<String>();
 
-            return lastNames;
+            foreach (StudentModel s in student)
+            {
+                fullNames.Add(s.GivenNames + " " + s.LastName);
+            }
+
+            return fullNames;
         }
     }
 }

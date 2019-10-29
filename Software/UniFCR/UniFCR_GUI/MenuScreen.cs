@@ -17,8 +17,10 @@ using System.Diagnostics;
 using UniFCR_Controller;
 using UniFCR_Database;
 
-namespace UniFCR_GUI {
-    public partial class MenuScreen : Form {
+namespace UniFCR_GUI
+{
+    public partial class MenuScreen : Form
+    {
 
         //Variables for moving the window with the mouse
         private bool mouseDown;
@@ -63,7 +65,7 @@ namespace UniFCR_GUI {
 
             attendanceScreen.Show();
         }
-        
+
         //Show the options menu
         private void optionsButton_Click(object sender, EventArgs e)
         {
@@ -172,14 +174,14 @@ namespace UniFCR_GUI {
                 Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(trainingCam.frame);
                 trainingCam.DisplayImage(frame);
             }
-            
+
         }
 
-       /*
-        * Clicking the "START" Button takes the 
-        * user from the training window directly
-        * to the Attendance Mode
-        */
+        /*
+         * Clicking the "START" Button takes the 
+         * user from the training window directly
+         * to the Attendance Mode
+         */
         private void trainStartButton_Click(object sender, EventArgs e)
         {
             trainingCam.stop();
@@ -208,14 +210,62 @@ namespace UniFCR_GUI {
 
         private void trainSaveButton_Click(object sender, EventArgs e)
         {
-            String firstName = firstNameBox.Text;
+            /*String firstName = firstNameBox.Text;
             String lastName = lastNameBox.Text;
             int matNum = Int32.Parse(numberBox.Text);
             Image<Gray, byte> image = trainingCam.faceSaver(firstName, lastName);
             database.saveStudentList(firstName, lastName, matNum, image);
             firstNameBox.Text = "";
             lastNameBox.Text = "";
-            numberBox.Text = "";
+            numberBox.Text = "";*/
+            Image<Gray, Byte> image = null;
+
+            if (firstNameBox.Text.Equals(""))
+            {
+                MessageBox.Show("Enter your first name!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else if (lastNameBox.Text.Equals(""))
+            {
+                MessageBox.Show("Enter your last name!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else if (numberBox.Text.Equals(""))
+            {
+                MessageBox.Show("Enter your matriculation number!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else if (trainingCam.currentFrame != null)
+            {
+                FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+                List<Image<Gray, Byte>> detectedFaces = new List<Image<Gray, byte>>();
+                detectedFaces = faceAlgorithm.detectFaces(trainingCam.currentFrame);
+
+                if (detectedFaces.Count > 1)
+                {
+                    MessageBox.Show("Too many faces in the picture!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (detectedFaces.Count == 0)
+                {
+                    MessageBox.Show("No face detected!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    image = detectedFaces.ElementAt(0);
+                    String firstName = firstNameBox.Text;
+                    String lastName = lastNameBox.Text;
+                    int matNum = Int32.Parse(numberBox.Text);
+                    database.saveStudentList(firstName, lastName, matNum, image);
+                    firstNameBox.Text = "";
+                    lastNameBox.Text = "";
+                    numberBox.Text = "";
+                    MessageBox.Show(firstName + "´s face detected and added!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+
+            }
         }
 
         private void trainCamView_BackColorChanged(object sender, EventArgs e)

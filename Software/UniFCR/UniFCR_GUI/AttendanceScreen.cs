@@ -93,12 +93,7 @@ namespace UniFCR_GUI {
             }
         }
 
-
-
-
-
         delegate void updateAttendanceCallback();
-
         private void updateAttendance()
         {
             // InvokeRequired required compares the thread ID of the
@@ -116,7 +111,6 @@ namespace UniFCR_GUI {
         }
 
         delegate void updatePercentageCallback();
-
         private void updatePercentage()
         {
             // InvokeRequired required compares the thread ID of the
@@ -130,7 +124,8 @@ namespace UniFCR_GUI {
             else
             {
                 //Testing the attendance precentage circle
-                attendance = Globals.facesDetected[0].Length;
+                //attendance = Globals.facesDetected[0].Length;
+                attendance = Globals.facesDetected.Length;
                 double attendancePercentage = ((double)attendance / (double)enrolledStudents) * 100;
                 attendancePercentageCircle.Value = (int)attendancePercentage;
                 attendancePercentageCircle.Text = (int)attendancePercentage + "%";

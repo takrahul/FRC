@@ -116,9 +116,9 @@
             // attendanceLabel
             // 
             this.attendanceLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attendanceLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F);
+            this.attendanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
             this.attendanceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.attendanceLabel.Location = new System.Drawing.Point(3, 495);
+            this.attendanceLabel.Location = new System.Drawing.Point(3, 474);
             this.attendanceLabel.Margin = new System.Windows.Forms.Padding(0);
             this.attendanceLabel.Name = "attendanceLabel";
             this.attendanceLabel.Size = new System.Drawing.Size(192, 70);
@@ -130,11 +130,11 @@
             // 
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(3, 150);
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(5, 150);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(191, 345);
+            this.titleLabel.Size = new System.Drawing.Size(188, 324);
             this.titleLabel.TabIndex = 5;
             this.titleLabel.Text = "UniFCR";
             // 
@@ -144,12 +144,12 @@
             this.attendancePercentageCircle.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
             this.attendancePercentageCircle.AnimationSpeed = 500;
             this.attendancePercentageCircle.BackColor = System.Drawing.Color.Transparent;
-            this.attendancePercentageCircle.Font = new System.Drawing.Font("Century Gothic", 32F);
+            this.attendancePercentageCircle.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F);
             this.attendancePercentageCircle.ForeColor = System.Drawing.Color.DarkGray;
             this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
             this.attendancePercentageCircle.InnerMargin = 2;
             this.attendancePercentageCircle.InnerWidth = -1;
-            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 578);
+            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 562);
             this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
             this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
             this.attendancePercentageCircle.Name = "attendancePercentageCircle";
@@ -158,7 +158,7 @@
             this.attendancePercentageCircle.OuterWidth = 26;
             this.attendancePercentageCircle.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
             this.attendancePercentageCircle.ProgressWidth = 25;
-            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.attendancePercentageCircle.Size = new System.Drawing.Size(192, 192);
             this.attendancePercentageCircle.StartAngle = 270;
             this.attendancePercentageCircle.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
@@ -175,12 +175,12 @@
             // 
             this.missingStudentsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.missingStudentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.missingStudentsBox.Font = new System.Drawing.Font("Century Gothic", 21.75F);
+            this.missingStudentsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
             this.missingStudentsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.missingStudentsBox.Location = new System.Drawing.Point(0, 783);
+            this.missingStudentsBox.Location = new System.Drawing.Point(0, 772);
             this.missingStudentsBox.Margin = new System.Windows.Forms.Padding(0);
             this.missingStudentsBox.Name = "missingStudentsBox";
-            this.missingStudentsBox.Size = new System.Drawing.Size(198, 247);
+            this.missingStudentsBox.Size = new System.Drawing.Size(198, 258);
             this.missingStudentsBox.TabIndex = 7;
             this.missingStudentsBox.Text = "Missing Students:";
             // 
@@ -273,12 +273,12 @@
             // 
             this.loadingLabel.AutoSize = true;
             this.loadingLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.loadingLabel.Font = new System.Drawing.Font("Century Gothic", 69F);
+            this.loadingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 69F);
             this.loadingLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.loadingLabel.Location = new System.Drawing.Point(0, 250);
             this.loadingLabel.MaximumSize = new System.Drawing.Size(370, 100);
             this.loadingLabel.Name = "loadingLabel";
-            this.loadingLabel.Size = new System.Drawing.Size(358, 100);
+            this.loadingLabel.Size = new System.Drawing.Size(370, 100);
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
             // 

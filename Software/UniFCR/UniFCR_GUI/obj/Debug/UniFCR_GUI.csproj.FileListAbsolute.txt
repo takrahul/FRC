@@ -27,3 +27,29 @@ D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Uni
 D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\System.Data.SQLite.xml
 D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\System.Data.SQLite.dll.config
 D:\Documents\Team Oriented Project\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Dapper.xml
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_GUI.exe.config
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_GUI.exe
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_GUI.pdb
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\CircularProgressBar.dll
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\System.Data.SQLite.dll
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_Controller.dll
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_Database.dll
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\WinFormAnimation.dll
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Dapper.dll
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\ZedGraph.dll
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_Controller.pdb
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\UniFCR_Database.pdb
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Emgu.CV.xml
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Emgu.CV.UI.xml
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Emgu.Util.xml
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\System.Data.SQLite.xml
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\System.Data.SQLite.dll.config
+D:\Repo\Software\UniFCR\UniFCR_GUI\bin\Debug\Dapper.xml
+D:\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.csprojAssemblyReference.cache
+D:\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.AttendanceScreen.resources
+D:\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.MenuScreen.resources
+D:\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.Properties.Resources.resources
+D:\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.csproj.GenerateResource.cache
+D:\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.csproj.CopyComplete
+D:\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.exe
+D:\Repo\Software\UniFCR\UniFCR_GUI\obj\Debug\UniFCR_GUI.pdb

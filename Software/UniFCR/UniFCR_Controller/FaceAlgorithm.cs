@@ -94,6 +94,7 @@ namespace UniFCR_Controller {
 
         public Image<Bgr, Byte> recognizeFaces(Image<Bgr, Byte> frame)
         {
+            Globals.processedDetectedFaces = new List<Image<Gray, byte>>();
             NamePersons.Add("");
             Image<Gray, byte> gray = null;
             Image<Gray, byte> result = null;
@@ -105,7 +106,7 @@ namespace UniFCR_Controller {
                 result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 //draw the face detected in the 0th (gray) channel with red color
                 frame.Draw(f.rect, new Bgr(Color.Red), 2);
-
+                Globals.processedDetectedFaces.Add(result);
 
                 if (Globals.trainingImages.ToArray().Length != 0)
                 {

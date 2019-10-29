@@ -10,7 +10,6 @@ namespace UniFCR_Controller {
         private Capture cam = null; //Camera
         private bool captureInProgress = false; //Variable to track camera state
         public ImageBox cameraBox = null; //Component of the GUI that shows the cam feed (needed for resizing etc.)
-        public Image<Bgr, Byte> currentFrame; //unchanged image from camera that can be used for detection/recognition
 
         //=================================================================
         // EVENT HANDLERS FOR NOTIFYING GUI ABOUT NEW IMAGES
@@ -82,8 +81,7 @@ namespace UniFCR_Controller {
                 Image < Bgr, Byte > grabbedFrame = cam.RetrieveBgrFrame();
                 if (grabbedFrame != null)
                 {
-                    currentFrame = grabbedFrame;
-                    frame = grabbedFrame.Resize((int)(cameraBox.Width), (int)(cameraBox.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                    frame = grabbedFrame;
                 }                
             }         
         }

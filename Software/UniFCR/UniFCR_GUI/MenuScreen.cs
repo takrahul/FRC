@@ -181,7 +181,8 @@ namespace UniFCR_GUI {
             if (trainingCam.frame != null)
             {
                 FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
-                frame = faceAlgorithm.recognizeFaces(trainingCam.frame);
+                frame = faceAlgorithm.detectFaces(trainingCam.frame);
+                frame = frame.Resize((int)(trainCamView.Width), (int)(trainCamView.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 trainingCam.DisplayImage(frame);
             }
             
@@ -231,10 +232,10 @@ namespace UniFCR_GUI {
             {
                 MessageBox.Show("Enter your matriculation number!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            } else if (trainingCam.currentFrame != null)
+            } else if (trainingCam.frame != null)
             {
                 FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
-                faceAlgorithm.detectFaces(trainingCam.currentFrame);
+                faceAlgorithm.detectFaces(trainingCam.frame);
 
                 if (Globals.processedDetectedFaces.Count > 1)
                 {

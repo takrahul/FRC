@@ -79,6 +79,7 @@ namespace UniFCR_GUI {
             {
                 FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
                 Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(attendanceCam.frame);
+                frame = frame.Resize((int)(camView.Width), (int)(camView.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 attendanceCam.DisplayImage(frame);
 
                 if (Globals.trainingImages.Count() > 0 && enrolledStudents > 0)

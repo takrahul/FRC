@@ -44,7 +44,10 @@ namespace UniFCR_GUI {
 
             attendanceLabel.Width = infoPanel.Width;
             database.LoadStudentsList();
+
+            studentListBox.BeginUpdate();
             studentListBox.DataSource = database.studentNameList();
+            studentListBox.EndUpdate();
         }
 
         //Automatically start the camera when the window is being painted
@@ -129,6 +132,23 @@ namespace UniFCR_GUI {
                 attendancePercentageCircle.Text = (int)attendancePercentage + "%";
                 attendancePercentageCircle.Update();
                 attendancePercentageCircle.Update();
+            }
+        }
+
+        delegate void updateListBoxCallback();
+        private void updateListBox()
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.attendanceLabel.InvokeRequired)
+            {
+                updateListBoxCallback d = new updateListBoxCallback(updateListBox);
+                this.Invoke(d, new object[] { });
+            }
+            else
+            {
+                
             }
         }
 

@@ -120,7 +120,7 @@ namespace UniFCR_GUI {
             else
             {
                 //Testing the attendance precentage circle
-                attendance = Globals.facesDetected[0].Length;
+                attendance = Globals.processedDetectedFaces.Count();
                 double attendancePercentage = ((double)attendance / (double)enrolledStudents) * 100;
                 attendancePercentageCircle.Value = (int)attendancePercentage;
                 attendancePercentageCircle.Text = (int)attendancePercentage + "%";

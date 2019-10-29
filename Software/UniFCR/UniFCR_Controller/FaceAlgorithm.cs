@@ -70,9 +70,9 @@ namespace UniFCR_Controller {
             }
         }
 
-        public List<Image<Gray, byte>> detectFaces(Image<Bgr, Byte> frame)
+        public Image<Bgr, byte> detectFaces(Image<Bgr, Byte> frame)
         {
-            List<Image<Gray, byte>> detectedFacesList = new List<Image<Gray, byte>>();
+            Globals.processedDetectedFaces = new List<Image<Gray, byte>>();
 
             //make sure this xml file is in the debug folder for this to work
             Image<Gray, byte> gray = null;
@@ -85,10 +85,10 @@ namespace UniFCR_Controller {
                 result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 //draw the face detected in the 0th (gray) channel with red color
                 frame.Draw(f.rect, new Bgr(Color.Red), 2);
-                detectedFacesList.Add(result);
+                Globals.processedDetectedFaces.Add(result);
             }
 
-            return detectedFacesList;
+            return frame;
         }
 
 
@@ -98,8 +98,8 @@ namespace UniFCR_Controller {
             Image<Gray, byte> gray = null;
             Image<Gray, byte> result = null;
             gray = frame.Convert<Gray, Byte>();
-            Globals.facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
-            foreach (MCvAvgComp f in Globals.facesDetected[0])
+            MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
+            foreach (MCvAvgComp f in facesDetected[0])
             {
                 t = t + 1;
                 result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
@@ -131,7 +131,7 @@ namespace UniFCR_Controller {
 
             }
             t = 0;
-            for (int nnn = 0; nnn < Globals.facesDetected[0].Length; nnn++)
+            for (int nnn = 0; nnn < facesDetected[0].Length; nnn++)
             {
                 names = names + NamePersons[nnn] + ", ";
             }

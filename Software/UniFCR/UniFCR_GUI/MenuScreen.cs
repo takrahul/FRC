@@ -234,18 +234,17 @@ namespace UniFCR_GUI {
             } else if (trainingCam.currentFrame != null)
             {
                 FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
-                List<Image<Gray, Byte>> detectedFaces = new List<Image<Gray, byte>>();
-                detectedFaces = faceAlgorithm.detectFaces(trainingCam.currentFrame);
+                faceAlgorithm.detectFaces(trainingCam.currentFrame);
 
-                if (detectedFaces.Count > 1)
+                if (Globals.processedDetectedFaces.Count > 1)
                 {
                     MessageBox.Show("Too many faces in the picture!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                } else if (detectedFaces.Count == 0)
+                } else if (Globals.processedDetectedFaces.Count == 0)
                 {
                     MessageBox.Show("No face detected!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 } else
                 {
-                    image = detectedFaces.ElementAt(0);
+                    image = Globals.processedDetectedFaces.ElementAt(0);
                     String firstName = firstNameBox.Text;
                     String lastName = lastNameBox.Text;
                     int matNum = Int32.Parse(numberBox.Text);
@@ -253,11 +252,11 @@ namespace UniFCR_GUI {
                     firstNameBox.Text = "";
                     lastNameBox.Text = "";
                     numberBox.Text = "";
-                    MessageBox.Show(firstName + "´s face detected and added!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(firstName + " " + lastName + "´s face detected and added!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             } else
             {
-
+                MessageBox.Show("No camera input detected!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

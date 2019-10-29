@@ -50,13 +50,14 @@ namespace UniFCR_Controller {
             if (!this.captureInProgress)
             {
                 cam = new Capture(Globals.selectedCameraIndex);
-                cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280); //1280
-                cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720); //720
-                                                                                //cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);
+                cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1920); //1280
+                cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 1080); //720
+                //cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);
+
                 cam.Start();
                 captureInProgress = true;
-                Console.WriteLine("camera started");
                 cam.ImageGrabbed += ProcessFrame;
+                Console.WriteLine("camera started");
             }
         }
 

@@ -29,9 +29,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.titlePanel = new System.Windows.Forms.Panel();
-            this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
-            this.titleLabel = new System.Windows.Forms.Label();
             this.menuPanel = new System.Windows.Forms.Panel();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.startButton = new System.Windows.Forms.Button();
@@ -39,7 +36,13 @@
             this.optionsButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.optionsPanel = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.optionsBackButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cameraListBox = new System.Windows.Forms.ComboBox();
+            this.titlePanel = new System.Windows.Forms.Panel();
+            this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.trainPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.trainSaveButton = new System.Windows.Forms.Button();
@@ -58,11 +61,13 @@
             this.loadingLogo = new System.Windows.Forms.PictureBox();
             this.loadingLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
-            this.titlePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
             this.menuPanel.SuspendLayout();
             this.buttonPanel.SuspendLayout();
             this.optionsPanel.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.titlePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
             this.trainPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.trainCamPanel.SuspendLayout();
@@ -74,47 +79,13 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.titlePanel);
             this.mainPanel.Controls.Add(this.menuPanel);
+            this.mainPanel.Controls.Add(this.titlePanel);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(800, 500);
             this.mainPanel.TabIndex = 0;
-            // 
-            // titlePanel
-            // 
-            this.titlePanel.BackColor = System.Drawing.Color.White;
-            this.titlePanel.Controls.Add(this.uniFCRLogoBox);
-            this.titlePanel.Controls.Add(this.titleLabel);
-            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titlePanel.Location = new System.Drawing.Point(0, 0);
-            this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(800, 157);
-            this.titlePanel.TabIndex = 0;
-            this.titlePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseDown);
-            this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseMove);
-            this.titlePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseUp);
-            // 
-            // uniFCRLogoBox
-            // 
-            this.uniFCRLogoBox.Image = ((System.Drawing.Image)(resources.GetObject("uniFCRLogoBox.Image")));
-            this.uniFCRLogoBox.Location = new System.Drawing.Point(130, 15);
-            this.uniFCRLogoBox.Name = "uniFCRLogoBox";
-            this.uniFCRLogoBox.Size = new System.Drawing.Size(133, 120);
-            this.uniFCRLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.uniFCRLogoBox.TabIndex = 2;
-            this.uniFCRLogoBox.TabStop = false;
-            // 
-            // titleLabel
-            // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(284, 20);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(385, 108);
-            this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "UniFCR";
             // 
             // menuPanel
             // 
@@ -146,7 +117,7 @@
             // startButton
             // 
             this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.ForeColor = System.Drawing.Color.DarkGray;
             this.startButton.Location = new System.Drawing.Point(3, 3);
             this.startButton.Name = "startButton";
@@ -160,7 +131,7 @@
             // 
             this.trainButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.trainButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.trainButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trainButton.ForeColor = System.Drawing.Color.DarkGray;
             this.trainButton.Location = new System.Drawing.Point(3, 102);
             this.trainButton.Name = "trainButton";
@@ -174,7 +145,7 @@
             // 
             this.optionsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.optionsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.optionsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optionsButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optionsButton.ForeColor = System.Drawing.Color.DarkGray;
             this.optionsButton.Location = new System.Drawing.Point(282, 3);
             this.optionsButton.Name = "optionsButton";
@@ -188,7 +159,7 @@
             // 
             this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ForeColor = System.Drawing.Color.DarkGray;
             this.exitButton.Location = new System.Drawing.Point(279, 99);
             this.exitButton.Name = "exitButton";
@@ -200,24 +171,97 @@
             // 
             // optionsPanel
             // 
-            this.optionsPanel.Controls.Add(this.optionsBackButton);
-            this.optionsPanel.Location = new System.Drawing.Point(130, 48);
+            this.optionsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.optionsPanel.Controls.Add(this.panel2);
+            this.optionsPanel.Controls.Add(this.panel1);
+            this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.optionsPanel.Location = new System.Drawing.Point(0, 0);
             this.optionsPanel.Name = "optionsPanel";
-            this.optionsPanel.Size = new System.Drawing.Size(528, 232);
+            this.optionsPanel.Size = new System.Drawing.Size(800, 345);
             this.optionsPanel.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.optionsBackButton);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 166);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(800, 179);
+            this.panel2.TabIndex = 4;
             // 
             // optionsBackButton
             // 
+            this.optionsBackButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.optionsBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.optionsBackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optionsBackButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optionsBackButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.optionsBackButton.Location = new System.Drawing.Point(174, 84);
+            this.optionsBackButton.Location = new System.Drawing.Point(322, 74);
+            this.optionsBackButton.MaximumSize = new System.Drawing.Size(170, 48);
+            this.optionsBackButton.MinimumSize = new System.Drawing.Size(170, 48);
             this.optionsBackButton.Name = "optionsBackButton";
             this.optionsBackButton.Size = new System.Drawing.Size(170, 48);
             this.optionsBackButton.TabIndex = 1;
             this.optionsBackButton.Text = "BACK";
             this.optionsBackButton.UseVisualStyleBackColor = true;
             this.optionsBackButton.Click += new System.EventHandler(this.optionsBackButton_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cameraListBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 169);
+            this.panel1.TabIndex = 3;
+            // 
+            // cameraListBox
+            // 
+            this.cameraListBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cameraListBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cameraListBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraListBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cameraListBox.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.cameraListBox.FormattingEnabled = true;
+            this.cameraListBox.Location = new System.Drawing.Point(188, 62);
+            this.cameraListBox.MaximumSize = new System.Drawing.Size(434, 0);
+            this.cameraListBox.MinimumSize = new System.Drawing.Size(434, 0);
+            this.cameraListBox.Name = "cameraListBox";
+            this.cameraListBox.Size = new System.Drawing.Size(434, 38);
+            this.cameraListBox.TabIndex = 2;
+            // 
+            // titlePanel
+            // 
+            this.titlePanel.BackColor = System.Drawing.Color.White;
+            this.titlePanel.Controls.Add(this.uniFCRLogoBox);
+            this.titlePanel.Controls.Add(this.titleLabel);
+            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titlePanel.Location = new System.Drawing.Point(0, 0);
+            this.titlePanel.Name = "titlePanel";
+            this.titlePanel.Size = new System.Drawing.Size(800, 157);
+            this.titlePanel.TabIndex = 0;
+            this.titlePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseDown);
+            this.titlePanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseMove);
+            this.titlePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseUp);
+            // 
+            // uniFCRLogoBox
+            // 
+            this.uniFCRLogoBox.Image = ((System.Drawing.Image)(resources.GetObject("uniFCRLogoBox.Image")));
+            this.uniFCRLogoBox.Location = new System.Drawing.Point(130, 12);
+            this.uniFCRLogoBox.Name = "uniFCRLogoBox";
+            this.uniFCRLogoBox.Size = new System.Drawing.Size(133, 134);
+            this.uniFCRLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.uniFCRLogoBox.TabIndex = 2;
+            this.uniFCRLogoBox.TabStop = false;
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(284, 20);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(374, 115);
+            this.titleLabel.TabIndex = 0;
+            this.titleLabel.Text = "UniFCR";
             // 
             // trainPanel
             // 
@@ -260,13 +304,12 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 500);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint_1);
             // 
             // trainSaveButton
             // 
             this.trainSaveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.trainSaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.trainSaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainSaveButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trainSaveButton.ForeColor = System.Drawing.Color.DarkGray;
             this.trainSaveButton.Location = new System.Drawing.Point(581, 183);
             this.trainSaveButton.MaximumSize = new System.Drawing.Size(170, 48);
@@ -276,17 +319,17 @@
             this.trainSaveButton.TabIndex = 6;
             this.trainSaveButton.Text = "SAVE";
             this.trainSaveButton.UseVisualStyleBackColor = true;
-            this.trainSaveButton.Click += new System.EventHandler(this.trainSaveButton_Click_1);
+            this.trainSaveButton.Click += new System.EventHandler(this.trainSaveButton_Click);
             // 
             // numberLabel
             // 
             this.numberLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numberLabel.AutoSize = true;
-            this.numberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
+            this.numberLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.numberLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.numberLabel.Location = new System.Drawing.Point(574, 415);
+            this.numberLabel.Location = new System.Drawing.Point(564, 414);
             this.numberLabel.Name = "numberLabel";
-            this.numberLabel.Size = new System.Drawing.Size(183, 33);
+            this.numberLabel.Size = new System.Drawing.Size(204, 36);
             this.numberLabel.TabIndex = 9;
             this.numberLabel.Text = "Mat. Number";
             // 
@@ -294,11 +337,11 @@
             // 
             this.lastNameLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lastNameLabel.AutoSize = true;
-            this.lastNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
+            this.lastNameLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.lastNameLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.lastNameLabel.Location = new System.Drawing.Point(321, 415);
+            this.lastNameLabel.Location = new System.Drawing.Point(316, 414);
             this.lastNameLabel.Name = "lastNameLabel";
-            this.lastNameLabel.Size = new System.Drawing.Size(156, 33);
+            this.lastNameLabel.Size = new System.Drawing.Size(165, 36);
             this.lastNameLabel.TabIndex = 8;
             this.lastNameLabel.Text = "Last Name";
             // 
@@ -306,10 +349,10 @@
             // 
             this.numberBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numberBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.numberBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numberBox.Location = new System.Drawing.Point(536, 459);
+            this.numberBox.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numberBox.Location = new System.Drawing.Point(536, 458);
             this.numberBox.Name = "numberBox";
-            this.numberBox.Size = new System.Drawing.Size(260, 31);
+            this.numberBox.Size = new System.Drawing.Size(260, 34);
             this.numberBox.TabIndex = 6;
             this.numberBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -317,10 +360,10 @@
             // 
             this.lastNameBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lastNameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lastNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastNameBox.Location = new System.Drawing.Point(269, 459);
+            this.lastNameBox.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastNameBox.Location = new System.Drawing.Point(269, 458);
             this.lastNameBox.Name = "lastNameBox";
-            this.lastNameBox.Size = new System.Drawing.Size(260, 31);
+            this.lastNameBox.Size = new System.Drawing.Size(260, 34);
             this.lastNameBox.TabIndex = 5;
             this.lastNameBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -337,11 +380,13 @@
             this.trainCamPanel.Size = new System.Drawing.Size(532, 414);
             this.trainCamPanel.TabIndex = 1;
             this.trainCamPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.trainCamPanel_Paint);
+            this.trainCamPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseDown);
+            this.trainCamPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseMove);
+            this.trainCamPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MenuScreen_MouseUp);
             // 
             // trainCamView
             // 
             this.trainCamView.BackColor = System.Drawing.Color.DarkGray;
-            this.trainCamView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.trainCamView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trainCamView.Location = new System.Drawing.Point(0, 0);
             this.trainCamView.Margin = new System.Windows.Forms.Padding(0);
@@ -354,7 +399,7 @@
             // 
             this.trainStartButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.trainStartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.trainStartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainStartButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trainStartButton.ForeColor = System.Drawing.Color.DarkGray;
             this.trainStartButton.Location = new System.Drawing.Point(581, 45);
             this.trainStartButton.MaximumSize = new System.Drawing.Size(170, 48);
@@ -370,10 +415,10 @@
             // 
             this.firstNameBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.firstNameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.firstNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstNameBox.Location = new System.Drawing.Point(3, 459);
+            this.firstNameBox.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstNameBox.Location = new System.Drawing.Point(3, 458);
             this.firstNameBox.Name = "firstNameBox";
-            this.firstNameBox.Size = new System.Drawing.Size(260, 31);
+            this.firstNameBox.Size = new System.Drawing.Size(260, 34);
             this.firstNameBox.TabIndex = 4;
             this.firstNameBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -381,11 +426,11 @@
             // 
             this.firstNameLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.firstNameLabel.AutoSize = true;
-            this.firstNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
+            this.firstNameLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.firstNameLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.firstNameLabel.Location = new System.Drawing.Point(53, 415);
+            this.firstNameLabel.Location = new System.Drawing.Point(52, 414);
             this.firstNameLabel.Name = "firstNameLabel";
-            this.firstNameLabel.Size = new System.Drawing.Size(159, 33);
+            this.firstNameLabel.Size = new System.Drawing.Size(162, 36);
             this.firstNameLabel.TabIndex = 7;
             this.firstNameLabel.Text = "First Name";
             // 
@@ -393,7 +438,7 @@
             // 
             this.trainBackButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.trainBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.trainBackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainBackButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trainBackButton.ForeColor = System.Drawing.Color.DarkGray;
             this.trainBackButton.Location = new System.Drawing.Point(581, 321);
             this.trainBackButton.MaximumSize = new System.Drawing.Size(170, 48);
@@ -445,12 +490,12 @@
             // 
             this.loadingLabel.AutoSize = true;
             this.loadingLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.loadingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 69F);
+            this.loadingLabel.Font = new System.Drawing.Font("Century Gothic", 69F);
             this.loadingLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.loadingLabel.Location = new System.Drawing.Point(0, 250);
             this.loadingLabel.MaximumSize = new System.Drawing.Size(370, 100);
             this.loadingLabel.Name = "loadingLabel";
-            this.loadingLabel.Size = new System.Drawing.Size(370, 100);
+            this.loadingLabel.Size = new System.Drawing.Size(358, 100);
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
             // 
@@ -467,12 +512,14 @@
             this.Name = "MenuScreen";
             this.Text = "Form1";
             this.mainPanel.ResumeLayout(false);
-            this.titlePanel.ResumeLayout(false);
-            this.titlePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
             this.menuPanel.ResumeLayout(false);
             this.buttonPanel.ResumeLayout(false);
             this.optionsPanel.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.titlePanel.ResumeLayout(false);
+            this.titlePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
             this.trainPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -517,6 +564,9 @@
         private System.Windows.Forms.PictureBox loadingLogo;
         private System.Windows.Forms.Label loadingLabel;
         private System.Windows.Forms.Button trainSaveButton;
+        private System.Windows.Forms.ComboBox cameraListBox;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

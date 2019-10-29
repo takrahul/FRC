@@ -20,10 +20,8 @@ namespace UniFCR_Controller {
         int t = 0;
         String name, names;
         MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
-        List<string> NamePersons = new List<string>();
-        HaarCascade face = new HaarCascade("haarcascade_frontalface_default.xml");
-
-
+       List<string> NamePersons = new List<string>();
+        CascadeClassifier face = new CascadeClassifier("haarcascade_frontalface_default.xml");
 
         public FaceAlgorithm()
         {
@@ -40,7 +38,7 @@ namespace UniFCR_Controller {
 
                 foreach (StudentModel m in students) 
                 {
-                    studentNames.Add(m.GivenNames + " " + m.LastName);
+                    Globals.studentNames.Add(m.GivenNames + " " + m.LastName);
                 }
 
                 Globals.numLabels = students.Count();
@@ -64,7 +62,7 @@ namespace UniFCR_Controller {
                         Image<Gray, byte> trainedFaceImage = new Image<Gray, byte>(bmp);
                     Globals.trainingImages.Add(trainedFaceImage);
                     //Globals.trainingImages.Add(new Image<Gray, byte>("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/" + LoadFaces));
-                    Globals.labels.Add(studentNames.ToArray()[tf]);
+                    Globals.labels.Add(Globals.studentNames.ToArray()[tf]);
                 }
                 Globals.created = false;
             }
@@ -78,11 +76,17 @@ namespace UniFCR_Controller {
             Image<Gray, byte> gray = null;
             Image<Gray, byte> result = null;
             gray = frame.Convert<Gray, Byte>();
-            MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
-            foreach (MCvAvgComp f in facesDetected[0])
+            //MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
+            Rectangle[] facesDetected = face.DetectMultiScale(gray, 1.2, 10, new Size(50, 50), Size.Empty);
+            for (int i = 0; i < facesDetected.Length; i++)
             {
                 t = t + 1;
-                result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                facesDetected[i].X += (int)(facesDetected[i].Height * 0.15);
+                facesDetected[i].Y += (int)(facesDetected[i].Width * 0.22);
+                facesDetected[i].Height -= (int)(facesDetected[i].Height * 0.3);
+                facesDetected[i].Width -= (int)(facesDetected[i].Width * 0.35);
+                result = frame.Copy(Globals.facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                result._EqualizeHist();
                 //draw the face detected in the 0th (gray) channel with red color
                 frame.Draw(f.rect, new Bgr(Color.Red), 2);
                 Globals.processedDetectedFaces.Add(result);
@@ -99,43 +103,57 @@ namespace UniFCR_Controller {
             Image<Gray, byte> gray = null;
             Image<Gray, byte> result = null;
             gray = frame.Convert<Gray, Byte>();
-            MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
-            foreach (MCvAvgComp f in facesDetected[0])
+            //Globals.facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
+            Globals.facesDetected = face.DetectMultiScale(gray, 1.2, 10, new Size(50, 50), Size.Empty);
+            //foreach (MCvAvgComp f in Globals.facesDetected[0])
+            for(int i = 0; i<Globals.facesDetected.Length; i++)
             {
                 t = t + 1;
-                result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                Globals.facesDetected[i].X += (int)(Globals.facesDetected[i].Height * 0.15);
+                Globals.facesDetected[i].Y += (int)(Globals.facesDetected[i].Width * 0.22);
+                Globals.facesDetected[i].Height -= (int)(Globals.facesDetected[i].Height * 0.3);
+                Globals.facesDetected[i].Width -= (int)(Globals.facesDetected[i].Width * 0.35);
+
+
+                //result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                result = frame.Copy(Globals.facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                result._EqualizeHist();
+				Globals.processedDetectedFaces.Add(result);
                 //draw the face detected in the 0th (gray) channel with red color
-                frame.Draw(f.rect, new Bgr(Color.Red), 2);
-                Globals.processedDetectedFaces.Add(result);
+                //frame.Draw(f.rect, new Bgr(Color.Red), 2);
+                frame.Draw(Globals.facesDetected[i], new Bgr(Color.Red), 2);
 
                 if (Globals.trainingImages.ToArray().Length != 0)
                 {
                     //TermCriteria for face recognition with numbers of trained images like maxIteration
-                    MCvTermCriteria termCrit = new MCvTermCriteria(Globals.ContTrain, 0.001);
+                    //MCvTermCriteria termCrit = new MCvTermCriteria(Globals.ContTrain, 0.001);
 
                     //Eigen face recognizer
-                    EigenObjectRecognizer recognizer = new EigenObjectRecognizer(
-                       Globals.trainingImages.ToArray(),
-                       Globals.labels.ToArray(),
-                       3000,
-                       ref termCrit);
+                    //EigenObjectRecognizer recognizer = new EigenObjectRecognizer(
+                    //Globals.trainingImages.ToArray(),
+                    //Globals.labels.ToArray(),
+                    //3000,
+                    //ref termCrit);
 
-                    name = recognizer.Recognize(result);
+                    //name = recognizer.Recognize(result);
+                    Classifier_Train Eigen_Recog = new Classifier_Train();
+                    Eigen_Recog.Set_Eigen_Threshold = 3000;
+                    name = Eigen_Recog.Recognise(result);
 
                     //Draw the label for each face detected and recognized
-                    frame.Draw(name, ref font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.LightGreen));
+                    //frame.Draw(name, ref font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.LightGreen));
+                    frame.Draw(name, ref font, new Point(Globals.facesDetected[i].X - 2, Globals.facesDetected[i].Y - 2), new Bgr(Color.LightGreen));
 
                 }
-                NamePersons[t - 1] = name;
-                NamePersons.Add("");
+                //NamePersons[t - 1] = name;
                 //nameLabel.Text = "Number: " + facesDetected[0].Length.ToString();
 
             }
             t = 0;
-            for (int nnn = 0; nnn < facesDetected[0].Length; nnn++)
-            {
-                names = names + NamePersons[nnn] + ", ";
-            }
+            //for (int nnn = 0; nnn < Globals.facesDetected[0].Length; nnn++)
+            //{
+               // names = names + NamePersons[nnn] + ", ";
+            //}
             //Show the faces procesed and recognized
             //camView.Image = frame.ToBitmap();
             //List the names

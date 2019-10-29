@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.Structure;
-using Emgu.CV.CvEnum;
-using Emgu.Util;
-using System.IO;
-using System.Diagnostics;
 using UniFCR_Controller;
 using UniFCR_Database;
 
@@ -24,6 +16,7 @@ namespace UniFCR_GUI {
         Boolean camRunning = false;
         int enrolledStudents;
         int attendance;
+        DatabaseController database = new DatabaseController();
 
         public AttendanceScreen(Form menuScreen)
         {
@@ -50,12 +43,17 @@ namespace UniFCR_GUI {
             camPanel.Width = (int)(mainPanel.Size.Width * 0.75);
 
             attendanceLabel.Width = infoPanel.Width;
-            missingStudentsBox.SelectionAlignment = HorizontalAlignment.Center;
+            database.LoadStudentsList();
+
+            studentListBox.BeginUpdate();
+            studentListBox.DataSource = database.studentNameList();
+            studentListBox.EndUpdate();
         }
 
+        //Automatically start the camera when the window is being painted
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
-            //Making the camera feed fit into the window without changing the aspect ration is kind of difficult
+            //Making the camView fit in the camPanel without changing the aspect ration (~16:9)
             camView.Width = camPanel.Width;
             camView.Height = (int)(camPanel.Width / 1.8);
             camView.Dock = DockStyle.None;
@@ -63,16 +61,20 @@ namespace UniFCR_GUI {
             camView.Location = new Point(
                 (camPanel.Width / 2) - (camView.Width / 2), (camPanel.Height / 2) - (camView.Height / 2));
 
+            //Because of the resizing etc. this methode is called multiple times 
+            //so we check if there is already a camera running before starting one
             if (!camRunning)
             {
                 attendanceCam = new Camera(camView);
                 attendanceCam.start();
-                attendanceCam.ValueChanged += newImageListener;
                 camRunning = true;
+
+                //When the attendanceCam grabs a new frame from the webcam call newImageListener
+                attendanceCam.ValueChanged += newImageListener;
             }
 
             //hide the loading screen when the camera feed is set up
-            Thread.Sleep(1000);
+            Thread.Sleep(1000); //Give the camera more time to start
             loadingPanel.Visible = false;
         }
 
@@ -82,23 +84,18 @@ namespace UniFCR_GUI {
             {
                 FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
                 Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(attendanceCam.frame);
+                frame = frame.Resize((int)(camView.Width), (int)(camView.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 attendanceCam.DisplayImage(frame);
 
                 if (Globals.trainingImages.Count() > 0 && enrolledStudents > 0)
                 {
                     updatePercentage();
                     updateAttendance();
-                    Console.WriteLine("UPDATE PERCENTAGE");
                 }
             }
         }
 
-
-
-
-
         delegate void updateAttendanceCallback();
-
         private void updateAttendance()
         {
             // InvokeRequired required compares the thread ID of the
@@ -116,7 +113,6 @@ namespace UniFCR_GUI {
         }
 
         delegate void updatePercentageCallback();
-
         private void updatePercentage()
         {
             // InvokeRequired required compares the thread ID of the
@@ -130,12 +126,29 @@ namespace UniFCR_GUI {
             else
             {
                 //Testing the attendance precentage circle
-                attendance = Globals.facesDetected[0].Length;
+                attendance = Globals.processedDetectedFaces.Count();
                 double attendancePercentage = ((double)attendance / (double)enrolledStudents) * 100;
                 attendancePercentageCircle.Value = (int)attendancePercentage;
                 attendancePercentageCircle.Text = (int)attendancePercentage + "%";
                 attendancePercentageCircle.Update();
                 attendancePercentageCircle.Update();
+            }
+        }
+
+        delegate void updateListBoxCallback();
+        private void updateListBox()
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.attendanceLabel.InvokeRequired)
+            {
+                updateListBoxCallback d = new updateListBoxCallback(updateListBox);
+                this.Invoke(d, new object[] { });
+            }
+            else
+            {
+                
             }
         }
 

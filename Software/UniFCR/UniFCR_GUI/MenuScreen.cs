@@ -220,7 +220,7 @@ namespace UniFCR_GUI {
                 String firstName = firstNameBox.Text;
                 String lastName = lastNameBox.Text;
                 int matNum = Int32.Parse(numberBox.Text);
-                //database.saveStudentList(firstName, lastName, matNum, images); //CHANGE DATABASE METHODE
+                database.saveStudentList(firstName, lastName, matNum, images);
                 firstNameBox.Text = "";
                 lastNameBox.Text = "";
                 numberBox.Text = "";

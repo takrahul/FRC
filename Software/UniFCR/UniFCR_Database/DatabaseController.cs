@@ -45,7 +45,7 @@ namespace UniFCR_Database
             }
         }
 
-        public void saveStudentList(String firstName, String lastName, int matNum, Image<Gray, byte> image)
+        public void saveStudentList(String firstName, String lastName, int matNum, List<Image<Gray, byte>> images)
         {
             
             StudentModel st = new StudentModel();
@@ -57,7 +57,11 @@ namespace UniFCR_Database
             //BinaryReader br = new BinaryReader(image.ToBitmap());
             //byte[] imageBt = br.ReadBytes(image.ToBitmap());
             ImageConverter converter = new ImageConverter();
-            st.Image = (byte[])converter.ConvertTo(image.ToBitmap(), typeof(byte[]));
+            foreach (var i in images)
+            {
+                byte[] studentImage = (byte[])converter.ConvertTo(i.ToBitmap(), typeof(byte[]));
+                st.Image.Add(studentImage);
+            }
 
            // st.Image = image.ToBitmap();
             

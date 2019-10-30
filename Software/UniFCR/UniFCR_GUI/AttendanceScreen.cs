@@ -103,8 +103,15 @@ namespace UniFCR_GUI {
             // If these threads are different, it returns true.
             if (this.attendanceLabel.InvokeRequired)
             {
-                updateAttendanceCallback d = new updateAttendanceCallback(updateAttendance);
-                this.Invoke(d, new object[] {  });
+                try
+                {
+                    updateAttendanceCallback d = new updateAttendanceCallback(updateAttendance);
+                    this.Invoke(d, new object[] { });
+                }
+                catch (Exception e)
+                {
+
+                }
             }
             else
             {
@@ -120,8 +127,16 @@ namespace UniFCR_GUI {
             // If these threads are different, it returns true.
             if (this.attendanceLabel.InvokeRequired)
             {
-                updatePercentageCallback d = new updatePercentageCallback(updatePercentage);
-                this.Invoke(d, new object[] {  });
+                
+                try
+                {
+                    updatePercentageCallback d = new updatePercentageCallback(updatePercentage);
+                    this.Invoke(d, new object[] { });
+                } catch (Exception e)
+                {
+
+                }
+                
             }
             else
             {

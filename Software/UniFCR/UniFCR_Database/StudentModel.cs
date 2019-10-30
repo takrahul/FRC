@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Drawing;
+using Emgu.CV;
+using Emgu.CV.Structure;
 
 namespace UniFCR_Database
 {
@@ -13,7 +15,7 @@ namespace UniFCR_Database
         public string LastName { get; set; }
         public string GivenNames { get; set; }
         public int MatNo { get; set; }
-        public byte[] Image { get; set; }
+        public List<byte[]> Image = new List<byte[]>();
         public String StudentData
         {
             get

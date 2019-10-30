@@ -22,46 +22,34 @@ namespace UniFCR_Database
             }
 
         }
-        /*public static List<StudentModel> FetchStudents()
-        {
-            var dt = new DataTable();
-            //string dataSource = ".\\StudentDB.db";
-            
-            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var sql = $"select * from Student";
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, conn);
-                da.Fill(dt);
-                conn.Close();
-            }
 
-            List<StudentModel> studentList = new List<StudentModel>();
-            foreach (StudentModel m in dt)
-            {
-                studentList.Add(m);
-            }
-
-            return studentList;
-        }*/
-
-        public static void SavePerson(StudentModel student/*, byte[] imageBt2*/)
-        //public static void SavePerson(StudentModel student)
+        public static void SavePerson(StudentModel student)
         {
             using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Student (LastName, GivenNames, MatNo, Image) values (@LastName, @GivenNames, @MatNo, @Image)", student);
+                cnn.Open();
+                cnn.Execute("insert into Student2 (MatNo, GivenNames, LastName) values (@MatNo, @GivenNames, @LastName)", student);
+                //cnn.Execute("insert into StudentImages (MatNoID, Images) values (@MatNo, @Image)", student);
 
-                //For Chisom
-                //cnn.Execute("insert into Student2 (MatNo, GivenNames, Lastname) values (@MatNo, @GivenNames, @LastName)", student);
-                //cnn.Execute("insert into StudentImages2 (MatNoID, Images) values (@MatNo, @Image)", student);
+                string query = "insert into ImageTable (MatNoID, Images) values (@MatNoID, @Images)";
 
-                //string querry = "insert into Student (LastName, GivenNames, MatNo, Image) values (@LastName, @GivenNames, @MatNo, @IMG";
-                using (SQLiteCommand command = new SQLiteCommand(cnn))
+
+
+                using (SQLiteCommand cmd = new SQLiteCommand(query))
                 {
-                    //cnn.Open();
-                    //command.Parameters.Add(new SQLiteParameter("@Image", imageBt2));
-                }
+                    cmd.Parameters.AddWithValue("@MatNoID", student.MatNo);
+                    foreach (var str in student.Image)
+                    {
+                        cmd.Connection = cnn;
 
+                        cmd.Parameters.AddWithValue("@Images", str);
+
+                        cmd.ExecuteNonQuery();
+
+
+                    }
+                }
+                cnn.Close();
 
             }
         }

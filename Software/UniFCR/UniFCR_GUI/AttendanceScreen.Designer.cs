@@ -35,6 +35,7 @@
             this.attendanceLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
             this.attendancePercentageCircle = new CircularProgressBar.CircularProgressBar();
+            this.studentListBox = new System.Windows.Forms.ListBox();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
             this.camPanel = new System.Windows.Forms.Panel();
@@ -43,7 +44,6 @@
             this.logoTextPanel = new System.Windows.Forms.Panel();
             this.loadingLogo = new System.Windows.Forms.PictureBox();
             this.loadingLabel = new System.Windows.Forms.Label();
-            this.studentListBox = new System.Windows.Forms.ListBox();
             this.mainPanel.SuspendLayout();
             this.sidePanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
@@ -171,6 +171,21 @@
             this.attendancePercentageCircle.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.attendancePercentageCircle.Value = 68;
             // 
+            // studentListBox
+            // 
+            this.studentListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.studentListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.studentListBox.Font = new System.Drawing.Font("Century Gothic", 15F);
+            this.studentListBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.studentListBox.FormattingEnabled = true;
+            this.studentListBox.ItemHeight = 23;
+            this.studentListBox.Location = new System.Drawing.Point(0, 783);
+            this.studentListBox.Margin = new System.Windows.Forms.Padding(0);
+            this.studentListBox.Name = "studentListBox";
+            this.studentListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.studentListBox.Size = new System.Drawing.Size(198, 247);
+            this.studentListBox.TabIndex = 7;
+            // 
             // buttonPanel
             // 
             this.buttonPanel.BackColor = System.Drawing.Color.White;
@@ -268,21 +283,6 @@
             this.loadingLabel.Size = new System.Drawing.Size(358, 100);
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
-            // 
-            // studentListBox
-            // 
-            this.studentListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.studentListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.studentListBox.Font = new System.Drawing.Font("Century Gothic", 15F);
-            this.studentListBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.studentListBox.FormattingEnabled = true;
-            this.studentListBox.ItemHeight = 23;
-            this.studentListBox.Location = new System.Drawing.Point(0, 783);
-            this.studentListBox.Margin = new System.Windows.Forms.Padding(0);
-            this.studentListBox.Name = "studentListBox";
-            this.studentListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.studentListBox.Size = new System.Drawing.Size(198, 247);
-            this.studentListBox.TabIndex = 7;
             // 
             // AttendanceScreen
             // 

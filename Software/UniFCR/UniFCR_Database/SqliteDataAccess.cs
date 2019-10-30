@@ -50,6 +50,11 @@ namespace UniFCR_Database
             using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute("insert into Student (LastName, GivenNames, MatNo, Image) values (@LastName, @GivenNames, @MatNo, @Image)", student);
+
+                //For Chisom
+                //cnn.Execute("insert into Student2 (MatNo, GivenNames, Lastname) values (@MatNo, @GivenNames, @LastName)", student);
+                //cnn.Execute("insert into StudentImages2 (MatNoID, Images) values (@MatNo, @Image)", student);
+
                 //string querry = "insert into Student (LastName, GivenNames, MatNo, Image) values (@LastName, @GivenNames, @MatNo, @IMG";
                 using (SQLiteCommand command = new SQLiteCommand(cnn))
                 {

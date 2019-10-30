@@ -45,14 +45,14 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.trainPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.trainSaveButton = new System.Windows.Forms.Button();
+            this.trainCaptureButton = new System.Windows.Forms.Button();
             this.numberLabel = new System.Windows.Forms.Label();
             this.lastNameLabel = new System.Windows.Forms.Label();
             this.numberBox = new System.Windows.Forms.TextBox();
             this.lastNameBox = new System.Windows.Forms.TextBox();
             this.trainCamPanel = new System.Windows.Forms.Panel();
             this.trainCamView = new Emgu.CV.UI.ImageBox();
-            this.trainStartButton = new System.Windows.Forms.Button();
+            this.trainSaveButton = new System.Windows.Forms.Button();
             this.firstNameBox = new System.Windows.Forms.TextBox();
             this.firstNameLabel = new System.Windows.Forms.Label();
             this.trainBackButton = new System.Windows.Forms.Button();
@@ -281,13 +281,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel1.Controls.Add(this.trainSaveButton, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.trainCaptureButton, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.numberLabel, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.lastNameLabel, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.numberBox, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.lastNameBox, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.trainCamPanel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.trainStartButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.trainSaveButton, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.firstNameBox, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.firstNameLabel, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.trainBackButton, 2, 2);
@@ -305,21 +305,21 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 500);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // trainSaveButton
+            // trainCaptureButton
             // 
-            this.trainSaveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.trainSaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.trainSaveButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trainSaveButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.trainSaveButton.Location = new System.Drawing.Point(581, 183);
-            this.trainSaveButton.MaximumSize = new System.Drawing.Size(170, 48);
-            this.trainSaveButton.MinimumSize = new System.Drawing.Size(170, 48);
-            this.trainSaveButton.Name = "trainSaveButton";
-            this.trainSaveButton.Size = new System.Drawing.Size(170, 48);
-            this.trainSaveButton.TabIndex = 6;
-            this.trainSaveButton.Text = "SAVE";
-            this.trainSaveButton.UseVisualStyleBackColor = true;
-            this.trainSaveButton.Click += new System.EventHandler(this.trainSaveButton_Click);
+            this.trainCaptureButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.trainCaptureButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.trainCaptureButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainCaptureButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.trainCaptureButton.Location = new System.Drawing.Point(581, 183);
+            this.trainCaptureButton.MaximumSize = new System.Drawing.Size(170, 48);
+            this.trainCaptureButton.MinimumSize = new System.Drawing.Size(170, 48);
+            this.trainCaptureButton.Name = "trainCaptureButton";
+            this.trainCaptureButton.Size = new System.Drawing.Size(170, 48);
+            this.trainCaptureButton.TabIndex = 6;
+            this.trainCaptureButton.Text = "CAPTURE";
+            this.trainCaptureButton.UseVisualStyleBackColor = true;
+            this.trainCaptureButton.Click += new System.EventHandler(this.trainCaptureButton_Click);
             // 
             // numberLabel
             // 
@@ -395,21 +395,21 @@
             this.trainCamView.TabIndex = 5;
             this.trainCamView.TabStop = false;
             // 
-            // trainStartButton
+            // trainSaveButton
             // 
-            this.trainStartButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.trainStartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.trainStartButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trainStartButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.trainStartButton.Location = new System.Drawing.Point(581, 45);
-            this.trainStartButton.MaximumSize = new System.Drawing.Size(170, 48);
-            this.trainStartButton.MinimumSize = new System.Drawing.Size(170, 48);
-            this.trainStartButton.Name = "trainStartButton";
-            this.trainStartButton.Size = new System.Drawing.Size(170, 48);
-            this.trainStartButton.TabIndex = 2;
-            this.trainStartButton.Text = "START";
-            this.trainStartButton.UseVisualStyleBackColor = true;
-            this.trainStartButton.Click += new System.EventHandler(this.trainStartButton_Click);
+            this.trainSaveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.trainSaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.trainSaveButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainSaveButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.trainSaveButton.Location = new System.Drawing.Point(581, 45);
+            this.trainSaveButton.MaximumSize = new System.Drawing.Size(170, 48);
+            this.trainSaveButton.MinimumSize = new System.Drawing.Size(170, 48);
+            this.trainSaveButton.Name = "trainSaveButton";
+            this.trainSaveButton.Size = new System.Drawing.Size(170, 48);
+            this.trainSaveButton.TabIndex = 2;
+            this.trainSaveButton.Text = "SAVE";
+            this.trainSaveButton.UseVisualStyleBackColor = true;
+            this.trainSaveButton.Click += new System.EventHandler(this.trainSaveButton_Click);
             // 
             // firstNameBox
             // 
@@ -551,7 +551,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel trainCamPanel;
         private Emgu.CV.UI.ImageBox trainCamView;
-        private System.Windows.Forms.Button trainStartButton;
+        private System.Windows.Forms.Button trainSaveButton;
         private System.Windows.Forms.Button trainBackButton;
         private System.Windows.Forms.TextBox numberBox;
         private System.Windows.Forms.TextBox lastNameBox;
@@ -563,7 +563,7 @@
         private System.Windows.Forms.Panel logoTextPanel;
         private System.Windows.Forms.PictureBox loadingLogo;
         private System.Windows.Forms.Label loadingLabel;
-        private System.Windows.Forms.Button trainSaveButton;
+        private System.Windows.Forms.Button trainCaptureButton;
         private System.Windows.Forms.ComboBox cameraListBox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;

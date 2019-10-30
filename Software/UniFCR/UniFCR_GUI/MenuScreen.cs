@@ -17,12 +17,16 @@ namespace UniFCR_GUI {
         private bool mouseDown;
         private Point lastLocation;
 
-        static Camera trainingCam;
-        Image<Bgr, Byte> frame; //Stores the latest frame
-        Boolean camRunning = false;
+        private  static Camera trainingCam;
+        private Image<Bgr, Byte> frame; //Stores the latest frame
+        private Boolean camRunning = false;
 
-        DatabaseController database = new DatabaseController();
-        List<string> systemCameraNames = new List<string>();
+        private DatabaseController database = new DatabaseController();
+        private List<string> systemCameraNames = new List<string>();
+
+        private List<Image<Gray, Byte>> images = new List<Image<Gray, byte>>(); //Saving multiple images in training mode
+        private Boolean capturingCompleted = false;
+        private Boolean capturingInProgress = false;
 
         public MenuScreen()
         {
@@ -188,76 +192,70 @@ namespace UniFCR_GUI {
             
         }
 
-        //Clicking the "START" Button takes the user from 
-        //the training window directly to the Attendance Mode
-        private void trainStartButton_Click(object sender, EventArgs e)
-        {
-            trainingCam.stop();
-
-            camRunning = false;
-
-            trainPanel.Visible = false;
-            trainPanel.SendToBack();
-
-            trainLoadingPanel.Visible = false;
-            trainLoadingPanel.SendToBack();
-
-            this.Visible = false; //Hide the menu screen while Attendance Mode is active
-
-            AttendanceScreen attendanceScreen = new AttendanceScreen(this);
-
-            //the attendance screen should show on the same monitor as the menu
-            attendanceScreen.StartPosition = FormStartPosition.Manual;
-            Screen screen = Screen.FromPoint(this.Location);
-            attendanceScreen.Location = screen.Bounds.Location;
-            attendanceScreen.WindowState = FormWindowState.Maximized;
-
-            attendanceScreen.Show();
-        }
-
-        //Saves entered data in the database
+        //When the capturing is done: save all images and data in the database
         private void trainSaveButton_Click(object sender, EventArgs e)
         {
-            Image<Gray, Byte> image = null;
-
             if (firstNameBox.Text.Equals(""))
             {
                 MessageBox.Show("Enter your first name!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            } else if (lastNameBox.Text.Equals(""))
+            }
+            else if (lastNameBox.Text.Equals(""))
             {
                 MessageBox.Show("Enter your last name!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            } else if (numberBox.Text.Equals(""))
+            }
+            else if (numberBox.Text.Equals(""))
             {
                 MessageBox.Show("Enter your matriculation number!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            } else if (trainingCam.frame != null)
+            }
+            else if (capturingCompleted == false)
             {
-                FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
-                faceAlgorithm.detectFaces(trainingCam.frame);
+                MessageBox.Show("Capture images first!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if (Globals.processedDetectedFaces.Count > 1)
-                {
-                    MessageBox.Show("Too many faces in the picture!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                } else if (Globals.processedDetectedFaces.Count == 0)
-                {
-                    MessageBox.Show("No face detected!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                } else
-                {
-                    image = Globals.processedDetectedFaces.ElementAt(0);
-                    String firstName = firstNameBox.Text;
-                    String lastName = lastNameBox.Text;
-                    int matNum = Int32.Parse(numberBox.Text);
-                    database.saveStudentList(firstName, lastName, matNum, image);
-                    firstNameBox.Text = "";
-                    lastNameBox.Text = "";
-                    numberBox.Text = "";
-                    MessageBox.Show(firstName + " " + lastName + "´s face detected and added!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            } else
+            }
+            else
             {
-                MessageBox.Show("No camera input detected!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                String firstName = firstNameBox.Text;
+                String lastName = lastNameBox.Text;
+                int matNum = Int32.Parse(numberBox.Text);
+                database.saveStudentList(firstName, lastName, matNum, images);
+                firstNameBox.Text = "";
+                lastNameBox.Text = "";
+                numberBox.Text = "";
+                MessageBox.Show(firstName + " " + lastName + " has been added to the Database!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                capturingCompleted = false;
+                capturingInProgress = false;
+                trainCaptureButton.Text = "CAPTURE";
+            }
+        }
+
+        //Gets data from text fields and captures multiple pictures
+        private void trainCaptureButton_Click(object sender, EventArgs e)
+        {           
+            if (capturingInProgress == false)
+            {
+                capturingInProgress = true;
+
+                images = new List<Image<Gray, byte>>();
+                images.Clear();
+                FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+
+                while (images.Count < 10)
+                {
+                    faceAlgorithm.detectFaces(trainingCam.frame);
+
+                    if (Globals.processedDetectedFaces.Count == 1)
+                    {
+                        images.Add(Globals.processedDetectedFaces.ElementAt(0));
+                        //trainCaptureButton.Text = images.Count + "/10";
+                        Thread.Sleep(31);
+                    }
+                                       
+                }
+                trainCaptureButton.Text = "DONE";
+                capturingCompleted = true;
             }
         }
 

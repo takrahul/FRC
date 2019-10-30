@@ -106,10 +106,11 @@ class Classifier_Train : IDisposable
         Globals.listOfInts = new List<int>();
             for (int i = 0; i < Globals.numLabels; i++) {
                 Globals.listOfInts.Add(i);
+                Console.WriteLine("I: " + i);
             }
+        Console.WriteLine("Count; " + Globals.numLabels);
             recognizer.Train(Globals.trainingImages.ToArray(), Globals.listOfInts.ToArray());
             FaceRecognizer.PredictionResult ER = recognizer.Predict(Input_image);
-            Console.WriteLine(ER.Label);
             if (ER.Label == -1)
             {
                 Eigen_label = "Unknown";

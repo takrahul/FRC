@@ -8,7 +8,7 @@ namespace UniFCR_Controller {
     public class Camera {
 
         private Capture cam = null; //Camera
-        private bool captureInProgress = false; //Variable to track camera state
+        public bool captureInProgress = false; //Variable to track camera state
         public ImageBox cameraBox = null; //Component of the GUI that shows the cam feed (needed for resizing etc.)
 
         //=================================================================
@@ -51,7 +51,7 @@ namespace UniFCR_Controller {
                 cam = new Capture(Globals.selectedCameraIndex);
                 cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1920); //1280
                 cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 1080); //720
-                //cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);
+                cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);
 
                 cam.Start();
                 captureInProgress = true;

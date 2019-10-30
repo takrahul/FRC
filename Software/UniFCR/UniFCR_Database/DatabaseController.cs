@@ -20,32 +20,9 @@ namespace UniFCR_Database
         public void LoadStudentsList()
         {
             student = SqliteDataAccess.LoadStudents();
-
-            //student = SqliteDataAccess.FetchStudents();
-           // WireUpStudentList();
-            PopulateStudentList(student);
-        }
-        private void WireUpStudentList()
-        {
-            /*studentListBox.DataSource = null;
-            studentListBox.DataSource = student;
-            studentListBox.DisplayMember = "StudentData";*/
-
         }
 
-        void PopulateStudentList(List<StudentModel> stu)
-        {
-            List<string> populateStu;
-            //populateStu = SqliteDataAccess.FetchStudents();
-
-            //studentListBox.Items.Clear();
-            foreach (StudentModel str in stu)
-            {
-                Console.WriteLine(str.LastName);
-            }
-        }
-
-        public void saveStudentList(String firstName, String lastName, int matNum, Image<Gray, byte> image)
+        public void saveStudentList(String firstName, String lastName, int matNum, List<Image<Gray, byte>> images)
         {
             
             StudentModel st = new StudentModel();
@@ -57,9 +34,12 @@ namespace UniFCR_Database
             //BinaryReader br = new BinaryReader(image.ToBitmap());
             //byte[] imageBt = br.ReadBytes(image.ToBitmap());
             ImageConverter converter = new ImageConverter();
-            st.Image = (byte[])converter.ConvertTo(image.ToBitmap(), typeof(byte[]));
+            foreach (var i in images)
+            {
+                byte[] studentImage = (byte[])converter.ConvertTo(i.ToBitmap(), typeof(byte[]));
+                st.Image.Add(studentImage);
+            }
 
-           // st.Image = image.ToBitmap();
             
             SqliteDataAccess.SavePerson(st);
 

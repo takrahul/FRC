@@ -30,6 +30,7 @@ namespace UniFCR_GUI {
             //Show loading screen first
             loadingPanel.BringToFront();
 
+
         }
 
         //While the attendance screen is preparing (calculating size, loading camera) show a loading screen
@@ -83,19 +84,21 @@ namespace UniFCR_GUI {
         {
             if (attendanceCam.frame != null)
             {
+                
+
                 if (faceAlgorithm.recognizationInProgress == false)
                 {
                     faceAlgorithm.recognizationInProgress = true;
                     Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(attendanceCam.frame);
                     frame = frame.Resize((int)(camView.Width), (int)(camView.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                     attendanceCam.DisplayImage(frame);
-
-                    if (Globals.trainingImages.Count() > 0 && enrolledStudents > 0)
-                    {
-                        updatePercentage();
-                        updateAttendance();
-                    }
                     faceAlgorithm.recognizationInProgress = false;
+                }                
+
+                if (Globals.trainingImages.Count() > 0 && enrolledStudents > 0)
+                {
+                    updatePercentage();
+                    updateAttendance();
                 }
             }
         }

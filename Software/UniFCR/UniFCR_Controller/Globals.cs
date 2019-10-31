@@ -27,5 +27,7 @@ namespace UniFCR_Controller
         public static DsDevice[] systemCameras;
         public static int selectedCameraIndex = 0;
 
+        public static Boolean fileSaved = false;
+
     }
 }

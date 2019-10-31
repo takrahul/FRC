@@ -148,6 +148,11 @@ namespace UniFCR_Controller {
                     Eigen_Recog.Set_Eigen_Threshold = 3000;
                     name = Eigen_Recog.Recognise(result);
 
+                    if (!Globals.recognizedNames.Contains(name) && !name.Equals("Unknown"))
+                    {
+                        Globals.recognizedNames.Add(name);
+                    }
+
                     //Draw the label for each face detected and recognized
                     //frame.Draw(name, ref font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.LightGreen));
                     frame.Draw(name, ref font, new Point(Globals.facesDetected[i].X - 2, Globals.facesDetected[i].Y - 2), new Bgr(Color.LightGreen));

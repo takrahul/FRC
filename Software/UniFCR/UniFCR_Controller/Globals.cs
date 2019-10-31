@@ -17,6 +17,7 @@ namespace UniFCR_Controller
         public static int numLabels;
         public static List<int> listOfInts = new List<int>();
         public static List<string> labels = new List<string>();
+        public static List<string> recognizedNames = new List<string>();
         public static Boolean created = true;
         //public static MCvAvgComp[][] facesDetected;
         public static Rectangle[] facesDetected;

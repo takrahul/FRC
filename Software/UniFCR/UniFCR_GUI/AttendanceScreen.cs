@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -30,6 +31,21 @@ namespace UniFCR_GUI {
             //Show loading screen first
             loadingPanel.BringToFront();
 
+            database.LoadStudentsList();
+
+            studentListView.View = View.Details;
+            int index = 1;
+            foreach (StudentModel s in database.student)
+            {
+                ListViewItem row = new ListViewItem("" + index);
+                row.SubItems.Add(s.GivenNames);
+                row.SubItems.Add(s.LastName);
+                row.SubItems.Add("" + s.MatNo);
+                studentListView.Items.Add(row);
+
+                index++;
+            }
+            studentListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         //While the attendance screen is preparing (calculating size, loading camera) show a loading screen
@@ -44,11 +60,6 @@ namespace UniFCR_GUI {
             camPanel.Width = (int)(mainPanel.Size.Width * 0.75);
 
             attendanceLabel.Width = infoPanel.Width;
-            database.LoadStudentsList();
-
-            studentListBox.BeginUpdate();
-            studentListBox.DataSource = database.studentNameList();
-            studentListBox.EndUpdate();
         }
 
         //Automatically start the camera when the window is being painted

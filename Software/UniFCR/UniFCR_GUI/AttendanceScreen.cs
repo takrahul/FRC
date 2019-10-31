@@ -17,6 +17,7 @@ namespace UniFCR_GUI {
         int enrolledStudents;
         int attendance;
         DatabaseController database = new DatabaseController();
+        FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
 
         public AttendanceScreen(Form menuScreen)
         {
@@ -82,15 +83,19 @@ namespace UniFCR_GUI {
         {
             if (attendanceCam.frame != null)
             {
-                FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
-                Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(attendanceCam.frame);
-                frame = frame.Resize((int)(camView.Width), (int)(camView.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
-                attendanceCam.DisplayImage(frame);
-
-                if (Globals.trainingImages.Count() > 0 && enrolledStudents > 0)
+                if (faceAlgorithm.recognizationInProgress == false)
                 {
-                    updatePercentage();
-                    updateAttendance();
+                    faceAlgorithm.recognizationInProgress = true;
+                    Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(attendanceCam.frame);
+                    frame = frame.Resize((int)(camView.Width), (int)(camView.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                    attendanceCam.DisplayImage(frame);
+
+                    if (Globals.trainingImages.Count() > 0 && enrolledStudents > 0)
+                    {
+                        updatePercentage();
+                        updateAttendance();
+                    }
+                    faceAlgorithm.recognizationInProgress = false;
                 }
             }
         }

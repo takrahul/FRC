@@ -25,7 +25,6 @@ namespace UniFCR_GUI {
         private List<string> systemCameraNames = new List<string>();
 
         private List<Image<Gray, Byte>> images = new List<Image<Gray, byte>>(); //Saving multiple images in training mode
-        private Boolean capturingCompleted = false;
         private Boolean capturingInProgress = false;
 
         public MenuScreen()
@@ -210,7 +209,7 @@ namespace UniFCR_GUI {
                 MessageBox.Show("Enter your matriculation number!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
-            else if (capturingCompleted == false)
+            else if (images.Count == 0 || capturingInProgress == true)
             {
                 MessageBox.Show("Capture images first!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -225,9 +224,9 @@ namespace UniFCR_GUI {
                 lastNameBox.Text = "";
                 numberBox.Text = "";
                 MessageBox.Show(firstName + " " + lastName + " has been added to the Database!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                capturingCompleted = false;
-                capturingInProgress = false;
                 trainCaptureButton.Text = "CAPTURE";
+                images = new List<Image<Gray, byte>>();
+                images.Clear();
             }
         }
 
@@ -238,24 +237,23 @@ namespace UniFCR_GUI {
             {
                 capturingInProgress = true;
 
-                images = new List<Image<Gray, byte>>();
-                images.Clear();
                 FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
 
-                while (images.Count < 10)
+                int captureCount = 0;
+                while (captureCount < 10)
                 {
                     faceAlgorithm.detectFaces(trainingCam.frame);
 
                     if (Globals.processedDetectedFaces.Count == 1)
                     {
                         images.Add(Globals.processedDetectedFaces.ElementAt(0));
-                        //trainCaptureButton.Text = images.Count + "/10";
+                        captureCount++;
                         Thread.Sleep(31);
                     }
                                        
                 }
-                trainCaptureButton.Text = "DONE";
-                capturingCompleted = true;
+                MessageBox.Show("A total of " + images.Count + " Pictures have been captured. Press CAPTURE to capture 10 more!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                capturingInProgress = false;
             }
         }
 

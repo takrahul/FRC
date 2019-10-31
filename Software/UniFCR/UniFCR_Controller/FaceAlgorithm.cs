@@ -17,6 +17,7 @@ using UniFCR_Database;
 namespace UniFCR_Controller {
     public class FaceAlgorithm {
         //private AttendanceScreen screen;
+        public Boolean recognizationInProgress = false;
         int t = 0;
         String name, names;
         MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);

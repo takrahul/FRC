@@ -191,8 +191,6 @@ namespace UniFCR_GUI {
                     foreach (int num in Globals.recognizedStudentNumbers)
                     {
                         //Mark student as attended
-
-                        
                         if (i.SubItems[3].Text.Equals(num + ""))
                         {
                             i.BackColor = attendanceLabel.ForeColor;

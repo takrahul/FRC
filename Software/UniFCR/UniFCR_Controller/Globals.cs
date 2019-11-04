@@ -32,5 +32,6 @@ namespace UniFCR_Controller
 
         public static Boolean fileSaved = false;
 
+        public static int threshold = 2000;
     }
 }

@@ -27,6 +27,8 @@ namespace UniFCR_GUI {
         private List<Image<Gray, Byte>> images = new List<Image<Gray, byte>>(); //Saving multiple images in training mode
         private Boolean capturingInProgress = false;
 
+        private FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+
         public MenuScreen()
         {
             InitializeComponent();
@@ -90,10 +92,42 @@ namespace UniFCR_GUI {
             cameraListBox.DataSource = systemCameraNames;
         }
 
+        //When text was entered in the box and enter is pressed handle it
+        private void thresholdTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //If Enter key is pressed
+            if (e.KeyChar == (char)13)
+            {
+
+                if (thresholdTextBox.Text != "")
+                {
+                    int num = Int32.Parse(thresholdTextBox.Text);
+
+                    if (num >= 2000 && num <= 5000)
+                    {
+                        thresholdTrackBar.Value = Int32.Parse(thresholdTextBox.Text);
+                        thresholdTrackBar.Focus();
+                    }
+                }
+            }
+        }
+
+        private void thresholdTrackBar_Scroll(object sender, EventArgs e)
+        {
+            //Globals.threshold = thresholdTrackBar.Value;
+            thresholdTextBox.Text = thresholdTrackBar.Value + "";
+        }
+
+        private void thresholdTextBox_Leave(object sender, EventArgs e)
+        {
+            thresholdTrackBar.Value = Int32.Parse(thresholdTextBox.Text);
+        }
+
         //Hide options menu and show main menu again
         private void optionsBackButton_Click(object sender, EventArgs e)
         {
-            Globals.selectedCameraIndex = cameraListBox.SelectedIndex;     
+            Globals.selectedCameraIndex = cameraListBox.SelectedIndex;
+            Globals.threshold = thresholdTrackBar.Value;
 
             optionsPanel.Visible = false;
             optionsPanel.SendToBack();
@@ -183,12 +217,10 @@ namespace UniFCR_GUI {
         {
             if (trainingCam.frame != null)
             {
-                FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
                 frame = faceAlgorithm.detectFaces(trainingCam.frame);
                 frame = frame.Resize((int)(trainCamView.Width), (int)(trainCamView.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 trainingCam.DisplayImage(frame);
             }
-            
         }
 
         //When the capturing is done: save all images and data in the database
@@ -224,7 +256,6 @@ namespace UniFCR_GUI {
                 lastNameBox.Text = "";
                 numberBox.Text = "";
                 MessageBox.Show(firstName + " " + lastName + " has been added to the Database!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                trainCaptureButton.Text = "CAPTURE";
                 images = new List<Image<Gray, byte>>();
                 images.Clear();
             }

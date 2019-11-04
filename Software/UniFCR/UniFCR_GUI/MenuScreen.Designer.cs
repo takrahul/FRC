@@ -30,16 +30,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.optionsPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.thresholdTextBox = new System.Windows.Forms.TextBox();
+            this.thresholdLabel = new System.Windows.Forms.Label();
+            this.thresholdTrackBar = new System.Windows.Forms.TrackBar();
+            this.cameraListBox = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.optionsBackButton = new System.Windows.Forms.Button();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.startButton = new System.Windows.Forms.Button();
             this.trainButton = new System.Windows.Forms.Button();
             this.optionsButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
-            this.optionsPanel = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.optionsBackButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cameraListBox = new System.Windows.Forms.ComboBox();
             this.titlePanel = new System.Windows.Forms.Panel();
             this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -62,10 +65,11 @@
             this.loadingLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
-            this.buttonPanel.SuspendLayout();
             this.optionsPanel.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.buttonPanel.SuspendLayout();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
             this.trainPanel.SuspendLayout();
@@ -90,8 +94,8 @@
             // menuPanel
             // 
             this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.menuPanel.Controls.Add(this.buttonPanel);
             this.menuPanel.Controls.Add(this.optionsPanel);
+            this.menuPanel.Controls.Add(this.buttonPanel);
             this.menuPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuPanel.ForeColor = System.Drawing.Color.DarkGray;
             this.menuPanel.Location = new System.Drawing.Point(0, 155);
@@ -99,6 +103,105 @@
             this.menuPanel.Size = new System.Drawing.Size(800, 345);
             this.menuPanel.TabIndex = 1;
             this.menuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.menuPanel_Paint);
+            // 
+            // optionsPanel
+            // 
+            this.optionsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.optionsPanel.Controls.Add(this.panel1);
+            this.optionsPanel.Controls.Add(this.panel2);
+            this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.optionsPanel.Location = new System.Drawing.Point(0, 0);
+            this.optionsPanel.Name = "optionsPanel";
+            this.optionsPanel.Size = new System.Drawing.Size(800, 345);
+            this.optionsPanel.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.thresholdTextBox);
+            this.panel1.Controls.Add(this.thresholdLabel);
+            this.panel1.Controls.Add(this.thresholdTrackBar);
+            this.panel1.Controls.Add(this.cameraListBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 169);
+            this.panel1.TabIndex = 3;
+            // 
+            // thresholdTextBox
+            // 
+            this.thresholdTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.thresholdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.thresholdTextBox.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.thresholdTextBox.ForeColor = System.Drawing.Color.DarkGray;
+            this.thresholdTextBox.Location = new System.Drawing.Point(432, 130);
+            this.thresholdTextBox.Name = "thresholdTextBox";
+            this.thresholdTextBox.Size = new System.Drawing.Size(100, 33);
+            this.thresholdTextBox.TabIndex = 5;
+            this.thresholdTextBox.Text = "2000";
+            this.thresholdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.thresholdTextBox_KeyPress);
+            this.thresholdTextBox.Leave += new System.EventHandler(this.thresholdTextBox_Leave);
+            // 
+            // thresholdLabel
+            // 
+            this.thresholdLabel.AutoSize = true;
+            this.thresholdLabel.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.thresholdLabel.Location = new System.Drawing.Point(282, 130);
+            this.thresholdLabel.Name = "thresholdLabel";
+            this.thresholdLabel.Size = new System.Drawing.Size(144, 33);
+            this.thresholdLabel.TabIndex = 4;
+            this.thresholdLabel.Text = "Threshold:";
+            // 
+            // thresholdTrackBar
+            // 
+            this.thresholdTrackBar.Location = new System.Drawing.Point(191, 97);
+            this.thresholdTrackBar.Maximum = 5000;
+            this.thresholdTrackBar.Minimum = 2000;
+            this.thresholdTrackBar.Name = "thresholdTrackBar";
+            this.thresholdTrackBar.Size = new System.Drawing.Size(434, 45);
+            this.thresholdTrackBar.TabIndex = 3;
+            this.thresholdTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.thresholdTrackBar.Value = 2000;
+            this.thresholdTrackBar.Scroll += new System.EventHandler(this.thresholdTrackBar_Scroll);
+            // 
+            // cameraListBox
+            // 
+            this.cameraListBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cameraListBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cameraListBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraListBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cameraListBox.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.cameraListBox.FormattingEnabled = true;
+            this.cameraListBox.Location = new System.Drawing.Point(191, 28);
+            this.cameraListBox.MaximumSize = new System.Drawing.Size(434, 0);
+            this.cameraListBox.MinimumSize = new System.Drawing.Size(434, 0);
+            this.cameraListBox.Name = "cameraListBox";
+            this.cameraListBox.Size = new System.Drawing.Size(434, 38);
+            this.cameraListBox.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.optionsBackButton);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 166);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(800, 179);
+            this.panel2.TabIndex = 4;
+            // 
+            // optionsBackButton
+            // 
+            this.optionsBackButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.optionsBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.optionsBackButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optionsBackButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.optionsBackButton.Location = new System.Drawing.Point(322, 74);
+            this.optionsBackButton.MaximumSize = new System.Drawing.Size(170, 48);
+            this.optionsBackButton.MinimumSize = new System.Drawing.Size(170, 48);
+            this.optionsBackButton.Name = "optionsBackButton";
+            this.optionsBackButton.Size = new System.Drawing.Size(170, 48);
+            this.optionsBackButton.TabIndex = 1;
+            this.optionsBackButton.Text = "BACK";
+            this.optionsBackButton.UseVisualStyleBackColor = true;
+            this.optionsBackButton.Click += new System.EventHandler(this.optionsBackButton_Click);
             // 
             // buttonPanel
             // 
@@ -168,66 +271,6 @@
             this.exitButton.Text = "EXIT";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
-            // 
-            // optionsPanel
-            // 
-            this.optionsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.optionsPanel.Controls.Add(this.panel2);
-            this.optionsPanel.Controls.Add(this.panel1);
-            this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.optionsPanel.Location = new System.Drawing.Point(0, 0);
-            this.optionsPanel.Name = "optionsPanel";
-            this.optionsPanel.Size = new System.Drawing.Size(800, 345);
-            this.optionsPanel.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.optionsBackButton);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 166);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 179);
-            this.panel2.TabIndex = 4;
-            // 
-            // optionsBackButton
-            // 
-            this.optionsBackButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.optionsBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.optionsBackButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optionsBackButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.optionsBackButton.Location = new System.Drawing.Point(322, 74);
-            this.optionsBackButton.MaximumSize = new System.Drawing.Size(170, 48);
-            this.optionsBackButton.MinimumSize = new System.Drawing.Size(170, 48);
-            this.optionsBackButton.Name = "optionsBackButton";
-            this.optionsBackButton.Size = new System.Drawing.Size(170, 48);
-            this.optionsBackButton.TabIndex = 1;
-            this.optionsBackButton.Text = "BACK";
-            this.optionsBackButton.UseVisualStyleBackColor = true;
-            this.optionsBackButton.Click += new System.EventHandler(this.optionsBackButton_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.cameraListBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 169);
-            this.panel1.TabIndex = 3;
-            // 
-            // cameraListBox
-            // 
-            this.cameraListBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cameraListBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cameraListBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cameraListBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cameraListBox.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.cameraListBox.FormattingEnabled = true;
-            this.cameraListBox.Location = new System.Drawing.Point(188, 62);
-            this.cameraListBox.MaximumSize = new System.Drawing.Size(434, 0);
-            this.cameraListBox.MinimumSize = new System.Drawing.Size(434, 0);
-            this.cameraListBox.Name = "cameraListBox";
-            this.cameraListBox.Size = new System.Drawing.Size(434, 38);
-            this.cameraListBox.TabIndex = 2;
             // 
             // titlePanel
             // 
@@ -505,18 +548,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 500);
-            this.Controls.Add(this.trainPanel);
             this.Controls.Add(this.mainPanel);
+            this.Controls.Add(this.trainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuScreen";
             this.Text = "Form1";
             this.mainPanel.ResumeLayout(false);
             this.menuPanel.ResumeLayout(false);
-            this.buttonPanel.ResumeLayout(false);
             this.optionsPanel.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.buttonPanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);
             this.titlePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
@@ -567,6 +612,9 @@
         private System.Windows.Forms.ComboBox cameraListBox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TrackBar thresholdTrackBar;
+        private System.Windows.Forms.Label thresholdLabel;
+        private System.Windows.Forms.TextBox thresholdTextBox;
     }
 }
 

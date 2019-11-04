@@ -105,6 +105,7 @@ namespace UniFCR_GUI {
                     {
                         updatePercentage();
                         updateAttendance();
+                        updateListView();
                     }
                     faceAlgorithm.recognizationInProgress = false;
                 }
@@ -157,7 +158,7 @@ namespace UniFCR_GUI {
             else
             {
                 //Testing the attendance precentage circle
-                attendance = Globals.processedDetectedFaces.Count();
+                attendance = Globals.recognizedStudentNumbers.Count;
                 double attendancePercentage = ((double)attendance / (double)enrolledStudents) * 100;
                 attendancePercentageCircle.Value = (int)attendancePercentage;
                 attendancePercentageCircle.Text = (int)attendancePercentage + "%";
@@ -166,20 +167,40 @@ namespace UniFCR_GUI {
             }
         }
 
-        delegate void updateListBoxCallback();
-        private void updateListBox()
+        delegate void updateListViewCallback();
+        private void updateListView()
         {
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
             if (this.attendanceLabel.InvokeRequired)
             {
-                updateListBoxCallback d = new updateListBoxCallback(updateListBox);
-                this.Invoke(d, new object[] { });
+                try
+                {
+                    updateListViewCallback d = new updateListViewCallback(updateListView);
+                    this.Invoke(d, new object[] { });
+                } catch (Exception e)
+                {
+
+                }
             }
             else
             {
-                
+                foreach (ListViewItem i in studentListView.Items)
+                {
+                    foreach (int num in Globals.recognizedStudentNumbers)
+                    {
+                        //Mark student as attended
+
+                        
+                        if (i.SubItems[3].Text.Equals(num + ""))
+                        {
+                            i.BackColor = Color.Green;
+                            Console.WriteLine("updateListView: " + num);
+                        }
+                    }
+                    
+                }
             }
         }
 

@@ -111,13 +111,13 @@ class Classifier_Train : IDisposable
         if (Globals.fileSaved == false)
         {
             recognizer.Train(Globals.trainingImages.ToArray(), Globals.listOfInts.ToArray());
-            this.Save_Eigen_Recogniser("C:/Users/Abbas/source/repos/takrahul/FRC/Software/UniFCR/UniFCR_Controller/eigen.xml");
+            this.Save_Eigen_Recogniser("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_Controller/eigen.xml");
             Globals.fileSaved = true;
             Console.WriteLine("Once");
         }
         else
         {
-            this.Load_Eigen_Recogniser("C:/Users/Abbas/source/repos/takrahul/FRC/Software/UniFCR/UniFCR_Controller/eigen.xml");
+            this.Load_Eigen_Recogniser("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_Controller/eigen.xml");
         }
         FaceRecognizer.PredictionResult ER = recognizer.Predict(Input_image);
 
@@ -130,6 +130,7 @@ class Classifier_Train : IDisposable
         else
         {
             Eigen_label = Globals.studentNames[ER.Label];
+            Globals.numIndex = Globals.studentNumbers[ER.Label];
             Eigen_Distance = (float)ER.Distance;
             if (Eigen_Thresh > -1) Eigen_threshold = Eigen_Thresh;
 

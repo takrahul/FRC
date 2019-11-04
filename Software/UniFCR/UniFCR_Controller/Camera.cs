@@ -87,7 +87,7 @@ namespace UniFCR_Controller {
         private delegate void DisplayImageDelegate(Image<Bgr, Byte> Image);
         public void DisplayImage(Image<Bgr, Byte> Image)
         {
-            if (cameraBox.InvokeRequired)
+            if (cameraBox.InvokeRequired && cam != null)
             {
                 try
                 {

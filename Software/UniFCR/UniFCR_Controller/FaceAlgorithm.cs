@@ -40,7 +40,6 @@ namespace UniFCR_Controller {
                 {
                     foreach (byte[] b in m.Image)
                     {
-                        Console.WriteLine("For loop" +  m.GivenNames + " " + m.LastName);
                         Globals.studentNames.Add(m.GivenNames + " " + m.LastName);
                         ImageConverter converter = new ImageConverter();
 
@@ -53,6 +52,7 @@ namespace UniFCR_Controller {
                         Globals.trainingImages.Add(trainedFaceImage);
                         Globals.labels.Add(m.GivenNames + " " + m.LastName);
 
+                        Globals.studentNumbers.Add(m.MatNo);
                     }
 
 
@@ -148,9 +148,9 @@ namespace UniFCR_Controller {
                     Eigen_Recog.Set_Eigen_Threshold = 3000;
                     name = Eigen_Recog.Recognise(result);
 
-                    if (!Globals.recognizedNames.Contains(name) && !name.Equals("Unknown"))
+                    if (!Globals.recognizedStudentNumbers.Contains(Globals.numIndex) && !name.Equals("Unknown"))
                     {
-                        Globals.recognizedNames.Add(name);
+                        Globals.recognizedStudentNumbers.Add(Globals.numIndex);
                     }
 
                     //Draw the label for each face detected and recognized

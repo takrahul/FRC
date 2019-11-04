@@ -130,6 +130,7 @@ class Classifier_Train : IDisposable
         else
         {
             Eigen_label = Globals.studentNames[ER.Label];
+            Globals.numIndex = Globals.studentNumbers[ER.Label];
             Eigen_Distance = (float)ER.Distance;
             if (Eigen_Thresh > -1) Eigen_threshold = Eigen_Thresh;
 

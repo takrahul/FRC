@@ -23,7 +23,8 @@ namespace UniFCR_Controller
         public static Rectangle[] facesDetected;
         public static List<String> studentNames = new List<String>(); //Names belonging to the images in trainingImages
 		public static List<Image<Gray, byte>> processedDetectedFaces;
-        public static List<int> studentNumbers = new List<int>(); 
+        public static List<int> studentNumbers = new List<int>();
+        public static bool captureInProgress = false; //Variable to track camera state
 
         //Variables for choosing the camera
         public static DsDevice[] systemCameras;

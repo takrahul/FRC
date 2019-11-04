@@ -187,6 +187,7 @@
             this.studentListView.Font = new System.Drawing.Font("Century Gothic", 20F);
             this.studentListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
             this.studentListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.studentListView.HideSelection = false;
             this.studentListView.Location = new System.Drawing.Point(0, 783);
             this.studentListView.Margin = new System.Windows.Forms.Padding(0);
             this.studentListView.MultiSelect = false;

@@ -56,7 +56,6 @@ namespace UniFCR_Controller {
                 cam.Start();
                 captureInProgress = true;
                 cam.ImageGrabbed += ProcessFrame;
-                Console.WriteLine("camera started");
             }
         }
 
@@ -69,7 +68,6 @@ namespace UniFCR_Controller {
                 cam.Stop();
                 cam.Dispose();
                 cam = null;
-                Console.WriteLine("Camera stopped!");
             }
         }
 

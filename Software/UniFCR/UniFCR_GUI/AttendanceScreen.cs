@@ -197,7 +197,6 @@ namespace UniFCR_GUI {
                         {
                             i.BackColor = attendanceLabel.ForeColor;
                             i.ForeColor = Color.DarkGray;
-                            Console.WriteLine("updateListView: " + num);
                         }
                     }
                     

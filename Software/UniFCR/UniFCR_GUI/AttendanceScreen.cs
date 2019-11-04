@@ -158,7 +158,7 @@ namespace UniFCR_GUI {
             else
             {
                 //Testing the attendance precentage circle
-                attendance = Globals.recognizedNames.Count;
+                attendance = Globals.recognizedStudentNumbers.Count;
                 double attendancePercentage = ((double)attendance / (double)enrolledStudents) * 100;
                 attendancePercentageCircle.Value = (int)attendancePercentage;
                 attendancePercentageCircle.Text = (int)attendancePercentage + "%";
@@ -188,16 +188,16 @@ namespace UniFCR_GUI {
             {
                 foreach (ListViewItem i in studentListView.Items)
                 {
-                    foreach (string s in Globals.recognizedNames)
+                    foreach (int num in Globals.recognizedStudentNumbers)
                     {
                         //Mark student as attended
 
-                        //string[] splitName = s.Split(' ');
-                        //if (i.SubItems.ContainsKey(splitName[0]) && i.SubItems.ContainsKey(splitName[1]))
-                        //{
-                        //    i.BackColor = Color.Green;
-                        //    Console.WriteLine("updateListView: " + s  " attended.");
-                        //}
+                        
+                        if (i.SubItems[3].Text.Equals(num + ""))
+                        {
+                            i.BackColor = Color.Green;
+                            Console.WriteLine("updateListView: " + num);
+                        }
                     }
                     
                 }

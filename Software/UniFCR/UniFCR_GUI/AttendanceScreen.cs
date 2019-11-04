@@ -195,7 +195,8 @@ namespace UniFCR_GUI {
                         
                         if (i.SubItems[3].Text.Equals(num + ""))
                         {
-                            i.BackColor = Color.Green;
+                            i.BackColor = attendanceLabel.ForeColor;
+                            i.ForeColor = Color.DarkGray;
                             Console.WriteLine("updateListView: " + num);
                         }
                     }

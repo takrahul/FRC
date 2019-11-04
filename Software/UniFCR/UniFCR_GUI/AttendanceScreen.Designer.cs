@@ -186,13 +186,16 @@
             this.studentListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.studentListView.Font = new System.Drawing.Font("Century Gothic", 20F);
             this.studentListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.studentListView.HideSelection = false;
+            this.studentListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.studentListView.Location = new System.Drawing.Point(0, 783);
             this.studentListView.Margin = new System.Windows.Forms.Padding(0);
+            this.studentListView.MultiSelect = false;
             this.studentListView.Name = "studentListView";
             this.studentListView.Size = new System.Drawing.Size(198, 247);
             this.studentListView.TabIndex = 7;
+            this.studentListView.TabStop = false;
             this.studentListView.UseCompatibleStateImageBehavior = false;
+            this.studentListView.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -226,7 +229,7 @@
             this.backButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backButton.FlatAppearance.BorderSize = 0;
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.backButton.ForeColor = System.Drawing.Color.DarkGray;
             this.backButton.Location = new System.Drawing.Point(0, 0);
             this.backButton.Margin = new System.Windows.Forms.Padding(0);

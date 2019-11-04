@@ -316,7 +316,7 @@
             this.trainCaptureButton.MinimumSize = new System.Drawing.Size(170, 48);
             this.trainCaptureButton.Name = "trainCaptureButton";
             this.trainCaptureButton.Size = new System.Drawing.Size(170, 48);
-            this.trainCaptureButton.TabIndex = 6;
+            this.trainCaptureButton.TabIndex = 7;
             this.trainCaptureButton.Text = "CAPTURE";
             this.trainCaptureButton.UseVisualStyleBackColor = true;
             this.trainCaptureButton.Click += new System.EventHandler(this.trainCaptureButton_Click);

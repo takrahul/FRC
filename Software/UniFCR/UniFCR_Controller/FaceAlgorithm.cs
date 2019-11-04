@@ -18,7 +18,6 @@ namespace UniFCR_Controller {
     public class FaceAlgorithm {
         //private AttendanceScreen screen;
         public Boolean recognizationInProgress = false;
-        int t = 0;
         String name, names;
         MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
        List<string> NamePersons = new List<string>();
@@ -58,7 +57,6 @@ namespace UniFCR_Controller {
 
                 }
                 Globals.numLabels = Globals.studentNames.Count;
-                Globals.ContTrain = Globals.numLabels;
                 string LoadFaces;
 
 
@@ -88,7 +86,6 @@ namespace UniFCR_Controller {
             Globals.facesDetected = face.DetectMultiScale(gray, 1.2, 10, new Size(50, 50), Size.Empty);
             for (int i = 0; i < Globals.facesDetected.Length; i++)
             {
-                t = t + 1;
                 Globals.facesDetected[i].X += (int)(Globals.facesDetected[i].Height * 0.15);
                 Globals.facesDetected[i].Y += (int)(Globals.facesDetected[i].Width * 0.22);
                 Globals.facesDetected[i].Height -= (int)(Globals.facesDetected[i].Height * 0.3);
@@ -116,7 +113,6 @@ namespace UniFCR_Controller {
             //foreach (MCvAvgComp f in Globals.facesDetected[0])
             for(int i = 0; i<Globals.facesDetected.Length; i++)
             {
-                t = t + 1;
                 Globals.facesDetected[i].X += (int)(Globals.facesDetected[i].Height * 0.15);
                 Globals.facesDetected[i].Y += (int)(Globals.facesDetected[i].Width * 0.22);
                 Globals.facesDetected[i].Height -= (int)(Globals.facesDetected[i].Height * 0.3);
@@ -155,14 +151,19 @@ namespace UniFCR_Controller {
 
                     //Draw the label for each face detected and recognized
                     //frame.Draw(name, ref font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.LightGreen));
-                    frame.Draw(name, ref font, new Point(Globals.facesDetected[i].X - 2, Globals.facesDetected[i].Y - 2), new Bgr(Color.LightGreen));
+                     try {
+                        frame.Draw(name, ref font, new Point(Globals.facesDetected[i].X - 2, Globals.facesDetected[i].Y - 2), new Bgr(Color.LightGreen));
+                     }
+                     catch (System.AccessViolationException e) {
+                        Console.WriteLine("Error: " + e.Message);
+                     }
+                    
 
                 }
                 //NamePersons[t - 1] = name;
                 //nameLabel.Text = "Number: " + facesDetected[0].Length.ToString();
 
             }
-            t = 0;
             //for (int nnn = 0; nnn < Globals.facesDetected[0].Length; nnn++)
             //{
                // names = names + NamePersons[nnn] + ", ";

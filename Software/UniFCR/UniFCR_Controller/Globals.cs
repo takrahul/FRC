@@ -13,7 +13,6 @@ namespace UniFCR_Controller
     public static class Globals
     {
         public static List<Image<Gray, byte>> trainingImages = new List<Image<Gray, byte>>(); //All student images in the Database
-        public static int ContTrain;
         public static int numLabels; //Number of labels
         public static List<int> listOfInts = new List<int>();
         public static List<string> labels = new List<string>();

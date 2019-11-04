@@ -209,7 +209,7 @@ namespace UniFCR_GUI {
             this.Close();
             camRunning = false;
             attendanceCam.stop();
-            menuScreen.Visible = true;            
+            menuScreen.Visible = true;  
         }
     }
 }

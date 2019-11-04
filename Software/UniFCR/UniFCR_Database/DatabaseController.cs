@@ -15,7 +15,7 @@ namespace UniFCR_Database
 {
     public class DatabaseController
     {
-        List<StudentModel> student = new List<StudentModel>();
+        public List<StudentModel> student = new List<StudentModel>();
 
         public void LoadStudentsList()
         {

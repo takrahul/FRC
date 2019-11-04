@@ -104,44 +104,54 @@ class Classifier_Train : IDisposable
     public string Recognise(Image<Gray, byte> Input_image, int Eigen_Thresh = -1)
     {
         Globals.listOfInts = new List<int>();
-            for (int i = 0; i < Globals.numLabels; i++) {
-                Globals.listOfInts.Add(i);
-                Console.WriteLine("I: " + i);
-            }
-        Console.WriteLine("Count; " + Globals.numLabels);
+        for (int i = 0; i < Globals.numLabels; i++)
+        {
+            Globals.listOfInts.Add(i);
+        }
+        if (Globals.fileSaved == false)
+        {
             recognizer.Train(Globals.trainingImages.ToArray(), Globals.listOfInts.ToArray());
-            FaceRecognizer.PredictionResult ER = recognizer.Predict(Input_image);
-            if (ER.Label == -1)
+            this.Save_Eigen_Recogniser("C:/Users/Abbas/source/repos/takrahul/FRC/Software/UniFCR/UniFCR_Controller/eigen.xml");
+            Globals.fileSaved = true;
+            Console.WriteLine("Once");
+        }
+        else
+        {
+            this.Load_Eigen_Recogniser("C:/Users/Abbas/source/repos/takrahul/FRC/Software/UniFCR/UniFCR_Controller/eigen.xml");
+        }
+        FaceRecognizer.PredictionResult ER = recognizer.Predict(Input_image);
+
+        if (ER.Label == -1)
+        {
+            Eigen_label = "Unknown";
+            Eigen_Distance = 0;
+            return Eigen_label;
+        }
+        else
+        {
+            Eigen_label = Globals.studentNames[ER.Label];
+            Eigen_Distance = (float)ER.Distance;
+            if (Eigen_Thresh > -1) Eigen_threshold = Eigen_Thresh;
+
+            //Only use the post threshold rule if we are using an Eigen Recognizer 
+            //since Fisher and LBHP threshold set during the constructor will work correctly 
+            switch (Recognizer_Type)
             {
-                Eigen_label = "Unknown";
-                Eigen_Distance = 0;
-                return Eigen_label;
-            }
-            else
-            {
-                Eigen_label = Globals.studentNames[ER.Label];
-                Eigen_Distance = (float)ER.Distance;
-                if (Eigen_Thresh > -1) Eigen_threshold = Eigen_Thresh;
-
-                //Only use the post threshold rule if we are using an Eigen Recognizer 
-                //since Fisher and LBHP threshold set during the constructor will work correctly 
-                switch (Recognizer_Type)
-                {
-                    case ("EMGU.CV.EigenFaceRecognizer"):
-                        if (Eigen_Distance > Eigen_threshold) return Eigen_label;
-                        else return "Unknown";
-                    case ("EMGU.CV.LBPHFaceRecognizer"):
-                    case ("EMGU.CV.FisherFaceRecognizer"):
-                    default:
-                        return Eigen_label; //the threshold set in training controls unknowns
-                }
-
-
-
-
+                case ("EMGU.CV.EigenFaceRecognizer"):
+                    if (Eigen_Distance > Eigen_threshold) return Eigen_label;
+                    else return "Unknown";
+                case ("EMGU.CV.LBPHFaceRecognizer"):
+                case ("EMGU.CV.FisherFaceRecognizer"):
+                default:
+                    return Eigen_label; //the threshold set in training controls unknowns
             }
 
-        
+
+
+
+        }
+
+
     }
 
     /// <summary>

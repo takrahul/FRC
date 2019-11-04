@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -50,9 +51,12 @@ namespace UniFCR_GUI {
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
-            camRunning = false;
+            faceAlgorithm.recognizationInProgress = true;
+            Thread.Sleep(500);
             attendanceCam.stop();
+            camRunning = false;
+            this.Close();
+            this.Dispose();
             menuScreen.Visible = true;            
         }
 
@@ -123,6 +127,7 @@ namespace UniFCR_GUI {
                 }
             }
         }
+
         #endregion
 
         //=================================================================

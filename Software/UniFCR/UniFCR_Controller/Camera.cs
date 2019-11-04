@@ -3,12 +3,12 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using Emgu.CV.UI;
+using System.Threading;
 
 namespace UniFCR_Controller {
     public class Camera {
 
         private Capture cam = null; //Camera
-        public bool captureInProgress = false; //Variable to track camera state
         public ImageBox cameraBox = null; //Component of the GUI that shows the cam feed (needed for resizing etc.)
 
         //=================================================================
@@ -46,7 +46,7 @@ namespace UniFCR_Controller {
 
         public void start()
         {
-            if (!this.captureInProgress)
+            if (!Globals.captureInProgress)
             {
                 cam = new Capture(Globals.selectedCameraIndex);
                 cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1920); //1280
@@ -54,17 +54,17 @@ namespace UniFCR_Controller {
                 cam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FPS, 30);
 
                 cam.Start();
-                captureInProgress = true;
+                Globals.captureInProgress = true;
                 cam.ImageGrabbed += ProcessFrame;
             }
         }
 
         public void stop()
         {
-            if (this.captureInProgress)
+            if (Globals.captureInProgress)
             {
+                Globals.captureInProgress = false;
                 cam.ImageGrabbed -= ProcessFrame;
-                captureInProgress = false;
                 cam.Stop();
                 cam.Dispose();
                 cam = null;

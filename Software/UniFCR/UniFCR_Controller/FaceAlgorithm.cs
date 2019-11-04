@@ -141,7 +141,7 @@ namespace UniFCR_Controller {
 
                     //name = recognizer.Recognize(result);
                     Classifier_Train Eigen_Recog = new Classifier_Train();
-                    Eigen_Recog.Set_Eigen_Threshold = 3000;
+                    Eigen_Recog.Set_Eigen_Threshold = Globals.threshold;
                     name = Eigen_Recog.Recognise(result);
 
                     if (!Globals.recognizedStudentNumbers.Contains(Globals.numIndex) && !name.Equals("Unknown"))
@@ -152,7 +152,10 @@ namespace UniFCR_Controller {
                     //Draw the label for each face detected and recognized
                     //frame.Draw(name, ref font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.LightGreen));
                      try {
-                        frame.Draw(name, ref font, new Point(Globals.facesDetected[i].X - 2, Globals.facesDetected[i].Y - 2), new Bgr(Color.LightGreen));
+                        if (Globals.captureInProgress)
+                        {
+                            frame.Draw(name, ref font, new Point(Globals.facesDetected[i].X - 2, Globals.facesDetected[i].Y - 2), new Bgr(Color.LightGreen));
+                        }
                      }
                      catch (System.AccessViolationException e) {
                         Console.WriteLine("Error: " + e.Message);

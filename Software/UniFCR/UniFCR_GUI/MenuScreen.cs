@@ -72,7 +72,7 @@ namespace UniFCR_GUI {
         //=================================================================
         // OPTIONS MENU
         //=================================================================
-
+        #region
         //Show the options menu
         private void optionsButton_Click(object sender, EventArgs e)
         {
@@ -135,10 +135,12 @@ namespace UniFCR_GUI {
             buttonPanel.BringToFront();
             buttonPanel.Visible = true;
         }
+        #endregion
 
         //=================================================================
         // EVENT HANDLERS FOR MOVING AROUND THE WINDOW
         //=================================================================
+        #region
         private void MenuScreen_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
@@ -160,11 +162,12 @@ namespace UniFCR_GUI {
         {
             mouseDown = false;
         }
+        #endregion
 
         //=================================================================
         // TRAINING MODE
         //=================================================================
-
+        #region
         //Show training menu
         private void trainButton_Click(object sender, EventArgs e)
         {
@@ -299,5 +302,6 @@ namespace UniFCR_GUI {
             trainLoadingPanel.SendToBack();
             trainLoadingPanel.Visible = false;
         }
+        #endregion
     }
 }

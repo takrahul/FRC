@@ -48,6 +48,14 @@ namespace UniFCR_GUI {
             studentListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            camRunning = false;
+            attendanceCam.stop();
+            menuScreen.Visible = true;            
+        }
+
         //While the attendance screen is preparing (calculating size, loading camera) show a loading screen
         private void loadingPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -62,6 +70,10 @@ namespace UniFCR_GUI {
             attendanceLabel.Width = infoPanel.Width;
         }
 
+        //=================================================================
+        // CAMERA
+        //=================================================================
+        #region
         //Automatically start the camera when the window is being painted
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -111,7 +123,12 @@ namespace UniFCR_GUI {
                 }
             }
         }
+        #endregion
 
+        //=================================================================
+        // UPDATE GUI 
+        //=================================================================
+        #region
         delegate void updateAttendanceCallback();
         private void updateAttendance()
         {
@@ -191,25 +208,17 @@ namespace UniFCR_GUI {
                     foreach (int num in Globals.recognizedStudentNumbers)
                     {
                         //Mark student as attended
-
-                        
                         if (i.SubItems[3].Text.Equals(num + ""))
                         {
-                            i.BackColor = Color.Green;
-                            Console.WriteLine("updateListView: " + num);
+                            i.BackColor = attendanceLabel.ForeColor;
+                            i.ForeColor = Color.DarkGray;
                         }
                     }
                     
                 }
             }
         }
+        #endregion
 
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            camRunning = false;
-            attendanceCam.stop();
-            menuScreen.Visible = true;            
-        }
     }
 }

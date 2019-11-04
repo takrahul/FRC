@@ -190,12 +190,14 @@ namespace UniFCR_GUI {
                 {
                     foreach (string s in Globals.recognizedNames)
                     {
-                        string[] splitName = s.Split(' ');
-                        if (i.SubItems.ContainsKey(splitName[0]) && i.SubItems.ContainsKey(splitName[1]))
-                        {
-                            i.BackColor = Color.Green;
-                            Console.WriteLine("updateListView: " + s + " attended.");
-                        }
+                        //Mark student as attended
+
+                        //string[] splitName = s.Split(' ');
+                        //if (i.SubItems.ContainsKey(splitName[0]) && i.SubItems.ContainsKey(splitName[1]))
+                        //{
+                        //    i.BackColor = Color.Green;
+                        //    Console.WriteLine("updateListView: " + s  " attended.");
+                        //}
                     }
                     
                 }

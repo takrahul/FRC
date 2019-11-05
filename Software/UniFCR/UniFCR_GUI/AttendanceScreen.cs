@@ -21,6 +21,10 @@ namespace UniFCR_GUI {
         DatabaseController database = new DatabaseController();
         FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
 
+        //=================================================================
+        // CONSTRUCTOR + SIDEPANEL + LOADING SCREEN
+        //=================================================================
+        #region
         public AttendanceScreen(Form menuScreen)
         {
             InitializeComponent();
@@ -75,7 +79,7 @@ namespace UniFCR_GUI {
 
             attendanceLabel.Width = infoPanel.Width;
         }
-
+        #endregion
         //=================================================================
         // CAMERA
         //=================================================================
@@ -227,6 +231,7 @@ namespace UniFCR_GUI {
         }
         #endregion
 
+        #region
         private void thresholdTrackBar_Scroll(object sender, EventArgs e)
         {
             Globals.threshold = thresholdTrackBar.Value;
@@ -252,5 +257,6 @@ namespace UniFCR_GUI {
                 }
             }
         }
+        #endregion
     }
 }

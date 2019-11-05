@@ -34,36 +34,36 @@
             this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
             this.attendanceLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
-            this.attendancePercentageCircle = new CircularProgressBar.CircularProgressBar();
-            this.studentListView = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
             this.camPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.thresholdTextBox = new System.Windows.Forms.TextBox();
+            this.thresholdLabel = new System.Windows.Forms.Label();
+            this.thresholdTrackBar = new System.Windows.Forms.TrackBar();
             this.camView = new Emgu.CV.UI.ImageBox();
             this.loadingPanel = new System.Windows.Forms.Panel();
             this.logoTextPanel = new System.Windows.Forms.Panel();
             this.loadingLogo = new System.Windows.Forms.PictureBox();
             this.loadingLabel = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.thresholdTextBox = new System.Windows.Forms.TextBox();
-            this.thresholdLabel = new System.Windows.Forms.Label();
-            this.thresholdTrackBar = new System.Windows.Forms.TrackBar();
+            this.studentListView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.attendancePercentageCircle = new CircularProgressBar.CircularProgressBar();
             this.mainPanel.SuspendLayout();
             this.sidePanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.camPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.camView)).BeginInit();
             this.loadingPanel.SuspendLayout();
             this.logoTextPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingLogo)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -91,11 +91,11 @@
             // 
             this.infoPanel.ColumnCount = 1;
             this.infoPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.infoPanel.Controls.Add(this.uniFCRLogoBox, 0, 0);
-            this.infoPanel.Controls.Add(this.attendanceLabel, 0, 2);
-            this.infoPanel.Controls.Add(this.titleLabel, 0, 1);
-            this.infoPanel.Controls.Add(this.attendancePercentageCircle, 0, 3);
+            this.infoPanel.Controls.Add(this.attendancePercentageCircle, 0, 2);
             this.infoPanel.Controls.Add(this.studentListView, 0, 4);
+            this.infoPanel.Controls.Add(this.uniFCRLogoBox, 0, 0);
+            this.infoPanel.Controls.Add(this.titleLabel, 0, 1);
+            this.infoPanel.Controls.Add(this.attendanceLabel, 0, 3);
             this.infoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infoPanel.Location = new System.Drawing.Point(0, 0);
             this.infoPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -103,9 +103,9 @@
             this.infoPanel.RowCount = 5;
             this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.05883F));
-            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.94118F));
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.infoPanel.Size = new System.Drawing.Size(198, 1030);
             this.infoPanel.TabIndex = 0;
             // 
@@ -128,10 +128,10 @@
             this.attendanceLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.attendanceLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.attendanceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.attendanceLabel.Location = new System.Drawing.Point(3, 495);
+            this.attendanceLabel.Location = new System.Drawing.Point(3, 687);
             this.attendanceLabel.Margin = new System.Windows.Forms.Padding(0);
             this.attendanceLabel.Name = "attendanceLabel";
-            this.attendanceLabel.Size = new System.Drawing.Size(192, 70);
+            this.attendanceLabel.Size = new System.Drawing.Size(192, 50);
             this.attendanceLabel.TabIndex = 4;
             this.attendanceLabel.Text = "Students present: ";
             this.attendanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -147,78 +147,6 @@
             this.titleLabel.Size = new System.Drawing.Size(191, 345);
             this.titleLabel.TabIndex = 5;
             this.titleLabel.Text = "UniFCR";
-            // 
-            // attendancePercentageCircle
-            // 
-            this.attendancePercentageCircle.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attendancePercentageCircle.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
-            this.attendancePercentageCircle.AnimationSpeed = 500;
-            this.attendancePercentageCircle.BackColor = System.Drawing.Color.Transparent;
-            this.attendancePercentageCircle.Font = new System.Drawing.Font("Century Gothic", 32F);
-            this.attendancePercentageCircle.ForeColor = System.Drawing.Color.DarkGray;
-            this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
-            this.attendancePercentageCircle.InnerMargin = 2;
-            this.attendancePercentageCircle.InnerWidth = -1;
-            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 578);
-            this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
-            this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
-            this.attendancePercentageCircle.Name = "attendancePercentageCircle";
-            this.attendancePercentageCircle.OuterColor = System.Drawing.Color.LightSteelBlue;
-            this.attendancePercentageCircle.OuterMargin = -25;
-            this.attendancePercentageCircle.OuterWidth = 26;
-            this.attendancePercentageCircle.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.attendancePercentageCircle.ProgressWidth = 25;
-            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.attendancePercentageCircle.Size = new System.Drawing.Size(192, 192);
-            this.attendancePercentageCircle.StartAngle = 270;
-            this.attendancePercentageCircle.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.attendancePercentageCircle.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
-            this.attendancePercentageCircle.SubscriptText = "";
-            this.attendancePercentageCircle.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.attendancePercentageCircle.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
-            this.attendancePercentageCircle.SuperscriptText = "";
-            this.attendancePercentageCircle.TabIndex = 6;
-            this.attendancePercentageCircle.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
-            this.attendancePercentageCircle.Value = 68;
-            // 
-            // studentListView
-            // 
-            this.studentListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.studentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
-            this.studentListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.studentListView.Font = new System.Drawing.Font("Century Gothic", 20F);
-            this.studentListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.studentListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.studentListView.HideSelection = false;
-            this.studentListView.Location = new System.Drawing.Point(0, 783);
-            this.studentListView.Margin = new System.Windows.Forms.Padding(0);
-            this.studentListView.MultiSelect = false;
-            this.studentListView.Name = "studentListView";
-            this.studentListView.Size = new System.Drawing.Size(198, 247);
-            this.studentListView.TabIndex = 7;
-            this.studentListView.TabStop = false;
-            this.studentListView.UseCompatibleStateImageBehavior = false;
-            this.studentListView.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "No.";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "First Name";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Last Name";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Mat. No";
             // 
             // buttonPanel
             // 
@@ -258,6 +186,53 @@
             this.camPanel.Size = new System.Drawing.Size(1000, 1100);
             this.camPanel.TabIndex = 0;
             this.camPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.camPanel_Paint);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.thresholdTextBox);
+            this.panel1.Controls.Add(this.thresholdLabel);
+            this.panel1.Controls.Add(this.thresholdTrackBar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 897);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1000, 203);
+            this.panel1.TabIndex = 6;
+            // 
+            // thresholdTextBox
+            // 
+            this.thresholdTextBox.BackColor = System.Drawing.Color.Black;
+            this.thresholdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.thresholdTextBox.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.thresholdTextBox.ForeColor = System.Drawing.Color.DarkGray;
+            this.thresholdTextBox.Location = new System.Drawing.Point(524, 101);
+            this.thresholdTextBox.Name = "thresholdTextBox";
+            this.thresholdTextBox.Size = new System.Drawing.Size(100, 33);
+            this.thresholdTextBox.TabIndex = 8;
+            this.thresholdTextBox.Text = "2000";
+            this.thresholdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.thresholdTextBox_KeyPress);
+            // 
+            // thresholdLabel
+            // 
+            this.thresholdLabel.AutoSize = true;
+            this.thresholdLabel.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.thresholdLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.thresholdLabel.Location = new System.Drawing.Point(374, 101);
+            this.thresholdLabel.Name = "thresholdLabel";
+            this.thresholdLabel.Size = new System.Drawing.Size(144, 33);
+            this.thresholdLabel.TabIndex = 7;
+            this.thresholdLabel.Text = "Threshold:";
+            // 
+            // thresholdTrackBar
+            // 
+            this.thresholdTrackBar.Location = new System.Drawing.Point(283, 68);
+            this.thresholdTrackBar.Maximum = 5000;
+            this.thresholdTrackBar.Minimum = 2000;
+            this.thresholdTrackBar.Name = "thresholdTrackBar";
+            this.thresholdTrackBar.Size = new System.Drawing.Size(434, 45);
+            this.thresholdTrackBar.TabIndex = 6;
+            this.thresholdTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.thresholdTrackBar.Value = 2000;
+            this.thresholdTrackBar.Scroll += new System.EventHandler(this.thresholdTrackBar_Scroll);
             // 
             // camView
             // 
@@ -319,52 +294,81 @@
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
             // 
-            // panel1
+            // studentListView
             // 
-            this.panel1.Controls.Add(this.thresholdTextBox);
-            this.panel1.Controls.Add(this.thresholdLabel);
-            this.panel1.Controls.Add(this.thresholdTrackBar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 897);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1000, 203);
-            this.panel1.TabIndex = 6;
+            this.studentListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.studentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.studentListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.studentListView.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.studentListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.studentListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.studentListView.HideSelection = false;
+            this.studentListView.Location = new System.Drawing.Point(0, 737);
+            this.studentListView.Margin = new System.Windows.Forms.Padding(0);
+            this.studentListView.MultiSelect = false;
+            this.studentListView.Name = "studentListView";
+            this.studentListView.Size = new System.Drawing.Size(198, 293);
+            this.studentListView.TabIndex = 11;
+            this.studentListView.TabStop = false;
+            this.studentListView.UseCompatibleStateImageBehavior = false;
+            this.studentListView.View = System.Windows.Forms.View.Details;
+            this.studentListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.studentListView_ItemSelectionChanged);
             // 
-            // thresholdTextBox
+            // columnHeader1
             // 
-            this.thresholdTextBox.BackColor = System.Drawing.Color.Black;
-            this.thresholdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.thresholdTextBox.Font = new System.Drawing.Font("Century Gothic", 20F);
-            this.thresholdTextBox.ForeColor = System.Drawing.Color.DarkGray;
-            this.thresholdTextBox.Location = new System.Drawing.Point(524, 101);
-            this.thresholdTextBox.Name = "thresholdTextBox";
-            this.thresholdTextBox.Size = new System.Drawing.Size(100, 33);
-            this.thresholdTextBox.TabIndex = 8;
-            this.thresholdTextBox.Text = "2000";
-            this.thresholdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.thresholdTextBox_KeyPress);
+            this.columnHeader1.Text = "No.";
             // 
-            // thresholdLabel
+            // columnHeader2
             // 
-            this.thresholdLabel.AutoSize = true;
-            this.thresholdLabel.Font = new System.Drawing.Font("Century Gothic", 20F);
-            this.thresholdLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.thresholdLabel.Location = new System.Drawing.Point(374, 101);
-            this.thresholdLabel.Name = "thresholdLabel";
-            this.thresholdLabel.Size = new System.Drawing.Size(144, 33);
-            this.thresholdLabel.TabIndex = 7;
-            this.thresholdLabel.Text = "Threshold:";
+            this.columnHeader2.Text = "First Name";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // thresholdTrackBar
+            // columnHeader3
             // 
-            this.thresholdTrackBar.Location = new System.Drawing.Point(283, 68);
-            this.thresholdTrackBar.Maximum = 5000;
-            this.thresholdTrackBar.Minimum = 2000;
-            this.thresholdTrackBar.Name = "thresholdTrackBar";
-            this.thresholdTrackBar.Size = new System.Drawing.Size(434, 45);
-            this.thresholdTrackBar.TabIndex = 6;
-            this.thresholdTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.thresholdTrackBar.Value = 2000;
-            this.thresholdTrackBar.Scroll += new System.EventHandler(this.thresholdTrackBar_Scroll);
+            this.columnHeader3.Text = "Last Name";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Mat. No";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // attendancePercentageCircle
+            // 
+            this.attendancePercentageCircle.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attendancePercentageCircle.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
+            this.attendancePercentageCircle.AnimationSpeed = 500;
+            this.attendancePercentageCircle.BackColor = System.Drawing.Color.Transparent;
+            this.attendancePercentageCircle.Font = new System.Drawing.Font("Century Gothic", 32F);
+            this.attendancePercentageCircle.ForeColor = System.Drawing.Color.DarkGray;
+            this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
+            this.attendancePercentageCircle.InnerMargin = 2;
+            this.attendancePercentageCircle.InnerWidth = -1;
+            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 495);
+            this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
+            this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
+            this.attendancePercentageCircle.Name = "attendancePercentageCircle";
+            this.attendancePercentageCircle.OuterColor = System.Drawing.Color.LightSteelBlue;
+            this.attendancePercentageCircle.OuterMargin = -25;
+            this.attendancePercentageCircle.OuterWidth = 26;
+            this.attendancePercentageCircle.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.attendancePercentageCircle.ProgressWidth = 25;
+            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attendancePercentageCircle.Size = new System.Drawing.Size(192, 192);
+            this.attendancePercentageCircle.StartAngle = 270;
+            this.attendancePercentageCircle.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.attendancePercentageCircle.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
+            this.attendancePercentageCircle.SubscriptText = "";
+            this.attendancePercentageCircle.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.attendancePercentageCircle.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
+            this.attendancePercentageCircle.SuperscriptText = "";
+            this.attendancePercentageCircle.TabIndex = 12;
+            this.attendancePercentageCircle.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
+            this.attendancePercentageCircle.Value = 68;
             // 
             // AttendanceScreen
             // 
@@ -385,14 +389,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
             this.buttonPanel.ResumeLayout(false);
             this.camPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.camView)).EndInit();
             this.loadingPanel.ResumeLayout(false);
             this.logoTextPanel.ResumeLayout(false);
             this.logoTextPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingLogo)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -421,15 +425,15 @@
         private System.Windows.Forms.Label loadingLabel;
         private System.Windows.Forms.Panel logoTextPanel;
         private System.Windows.Forms.Label titleLabel;
-        private CircularProgressBar.CircularProgressBar attendancePercentageCircle;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox thresholdTextBox;
+        private System.Windows.Forms.Label thresholdLabel;
+        private System.Windows.Forms.TrackBar thresholdTrackBar;
         private System.Windows.Forms.ListView studentListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox thresholdTextBox;
-        private System.Windows.Forms.Label thresholdLabel;
-        private System.Windows.Forms.TrackBar thresholdTrackBar;
+        private CircularProgressBar.CircularProgressBar attendancePercentageCircle;
     }
 }

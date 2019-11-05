@@ -47,6 +47,8 @@ namespace UniFCR_GUI {
                 index++;
             }
             studentListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            //Hide scrollbar
+            
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -225,5 +227,30 @@ namespace UniFCR_GUI {
         }
         #endregion
 
+        private void thresholdTrackBar_Scroll(object sender, EventArgs e)
+        {
+            Globals.threshold = thresholdTrackBar.Value;
+            thresholdTextBox.Text = thresholdTrackBar.Value + "";
+        }
+
+        private void thresholdTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //If Enter key is pressed
+            if (e.KeyChar == (char)13)
+            {
+
+                if (thresholdTextBox.Text != "")
+                {
+                    int num = Int32.Parse(thresholdTextBox.Text);
+
+                    if (num >= 2000 && num <= 5000)
+                    {
+                        thresholdTrackBar.Value = Int32.Parse(thresholdTextBox.Text);
+                        thresholdTrackBar.Focus();
+                        Globals.threshold = thresholdTrackBar.Value;
+                    }
+                }
+            }
+        }
     }
 }

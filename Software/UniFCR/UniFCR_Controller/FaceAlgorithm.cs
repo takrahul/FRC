@@ -18,9 +18,8 @@ namespace UniFCR_Controller {
     public class FaceAlgorithm {
         //private AttendanceScreen screen;
         public Boolean recognizationInProgress = false;
-        String name, names;
+        String name;
         MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
-       List<string> NamePersons = new List<string>();
         CascadeClassifier face = new CascadeClassifier("haarcascade_frontalface_default.xml");
 
         public FaceAlgorithm()
@@ -104,7 +103,6 @@ namespace UniFCR_Controller {
         public Image<Bgr, Byte> recognizeFaces(Image<Bgr, Byte> frame)
         {
             Globals.processedDetectedFaces = new List<Image<Gray, byte>>();
-            NamePersons.Add("");
             Image<Gray, byte> gray = null;
             Image<Gray, byte> result = null;
             gray = frame.Convert<Gray, Byte>();
@@ -163,20 +161,9 @@ namespace UniFCR_Controller {
                     
 
                 }
-                //NamePersons[t - 1] = name;
-                //nameLabel.Text = "Number: " + facesDetected[0].Length.ToString();
 
             }
-            //for (int nnn = 0; nnn < Globals.facesDetected[0].Length; nnn++)
-            //{
-               // names = names + NamePersons[nnn] + ", ";
-            //}
-            //Show the faces procesed and recognized
-            //camView.Image = frame.ToBitmap();
-            //List the names
-            //nameLabel.Text += "\n " + names;
-            names = "";
-            NamePersons.Clear();
+            
 
             return frame;
         }

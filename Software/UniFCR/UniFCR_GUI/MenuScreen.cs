@@ -63,7 +63,6 @@ namespace UniFCR_GUI {
             csv.Append("Last Name, First Name, Marticulation Number \n");
             for (int i = 0; i < students.Count(); i++) {
                 if (Globals.recognizedStudentNumbers.Contains(students.ElementAt(i).MatNo)) {
-                    Console.WriteLine(students.ElementAt(i).StudentData);
                     csv.Append(students.ElementAt(i).StudentData + "\n");
                 }
             }

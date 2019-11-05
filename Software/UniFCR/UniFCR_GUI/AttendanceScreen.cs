@@ -16,11 +16,15 @@ namespace UniFCR_GUI {
         Form menuScreen;
         static Camera attendanceCam;
         Boolean camRunning = false;
-        int enrolledStudents;
-        int attendance;
+        int enrolledStudents; //Total number of enrolled students
+        int attendance; //Number of attending students
         DatabaseController database = new DatabaseController();
         FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
 
+        //=================================================================
+        // CONSTRUCTOR + SIDEPANEL + LOADING SCREEN
+        //=================================================================
+        #region
         public AttendanceScreen(Form menuScreen)
         {
             InitializeComponent();
@@ -34,21 +38,31 @@ namespace UniFCR_GUI {
 
             database.LoadStudentsList();
 
-            studentListView.View = View.Details;
+            //studentListView.View = View.Details;
+            studentListView.View = View.List;
             int index = 1;
             foreach (StudentModel s in database.student)
             {
-                ListViewItem row = new ListViewItem("" + index);
-                row.SubItems.Add(s.GivenNames);
-                row.SubItems.Add(s.LastName);
-                row.SubItems.Add("" + s.MatNo);
-                studentListView.Items.Add(row);
+                //ListViewItem row = new ListViewItem("" + index);
+                //row.SubItems.Add(s.GivenNames);
+                //row.SubItems.Add(s.LastName);
+                //row.SubItems.Add("" + s.MatNo);
+                //studentListView.Items.Add(row);
+
+                ListViewItem i = new ListViewItem(s.GivenNames + " " + s.LastName);
+                i.SubItems.Add("" + s.MatNo);
+                studentListView.Items.Add(i);
 
                 index++;
             }
-            studentListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            //Hide scrollbar
-            
+        }
+
+        private void studentListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (e.IsSelected)
+            {
+                e.Item.Selected = false;
+            }
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -59,7 +73,7 @@ namespace UniFCR_GUI {
             camRunning = false;
             this.Close();
             this.Dispose();
-            menuScreen.Visible = true;            
+            menuScreen.Visible = true;
         }
 
         //While the attendance screen is preparing (calculating size, loading camera) show a loading screen
@@ -69,13 +83,21 @@ namespace UniFCR_GUI {
             int textLogoX = (this.Size.Width / 2) - (logoTextPanel.Size.Width / 2);
             int textLogoY = (this.Size.Height / 2) - (logoTextPanel.Size.Height / 2);
             logoTextPanel.Location = new Point(textLogoX, textLogoY);
-            
+
             //The camera feed may take up 3/4 of the screen
             camPanel.Width = (int)(mainPanel.Size.Width * 0.75);
 
             attendanceLabel.Width = infoPanel.Width;
-        }
 
+            //studentListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            studentListView.Columns[0].Width = infoPanel.Width;
+            studentListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            studentListView.MaximumSize = studentListView.Size;
+            studentListView.Dock = DockStyle.Fill;
+            studentListView.Anchor = AnchorStyles.Top;
+        }
+        #endregion
         //=================================================================
         // CAMERA
         //=================================================================
@@ -168,16 +190,17 @@ namespace UniFCR_GUI {
             // If these threads are different, it returns true.
             if (this.attendanceLabel.InvokeRequired)
             {
-                
+
                 try
                 {
                     updatePercentageCallback d = new updatePercentageCallback(updatePercentage);
                     this.Invoke(d, new object[] { });
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
 
                 }
-                
+
             }
             else
             {
@@ -203,7 +226,8 @@ namespace UniFCR_GUI {
                 {
                     updateListViewCallback d = new updateListViewCallback(updateListView);
                     this.Invoke(d, new object[] { });
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
 
                 }
@@ -215,18 +239,19 @@ namespace UniFCR_GUI {
                     foreach (int num in Globals.recognizedStudentNumbers)
                     {
                         //Mark student as attended
-                        if (i.SubItems[3].Text.Equals(num + ""))
+                        if (i.SubItems[1].Text.Equals(num + ""))//3
                         {
                             i.BackColor = attendanceLabel.ForeColor;
                             i.ForeColor = Color.DarkGray;
                         }
                     }
-                    
+
                 }
             }
         }
         #endregion
 
+        #region
         private void thresholdTrackBar_Scroll(object sender, EventArgs e)
         {
             Globals.threshold = thresholdTrackBar.Value;
@@ -252,5 +277,7 @@ namespace UniFCR_GUI {
                 }
             }
         }
+        #endregion
+
     }
 }

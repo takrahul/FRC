@@ -48,6 +48,10 @@
             this.logoTextPanel = new System.Windows.Forms.Panel();
             this.loadingLogo = new System.Windows.Forms.PictureBox();
             this.loadingLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.thresholdTextBox = new System.Windows.Forms.TextBox();
+            this.thresholdLabel = new System.Windows.Forms.Label();
+            this.thresholdTrackBar = new System.Windows.Forms.TrackBar();
             this.mainPanel.SuspendLayout();
             this.sidePanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
@@ -58,6 +62,8 @@
             this.loadingPanel.SuspendLayout();
             this.logoTextPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingLogo)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -244,6 +250,7 @@
             // camPanel
             // 
             this.camPanel.BackColor = System.Drawing.Color.Black;
+            this.camPanel.Controls.Add(this.panel1);
             this.camPanel.Controls.Add(this.camView);
             this.camPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.camPanel.Location = new System.Drawing.Point(0, 0);
@@ -255,11 +262,11 @@
             // camView
             // 
             this.camView.BackColor = System.Drawing.Color.Black;
-            this.camView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.camView.Dock = System.Windows.Forms.DockStyle.Top;
             this.camView.Location = new System.Drawing.Point(0, 0);
             this.camView.Margin = new System.Windows.Forms.Padding(0);
             this.camView.Name = "camView";
-            this.camView.Size = new System.Drawing.Size(1000, 1100);
+            this.camView.Size = new System.Drawing.Size(1000, 894);
             this.camView.TabIndex = 5;
             this.camView.TabStop = false;
             // 
@@ -312,6 +319,53 @@
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.thresholdTextBox);
+            this.panel1.Controls.Add(this.thresholdLabel);
+            this.panel1.Controls.Add(this.thresholdTrackBar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 897);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1000, 203);
+            this.panel1.TabIndex = 6;
+            // 
+            // thresholdTextBox
+            // 
+            this.thresholdTextBox.BackColor = System.Drawing.Color.Black;
+            this.thresholdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.thresholdTextBox.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.thresholdTextBox.ForeColor = System.Drawing.Color.DarkGray;
+            this.thresholdTextBox.Location = new System.Drawing.Point(524, 101);
+            this.thresholdTextBox.Name = "thresholdTextBox";
+            this.thresholdTextBox.Size = new System.Drawing.Size(100, 33);
+            this.thresholdTextBox.TabIndex = 8;
+            this.thresholdTextBox.Text = "2000";
+            this.thresholdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.thresholdTextBox_KeyPress);
+            // 
+            // thresholdLabel
+            // 
+            this.thresholdLabel.AutoSize = true;
+            this.thresholdLabel.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.thresholdLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.thresholdLabel.Location = new System.Drawing.Point(374, 101);
+            this.thresholdLabel.Name = "thresholdLabel";
+            this.thresholdLabel.Size = new System.Drawing.Size(144, 33);
+            this.thresholdLabel.TabIndex = 7;
+            this.thresholdLabel.Text = "Threshold:";
+            // 
+            // thresholdTrackBar
+            // 
+            this.thresholdTrackBar.Location = new System.Drawing.Point(283, 68);
+            this.thresholdTrackBar.Maximum = 5000;
+            this.thresholdTrackBar.Minimum = 2000;
+            this.thresholdTrackBar.Name = "thresholdTrackBar";
+            this.thresholdTrackBar.Size = new System.Drawing.Size(434, 45);
+            this.thresholdTrackBar.TabIndex = 6;
+            this.thresholdTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.thresholdTrackBar.Value = 2000;
+            this.thresholdTrackBar.Scroll += new System.EventHandler(this.thresholdTrackBar_Scroll);
+            // 
             // AttendanceScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,6 +390,9 @@
             this.logoTextPanel.ResumeLayout(false);
             this.logoTextPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingLogo)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -370,5 +427,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox thresholdTextBox;
+        private System.Windows.Forms.Label thresholdLabel;
+        private System.Windows.Forms.TrackBar thresholdTrackBar;
     }
 }

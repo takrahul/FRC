@@ -21,7 +21,7 @@ namespace UniFCR_Database
             get
             {
                 //return $"{LastName} {GivenNames}";
-                return $"{LastName} {GivenNames} {MatNo} {Image}";
+                return $"{LastName}, {GivenNames}, {MatNo}";
             }
 
         }

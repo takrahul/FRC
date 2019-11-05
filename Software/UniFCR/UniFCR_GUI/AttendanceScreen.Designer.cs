@@ -43,27 +43,27 @@
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
             this.camPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.thresholdTextBox = new System.Windows.Forms.TextBox();
+            this.thresholdLabel = new System.Windows.Forms.Label();
+            this.thresholdTrackBar = new System.Windows.Forms.TrackBar();
             this.camView = new Emgu.CV.UI.ImageBox();
             this.loadingPanel = new System.Windows.Forms.Panel();
             this.logoTextPanel = new System.Windows.Forms.Panel();
             this.loadingLogo = new System.Windows.Forms.PictureBox();
             this.loadingLabel = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.thresholdTextBox = new System.Windows.Forms.TextBox();
-            this.thresholdLabel = new System.Windows.Forms.Label();
-            this.thresholdTrackBar = new System.Windows.Forms.TrackBar();
             this.mainPanel.SuspendLayout();
             this.sidePanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.camPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.camView)).BeginInit();
             this.loadingPanel.SuspendLayout();
             this.logoTextPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingLogo)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -126,9 +126,9 @@
             // attendanceLabel
             // 
             this.attendanceLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attendanceLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F);
+            this.attendanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
             this.attendanceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.attendanceLabel.Location = new System.Drawing.Point(3, 495);
+            this.attendanceLabel.Location = new System.Drawing.Point(3, 474);
             this.attendanceLabel.Margin = new System.Windows.Forms.Padding(0);
             this.attendanceLabel.Name = "attendanceLabel";
             this.attendanceLabel.Size = new System.Drawing.Size(192, 70);
@@ -140,11 +140,11 @@
             // 
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(3, 150);
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(5, 150);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(191, 345);
+            this.titleLabel.Size = new System.Drawing.Size(188, 324);
             this.titleLabel.TabIndex = 5;
             this.titleLabel.Text = "UniFCR";
             // 
@@ -154,12 +154,12 @@
             this.attendancePercentageCircle.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
             this.attendancePercentageCircle.AnimationSpeed = 500;
             this.attendancePercentageCircle.BackColor = System.Drawing.Color.Transparent;
-            this.attendancePercentageCircle.Font = new System.Drawing.Font("Century Gothic", 32F);
+            this.attendancePercentageCircle.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F);
             this.attendancePercentageCircle.ForeColor = System.Drawing.Color.DarkGray;
             this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
             this.attendancePercentageCircle.InnerMargin = 2;
             this.attendancePercentageCircle.InnerWidth = -1;
-            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 578);
+            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 562);
             this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
             this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
             this.attendancePercentageCircle.Name = "attendancePercentageCircle";
@@ -168,7 +168,7 @@
             this.attendancePercentageCircle.OuterWidth = 26;
             this.attendancePercentageCircle.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
             this.attendancePercentageCircle.ProgressWidth = 25;
-            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.attendancePercentageCircle.Size = new System.Drawing.Size(192, 192);
             this.attendancePercentageCircle.StartAngle = 270;
             this.attendancePercentageCircle.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
@@ -190,15 +190,15 @@
             this.columnHeader3,
             this.columnHeader4});
             this.studentListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.studentListView.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.studentListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.studentListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
             this.studentListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.studentListView.HideSelection = false;
-            this.studentListView.Location = new System.Drawing.Point(0, 783);
+            this.studentListView.Location = new System.Drawing.Point(0, 772);
             this.studentListView.Margin = new System.Windows.Forms.Padding(0);
             this.studentListView.MultiSelect = false;
             this.studentListView.Name = "studentListView";
-            this.studentListView.Size = new System.Drawing.Size(198, 247);
+            this.studentListView.Size = new System.Drawing.Size(198, 258);
             this.studentListView.TabIndex = 7;
             this.studentListView.TabStop = false;
             this.studentListView.UseCompatibleStateImageBehavior = false;
@@ -236,7 +236,7 @@
             this.backButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backButton.FlatAppearance.BorderSize = 0;
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Century Gothic", 21.75F);
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
             this.backButton.ForeColor = System.Drawing.Color.DarkGray;
             this.backButton.Location = new System.Drawing.Point(0, 0);
             this.backButton.Margin = new System.Windows.Forms.Padding(0);
@@ -258,6 +258,53 @@
             this.camPanel.Size = new System.Drawing.Size(1000, 1100);
             this.camPanel.TabIndex = 0;
             this.camPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.camPanel_Paint);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.thresholdTextBox);
+            this.panel1.Controls.Add(this.thresholdLabel);
+            this.panel1.Controls.Add(this.thresholdTrackBar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 897);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1000, 203);
+            this.panel1.TabIndex = 6;
+            // 
+            // thresholdTextBox
+            // 
+            this.thresholdTextBox.BackColor = System.Drawing.Color.Black;
+            this.thresholdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.thresholdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.thresholdTextBox.ForeColor = System.Drawing.Color.DarkGray;
+            this.thresholdTextBox.Location = new System.Drawing.Point(524, 101);
+            this.thresholdTextBox.Name = "thresholdTextBox";
+            this.thresholdTextBox.Size = new System.Drawing.Size(100, 31);
+            this.thresholdTextBox.TabIndex = 8;
+            this.thresholdTextBox.Text = "2000";
+            this.thresholdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.thresholdTextBox_KeyPress);
+            // 
+            // thresholdLabel
+            // 
+            this.thresholdLabel.AutoSize = true;
+            this.thresholdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.thresholdLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.thresholdLabel.Location = new System.Drawing.Point(374, 101);
+            this.thresholdLabel.Name = "thresholdLabel";
+            this.thresholdLabel.Size = new System.Drawing.Size(143, 31);
+            this.thresholdLabel.TabIndex = 7;
+            this.thresholdLabel.Text = "Threshold:";
+            // 
+            // thresholdTrackBar
+            // 
+            this.thresholdTrackBar.Location = new System.Drawing.Point(283, 68);
+            this.thresholdTrackBar.Maximum = 5000;
+            this.thresholdTrackBar.Minimum = 2000;
+            this.thresholdTrackBar.Name = "thresholdTrackBar";
+            this.thresholdTrackBar.Size = new System.Drawing.Size(434, 45);
+            this.thresholdTrackBar.TabIndex = 6;
+            this.thresholdTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.thresholdTrackBar.Value = 2000;
+            this.thresholdTrackBar.Scroll += new System.EventHandler(this.thresholdTrackBar_Scroll);
             // 
             // camView
             // 
@@ -310,61 +357,14 @@
             // 
             this.loadingLabel.AutoSize = true;
             this.loadingLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.loadingLabel.Font = new System.Drawing.Font("Century Gothic", 69F);
+            this.loadingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 69F);
             this.loadingLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.loadingLabel.Location = new System.Drawing.Point(0, 250);
             this.loadingLabel.MaximumSize = new System.Drawing.Size(370, 100);
             this.loadingLabel.Name = "loadingLabel";
-            this.loadingLabel.Size = new System.Drawing.Size(358, 100);
+            this.loadingLabel.Size = new System.Drawing.Size(370, 100);
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.thresholdTextBox);
-            this.panel1.Controls.Add(this.thresholdLabel);
-            this.panel1.Controls.Add(this.thresholdTrackBar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 897);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1000, 203);
-            this.panel1.TabIndex = 6;
-            // 
-            // thresholdTextBox
-            // 
-            this.thresholdTextBox.BackColor = System.Drawing.Color.Black;
-            this.thresholdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.thresholdTextBox.Font = new System.Drawing.Font("Century Gothic", 20F);
-            this.thresholdTextBox.ForeColor = System.Drawing.Color.DarkGray;
-            this.thresholdTextBox.Location = new System.Drawing.Point(524, 101);
-            this.thresholdTextBox.Name = "thresholdTextBox";
-            this.thresholdTextBox.Size = new System.Drawing.Size(100, 33);
-            this.thresholdTextBox.TabIndex = 8;
-            this.thresholdTextBox.Text = "2000";
-            this.thresholdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.thresholdTextBox_KeyPress);
-            // 
-            // thresholdLabel
-            // 
-            this.thresholdLabel.AutoSize = true;
-            this.thresholdLabel.Font = new System.Drawing.Font("Century Gothic", 20F);
-            this.thresholdLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.thresholdLabel.Location = new System.Drawing.Point(374, 101);
-            this.thresholdLabel.Name = "thresholdLabel";
-            this.thresholdLabel.Size = new System.Drawing.Size(144, 33);
-            this.thresholdLabel.TabIndex = 7;
-            this.thresholdLabel.Text = "Threshold:";
-            // 
-            // thresholdTrackBar
-            // 
-            this.thresholdTrackBar.Location = new System.Drawing.Point(283, 68);
-            this.thresholdTrackBar.Maximum = 5000;
-            this.thresholdTrackBar.Minimum = 2000;
-            this.thresholdTrackBar.Name = "thresholdTrackBar";
-            this.thresholdTrackBar.Size = new System.Drawing.Size(434, 45);
-            this.thresholdTrackBar.TabIndex = 6;
-            this.thresholdTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.thresholdTrackBar.Value = 2000;
-            this.thresholdTrackBar.Scroll += new System.EventHandler(this.thresholdTrackBar_Scroll);
             // 
             // AttendanceScreen
             // 
@@ -385,14 +385,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
             this.buttonPanel.ResumeLayout(false);
             this.camPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.camView)).EndInit();
             this.loadingPanel.ResumeLayout(false);
             this.logoTextPanel.ResumeLayout(false);
             this.logoTextPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingLogo)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -94,8 +94,8 @@
             // menuPanel
             // 
             this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.menuPanel.Controls.Add(this.optionsPanel);
             this.menuPanel.Controls.Add(this.buttonPanel);
+            this.menuPanel.Controls.Add(this.optionsPanel);
             this.menuPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuPanel.ForeColor = System.Drawing.Color.DarkGray;
             this.menuPanel.Location = new System.Drawing.Point(0, 155);

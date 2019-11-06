@@ -138,7 +138,7 @@ class Classifier_Train : IDisposable
             Globals.numIndex = Globals.studentNumbers[ER.Label];
             Eigen_Distance = (float)ER.Distance;
             if (Eigen_Thresh > -1) Eigen_threshold = Eigen_Thresh;
-            this.Save_Eigen_Recogniser("../../../UniFCR_Controller/eigen.xml");
+            //this.Save_Eigen_Recogniser("../../../UniFCR_Controller/eigen.xml");
 
 
             //Only use the post threshold rule if we are using an Eigen Recognizer 

@@ -54,23 +54,33 @@ namespace UniFCR_GUI {
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            /*for (int i = 0; i < Globals.recognizedStudentNumbers.Count(); i++) {
-                Console.WriteLine(Globals.recognizedStudentNumbers.ElementAt(i));
-            }*/
-            List<StudentModel> students = new List<StudentModel>();
-            students = SqliteDataAccess.LoadStudents();
-            var csv = new StringBuilder();
-            csv.Append("Last Name, First Name, Marticulation Number \n");
-            for (int i = 0; i < students.Count(); i++) {
-                if (Globals.recognizedStudentNumbers.Contains(students.ElementAt(i).MatNo)) {
-                    csv.Append(students.ElementAt(i).StudentData + "\n");
-                }
-            }
-            if (!System.IO.Directory.Exists("../../../Lists/")) {
-                System.IO.Directory.CreateDirectory("../../../Lists/");
-            }
 
-            File.WriteAllText("../../../Lists/attendance_" + DateTime.Today.ToString("dd_MM") + ".csv", csv.ToString());
+            DialogResult dialogResult = MessageBox.Show("Do you want to save a list of all attended students?", "Save", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                List<StudentModel> students = new List<StudentModel>();
+                students = SqliteDataAccess.LoadStudents();
+                var csv = new StringBuilder();
+                csv.Append("Last Name, First Name, Marticulation Number, Attended? \n");
+                for (int i = 0; i < students.Count(); i++)
+                {
+                    if (Globals.recognizedStudentNumbers.Contains(students.ElementAt(i).MatNo))
+                    {
+                        csv.Append(students.ElementAt(i).StudentData + ", Yes" + "\n");
+                    }
+                    else
+                    {
+                        csv.Append(students.ElementAt(i).StudentData + ", No" + "\n");
+                    }
+                }
+                if (!System.IO.Directory.Exists("../../../Lists/"))
+                {
+                    System.IO.Directory.CreateDirectory("../../../Lists/");
+                }
+
+                File.WriteAllText("../../../Lists/attendance_" + DateTime.Today.ToString("dd_MM") + ".csv", csv.ToString());
+            }
+            
             this.Close();
         }
 

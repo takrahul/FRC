@@ -31,6 +31,7 @@ namespace UniFCR_Controller
         public static int selectedCameraIndex = 0;
 
         public static Boolean fileSaved = false;
+        
 
         public static int threshold = 2000;
     }

@@ -104,6 +104,11 @@ class Classifier_Train : IDisposable
     public string Recognise(Image<Gray, byte> Input_image, int Eigen_Thresh = -1)
     {
         Globals.listOfInts = new List<int>();
+        if (File.Exists("../../../UniFCR_Controller/eigen.xml"))
+        {
+            Globals.fileSaved = true;
+
+        }
         for (int i = 0; i < Globals.numLabels; i++)
         {
             Globals.listOfInts.Add(i);
@@ -133,16 +138,20 @@ class Classifier_Train : IDisposable
             Globals.numIndex = Globals.studentNumbers[ER.Label];
             Eigen_Distance = (float)ER.Distance;
             if (Eigen_Thresh > -1) Eigen_threshold = Eigen_Thresh;
+            this.Save_Eigen_Recogniser("../../../UniFCR_Controller/eigen.xml");
+
 
             //Only use the post threshold rule if we are using an Eigen Recognizer 
             //since Fisher and LBHP threshold set during the constructor will work correctly 
             switch (Recognizer_Type)
             {
+
                 case ("EMGU.CV.EigenFaceRecognizer"):
                     if (Eigen_Distance > Eigen_threshold) return Eigen_label;
                     else return "Unknown";
                 case ("EMGU.CV.LBPHFaceRecognizer"):
                 case ("EMGU.CV.FisherFaceRecognizer"):
+
                 default:
                     return Eigen_label; //the threshold set in training controls unknowns
             }

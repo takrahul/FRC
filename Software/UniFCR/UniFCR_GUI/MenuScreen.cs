@@ -156,11 +156,34 @@ namespace UniFCR_GUI {
             thresholdTrackBar.Value = Int32.Parse(thresholdTextBox.Text);
         }
 
+        private void optionsDeleteBox_Enter(object sender, EventArgs e)
+        {
+            optionsDeleteBox.Text = "";
+        }
+
+        private void optionsDeleteButton_Click(object sender, EventArgs e)
+        {
+            if (optionsDeleteBox.Text != "Enter Mat. No." && optionsDeleteBox.Text != "")
+            {
+                try
+                {
+                    int enteredNumber = Int32.Parse(optionsDeleteBox.Text);
+                    optionsDeleteBox.Text = "Enter Mat. No.";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Enter a correct Mat. Number!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Console.WriteLine(ex.StackTrace);
+                }
+            }
+        }
+
         //Hide options menu and show main menu again
         private void optionsBackButton_Click(object sender, EventArgs e)
         {
             Globals.selectedCameraIndex = cameraListBox.SelectedIndex;
             Globals.threshold = thresholdTrackBar.Value;
+            optionsDeleteBox.Text = "Enter Mat. No.";
 
             optionsPanel.Visible = false;
             optionsPanel.SendToBack();
@@ -335,6 +358,8 @@ namespace UniFCR_GUI {
             trainLoadingPanel.SendToBack();
             trainLoadingPanel.Visible = false;
         }
+
         #endregion
+
     }
 }

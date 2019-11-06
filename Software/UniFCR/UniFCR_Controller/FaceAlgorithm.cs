@@ -139,7 +139,7 @@ namespace UniFCR_Controller {
 
                     //name = recognizer.Recognize(result);
                     Classifier_Train Eigen_Recog = new Classifier_Train();
-                    Eigen_Recog.Set_Eigen_Threshold = Globals.threshold;
+                    Eigen_Recog.Set_Eigen_Threshold = 2000;
                     name = Eigen_Recog.Recognise(result);
                     //add mat no. to map if it doesn't already exist
                     if (!Globals.map.ContainsKey(Globals.numIndex) && !name.Equals("Unknown"))

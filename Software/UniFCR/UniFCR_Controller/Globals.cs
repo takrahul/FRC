@@ -32,8 +32,6 @@ namespace UniFCR_Controller
 
         public static Boolean fileSaved = false;
         
-
-        public static int threshold = 2000;
         public static Dictionary<int, int> map = new Dictionary<int, int>();
         public static int recognizedThreshold = 30;
     }

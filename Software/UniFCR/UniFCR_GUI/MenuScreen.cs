@@ -182,7 +182,7 @@ namespace UniFCR_GUI {
         private void optionsBackButton_Click(object sender, EventArgs e)
         {
             Globals.selectedCameraIndex = cameraListBox.SelectedIndex;
-            Globals.threshold = thresholdTrackBar.Value;
+            Globals.recognizedThreshold = thresholdTrackBar.Value;
             optionsDeleteBox.Text = "Enter Mat. No.";
 
             optionsPanel.Visible = false;

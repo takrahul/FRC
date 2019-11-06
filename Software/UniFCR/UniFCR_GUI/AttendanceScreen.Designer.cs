@@ -44,9 +44,6 @@
             this.backButton = new System.Windows.Forms.Button();
             this.camPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.thresholdTextBox = new System.Windows.Forms.TextBox();
-            this.thresholdLabel = new System.Windows.Forms.Label();
-            this.thresholdTrackBar = new System.Windows.Forms.TrackBar();
             this.camView = new Emgu.CV.UI.ImageBox();
             this.loadingPanel = new System.Windows.Forms.Panel();
             this.logoTextPanel = new System.Windows.Forms.Panel();
@@ -58,8 +55,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.camPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.camView)).BeginInit();
             this.loadingPanel.SuspendLayout();
             this.logoTextPanel.SuspendLayout();
@@ -265,50 +260,11 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.thresholdTextBox);
-            this.panel1.Controls.Add(this.thresholdLabel);
-            this.panel1.Controls.Add(this.thresholdTrackBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 897);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1000, 203);
             this.panel1.TabIndex = 6;
-            // 
-            // thresholdTextBox
-            // 
-            this.thresholdTextBox.BackColor = System.Drawing.Color.Black;
-            this.thresholdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.thresholdTextBox.Font = new System.Drawing.Font("Century Gothic", 20F);
-            this.thresholdTextBox.ForeColor = System.Drawing.Color.DarkGray;
-            this.thresholdTextBox.Location = new System.Drawing.Point(524, 101);
-            this.thresholdTextBox.Name = "thresholdTextBox";
-            this.thresholdTextBox.Size = new System.Drawing.Size(100, 33);
-            this.thresholdTextBox.TabIndex = 8;
-            this.thresholdTextBox.Text = "2000";
-            this.thresholdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.thresholdTextBox_KeyPress);
-            // 
-            // thresholdLabel
-            // 
-            this.thresholdLabel.AutoSize = true;
-            this.thresholdLabel.Font = new System.Drawing.Font("Century Gothic", 20F);
-            this.thresholdLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.thresholdLabel.Location = new System.Drawing.Point(374, 101);
-            this.thresholdLabel.Name = "thresholdLabel";
-            this.thresholdLabel.Size = new System.Drawing.Size(144, 33);
-            this.thresholdLabel.TabIndex = 7;
-            this.thresholdLabel.Text = "Threshold:";
-            // 
-            // thresholdTrackBar
-            // 
-            this.thresholdTrackBar.Location = new System.Drawing.Point(283, 68);
-            this.thresholdTrackBar.Maximum = 5000;
-            this.thresholdTrackBar.Minimum = 2000;
-            this.thresholdTrackBar.Name = "thresholdTrackBar";
-            this.thresholdTrackBar.Size = new System.Drawing.Size(434, 45);
-            this.thresholdTrackBar.TabIndex = 6;
-            this.thresholdTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.thresholdTrackBar.Value = 2000;
-            this.thresholdTrackBar.Scroll += new System.EventHandler(this.thresholdTrackBar_Scroll);
             // 
             // camView
             // 
@@ -389,9 +345,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
             this.buttonPanel.ResumeLayout(false);
             this.camPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.camView)).EndInit();
             this.loadingPanel.ResumeLayout(false);
             this.logoTextPanel.ResumeLayout(false);
@@ -426,9 +379,6 @@
         private System.Windows.Forms.Panel logoTextPanel;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox thresholdTextBox;
-        private System.Windows.Forms.Label thresholdLabel;
-        private System.Windows.Forms.TrackBar thresholdTrackBar;
         private System.Windows.Forms.ListView studentListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;

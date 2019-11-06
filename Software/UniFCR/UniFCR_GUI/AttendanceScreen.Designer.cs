@@ -31,9 +31,15 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.sidePanel = new System.Windows.Forms.Panel();
             this.infoPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.attendancePercentageCircle = new CircularProgressBar.CircularProgressBar();
+            this.studentListView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
-            this.attendanceLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
+            this.attendanceLabel = new System.Windows.Forms.Label();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
             this.camPanel = new System.Windows.Forms.Panel();
@@ -46,12 +52,6 @@
             this.logoTextPanel = new System.Windows.Forms.Panel();
             this.loadingLogo = new System.Windows.Forms.PictureBox();
             this.loadingLabel = new System.Windows.Forms.Label();
-            this.studentListView = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.attendancePercentageCircle = new CircularProgressBar.CircularProgressBar();
             this.mainPanel.SuspendLayout();
             this.sidePanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
@@ -109,6 +109,82 @@
             this.infoPanel.Size = new System.Drawing.Size(198, 1030);
             this.infoPanel.TabIndex = 0;
             // 
+            // attendancePercentageCircle
+            // 
+            this.attendancePercentageCircle.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attendancePercentageCircle.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
+            this.attendancePercentageCircle.AnimationSpeed = 500;
+            this.attendancePercentageCircle.BackColor = System.Drawing.Color.Transparent;
+            this.attendancePercentageCircle.Font = new System.Drawing.Font("Century Gothic", 32F);
+            this.attendancePercentageCircle.ForeColor = System.Drawing.Color.DarkGray;
+            this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
+            this.attendancePercentageCircle.InnerMargin = 2;
+            this.attendancePercentageCircle.InnerWidth = -1;
+            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 495);
+            this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
+            this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
+            this.attendancePercentageCircle.Name = "attendancePercentageCircle";
+            this.attendancePercentageCircle.OuterColor = System.Drawing.Color.LightSteelBlue;
+            this.attendancePercentageCircle.OuterMargin = -25;
+            this.attendancePercentageCircle.OuterWidth = 26;
+            this.attendancePercentageCircle.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.attendancePercentageCircle.ProgressWidth = 25;
+            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attendancePercentageCircle.Size = new System.Drawing.Size(192, 192);
+            this.attendancePercentageCircle.StartAngle = 270;
+            this.attendancePercentageCircle.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.attendancePercentageCircle.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
+            this.attendancePercentageCircle.SubscriptText = "";
+            this.attendancePercentageCircle.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.attendancePercentageCircle.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
+            this.attendancePercentageCircle.SuperscriptText = "";
+            this.attendancePercentageCircle.TabIndex = 12;
+            this.attendancePercentageCircle.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
+            this.attendancePercentageCircle.Value = 68;
+            // 
+            // studentListView
+            // 
+            this.studentListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.studentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.studentListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.studentListView.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.studentListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
+            this.studentListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.studentListView.HideSelection = false;
+            this.studentListView.Location = new System.Drawing.Point(0, 737);
+            this.studentListView.Margin = new System.Windows.Forms.Padding(0);
+            this.studentListView.MultiSelect = false;
+            this.studentListView.Name = "studentListView";
+            this.studentListView.Size = new System.Drawing.Size(198, 293);
+            this.studentListView.TabIndex = 11;
+            this.studentListView.TabStop = false;
+            this.studentListView.UseCompatibleStateImageBehavior = false;
+            this.studentListView.View = System.Windows.Forms.View.Details;
+            this.studentListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.studentListView_ItemSelectionChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "No.";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "First Name";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Last Name";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Mat. No";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // uniFCRLogoBox
             // 
             this.uniFCRLogoBox.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -123,6 +199,18 @@
             this.uniFCRLogoBox.TabIndex = 3;
             this.uniFCRLogoBox.TabStop = false;
             // 
+            // titleLabel
+            // 
+            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(3, 150);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(191, 345);
+            this.titleLabel.TabIndex = 5;
+            this.titleLabel.Text = "UniFCR";
+            // 
             // attendanceLabel
             // 
             this.attendanceLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -135,18 +223,6 @@
             this.attendanceLabel.TabIndex = 4;
             this.attendanceLabel.Text = "Students present: ";
             this.attendanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // titleLabel
-            // 
-            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(3, 150);
-            this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(191, 345);
-            this.titleLabel.TabIndex = 5;
-            this.titleLabel.Text = "UniFCR";
             // 
             // buttonPanel
             // 
@@ -293,82 +369,6 @@
             this.loadingLabel.Size = new System.Drawing.Size(358, 100);
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
-            // 
-            // studentListView
-            // 
-            this.studentListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.studentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
-            this.studentListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.studentListView.Font = new System.Drawing.Font("Century Gothic", 20F);
-            this.studentListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.studentListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.studentListView.HideSelection = false;
-            this.studentListView.Location = new System.Drawing.Point(0, 737);
-            this.studentListView.Margin = new System.Windows.Forms.Padding(0);
-            this.studentListView.MultiSelect = false;
-            this.studentListView.Name = "studentListView";
-            this.studentListView.Size = new System.Drawing.Size(198, 293);
-            this.studentListView.TabIndex = 11;
-            this.studentListView.TabStop = false;
-            this.studentListView.UseCompatibleStateImageBehavior = false;
-            this.studentListView.View = System.Windows.Forms.View.Details;
-            this.studentListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.studentListView_ItemSelectionChanged);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "No.";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "First Name";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Last Name";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Mat. No";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // attendancePercentageCircle
-            // 
-            this.attendancePercentageCircle.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attendancePercentageCircle.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
-            this.attendancePercentageCircle.AnimationSpeed = 500;
-            this.attendancePercentageCircle.BackColor = System.Drawing.Color.Transparent;
-            this.attendancePercentageCircle.Font = new System.Drawing.Font("Century Gothic", 32F);
-            this.attendancePercentageCircle.ForeColor = System.Drawing.Color.DarkGray;
-            this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
-            this.attendancePercentageCircle.InnerMargin = 2;
-            this.attendancePercentageCircle.InnerWidth = -1;
-            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 495);
-            this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
-            this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
-            this.attendancePercentageCircle.Name = "attendancePercentageCircle";
-            this.attendancePercentageCircle.OuterColor = System.Drawing.Color.LightSteelBlue;
-            this.attendancePercentageCircle.OuterMargin = -25;
-            this.attendancePercentageCircle.OuterWidth = 26;
-            this.attendancePercentageCircle.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.attendancePercentageCircle.ProgressWidth = 25;
-            this.attendancePercentageCircle.SecondaryFont = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.attendancePercentageCircle.Size = new System.Drawing.Size(192, 192);
-            this.attendancePercentageCircle.StartAngle = 270;
-            this.attendancePercentageCircle.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.attendancePercentageCircle.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
-            this.attendancePercentageCircle.SubscriptText = "";
-            this.attendancePercentageCircle.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.attendancePercentageCircle.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
-            this.attendancePercentageCircle.SuperscriptText = "";
-            this.attendancePercentageCircle.TabIndex = 12;
-            this.attendancePercentageCircle.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
-            this.attendancePercentageCircle.Value = 68;
             // 
             // AttendanceScreen
             // 

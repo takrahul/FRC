@@ -44,12 +44,29 @@ namespace UniFCR_GUI {
             Globals.systemCameras = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
         }
 
+        //=================================================================
+        // MAIN MENU
+        //=================================================================
+        #region
         private void menuPanel_Paint(object sender, PaintEventArgs e)
         {
             //Center the buttons 
             int buttonPanelX = (this.Size.Width / 2) - (buttonPanel.Size.Width / 2);
             int buttonPanelY = (this.Size.Height / 2) - (buttonPanel.Size.Height);
             buttonPanel.Location = new Point(buttonPanelX, buttonPanelY);
+        }
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            AttendanceScreen attendanceScreen = new AttendanceScreen(this);
+
+            //The attendance screen should show on the same monitor as the menu
+            attendanceScreen.StartPosition = FormStartPosition.Manual;
+            Screen screen = Screen.FromPoint(this.Location);
+            attendanceScreen.Location = screen.Bounds.Location;
+            attendanceScreen.WindowState = FormWindowState.Maximized;
+
+            attendanceScreen.Show();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -83,20 +100,7 @@ namespace UniFCR_GUI {
             
             this.Close();
         }
-
-        private void startButton_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-            AttendanceScreen attendanceScreen = new AttendanceScreen(this);
-
-            //The attendance screen should show on the same monitor as the menu
-            attendanceScreen.StartPosition = FormStartPosition.Manual;
-            Screen screen = Screen.FromPoint(this.Location);
-            attendanceScreen.Location = screen.Bounds.Location;
-            attendanceScreen.WindowState = FormWindowState.Maximized;
-
-            attendanceScreen.Show();
-        }
+        #endregion
 
         //=================================================================
         // OPTIONS MENU
@@ -152,11 +156,34 @@ namespace UniFCR_GUI {
             thresholdTrackBar.Value = Int32.Parse(thresholdTextBox.Text);
         }
 
+        private void optionsDeleteBox_Enter(object sender, EventArgs e)
+        {
+            optionsDeleteBox.Text = "";
+        }
+
+        private void optionsDeleteButton_Click(object sender, EventArgs e)
+        {
+            if (optionsDeleteBox.Text != "Enter Mat. No." && optionsDeleteBox.Text != "")
+            {
+                try
+                {
+                    int enteredNumber = Int32.Parse(optionsDeleteBox.Text);
+                    optionsDeleteBox.Text = "Enter Mat. No.";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Enter a correct Mat. Number!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Console.WriteLine(ex.StackTrace);
+                }
+            }
+        }
+
         //Hide options menu and show main menu again
         private void optionsBackButton_Click(object sender, EventArgs e)
         {
             Globals.selectedCameraIndex = cameraListBox.SelectedIndex;
             Globals.threshold = thresholdTrackBar.Value;
+            optionsDeleteBox.Text = "Enter Mat. No.";
 
             optionsPanel.Visible = false;
             optionsPanel.SendToBack();
@@ -331,6 +358,8 @@ namespace UniFCR_GUI {
             trainLoadingPanel.SendToBack();
             trainLoadingPanel.Visible = false;
         }
+
         #endregion
+
     }
 }

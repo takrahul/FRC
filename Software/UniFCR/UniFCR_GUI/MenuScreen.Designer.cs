@@ -32,6 +32,8 @@
             this.menuPanel = new System.Windows.Forms.Panel();
             this.optionsPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.optionsDeleteButton = new System.Windows.Forms.Button();
+            this.optionsDeleteBox = new System.Windows.Forms.TextBox();
             this.thresholdTextBox = new System.Windows.Forms.TextBox();
             this.thresholdLabel = new System.Windows.Forms.Label();
             this.thresholdTrackBar = new System.Windows.Forms.TrackBar();
@@ -117,6 +119,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.optionsDeleteButton);
+            this.panel1.Controls.Add(this.optionsDeleteBox);
             this.panel1.Controls.Add(this.thresholdTextBox);
             this.panel1.Controls.Add(this.thresholdLabel);
             this.panel1.Controls.Add(this.thresholdTrackBar);
@@ -124,8 +128,36 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 169);
+            this.panel1.Size = new System.Drawing.Size(800, 259);
             this.panel1.TabIndex = 3;
+            // 
+            // optionsDeleteButton
+            // 
+            this.optionsDeleteButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.optionsDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.optionsDeleteButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optionsDeleteButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.optionsDeleteButton.Location = new System.Drawing.Point(455, 169);
+            this.optionsDeleteButton.MaximumSize = new System.Drawing.Size(170, 48);
+            this.optionsDeleteButton.MinimumSize = new System.Drawing.Size(170, 48);
+            this.optionsDeleteButton.Name = "optionsDeleteButton";
+            this.optionsDeleteButton.Size = new System.Drawing.Size(170, 48);
+            this.optionsDeleteButton.TabIndex = 7;
+            this.optionsDeleteButton.Text = "DELETE";
+            this.optionsDeleteButton.UseVisualStyleBackColor = true;
+            this.optionsDeleteButton.Click += new System.EventHandler(this.optionsDeleteButton_Click);
+            // 
+            // optionsDeleteBox
+            // 
+            this.optionsDeleteBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.optionsDeleteBox.Font = new System.Drawing.Font("Century Gothic", 25F);
+            this.optionsDeleteBox.Location = new System.Drawing.Point(191, 174);
+            this.optionsDeleteBox.Name = "optionsDeleteBox";
+            this.optionsDeleteBox.Size = new System.Drawing.Size(255, 41);
+            this.optionsDeleteBox.TabIndex = 6;
+            this.optionsDeleteBox.TabStop = false;
+            this.optionsDeleteBox.Text = "Enter Mat. No.";
+            this.optionsDeleteBox.Enter += new System.EventHandler(this.optionsDeleteBox_Enter);
             // 
             // thresholdTextBox
             // 
@@ -133,7 +165,7 @@
             this.thresholdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.thresholdTextBox.Font = new System.Drawing.Font("Century Gothic", 20F);
             this.thresholdTextBox.ForeColor = System.Drawing.Color.DarkGray;
-            this.thresholdTextBox.Location = new System.Drawing.Point(432, 130);
+            this.thresholdTextBox.Location = new System.Drawing.Point(432, 115);
             this.thresholdTextBox.Name = "thresholdTextBox";
             this.thresholdTextBox.Size = new System.Drawing.Size(100, 33);
             this.thresholdTextBox.TabIndex = 5;
@@ -145,7 +177,7 @@
             // 
             this.thresholdLabel.AutoSize = true;
             this.thresholdLabel.Font = new System.Drawing.Font("Century Gothic", 20F);
-            this.thresholdLabel.Location = new System.Drawing.Point(282, 130);
+            this.thresholdLabel.Location = new System.Drawing.Point(282, 115);
             this.thresholdLabel.Name = "thresholdLabel";
             this.thresholdLabel.Size = new System.Drawing.Size(144, 33);
             this.thresholdLabel.TabIndex = 4;
@@ -171,7 +203,7 @@
             this.cameraListBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cameraListBox.ForeColor = System.Drawing.SystemColors.MenuText;
             this.cameraListBox.FormattingEnabled = true;
-            this.cameraListBox.Location = new System.Drawing.Point(191, 28);
+            this.cameraListBox.Location = new System.Drawing.Point(191, 36);
             this.cameraListBox.MaximumSize = new System.Drawing.Size(434, 0);
             this.cameraListBox.MinimumSize = new System.Drawing.Size(434, 0);
             this.cameraListBox.Name = "cameraListBox";
@@ -182,9 +214,9 @@
             // 
             this.panel2.Controls.Add(this.optionsBackButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 166);
+            this.panel2.Location = new System.Drawing.Point(0, 262);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 179);
+            this.panel2.Size = new System.Drawing.Size(800, 83);
             this.panel2.TabIndex = 4;
             // 
             // optionsBackButton
@@ -193,7 +225,7 @@
             this.optionsBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.optionsBackButton.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optionsBackButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.optionsBackButton.Location = new System.Drawing.Point(322, 74);
+            this.optionsBackButton.Location = new System.Drawing.Point(322, 23);
             this.optionsBackButton.MaximumSize = new System.Drawing.Size(170, 48);
             this.optionsBackButton.MinimumSize = new System.Drawing.Size(170, 48);
             this.optionsBackButton.Name = "optionsBackButton";
@@ -615,6 +647,8 @@
         private System.Windows.Forms.TrackBar thresholdTrackBar;
         private System.Windows.Forms.Label thresholdLabel;
         private System.Windows.Forms.TextBox thresholdTextBox;
+        private System.Windows.Forms.Button optionsDeleteButton;
+        private System.Windows.Forms.TextBox optionsDeleteBox;
     }
 }
 

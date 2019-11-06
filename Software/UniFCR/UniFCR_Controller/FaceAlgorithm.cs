@@ -141,8 +141,19 @@ namespace UniFCR_Controller {
                     Classifier_Train Eigen_Recog = new Classifier_Train();
                     Eigen_Recog.Set_Eigen_Threshold = Globals.threshold;
                     name = Eigen_Recog.Recognise(result);
+                    //add mat no. to map if it doesn't already exist
+                    if (!Globals.map.ContainsKey(Globals.numIndex) && !name.Equals("Unknown"))
+                    {
+                        Globals.map.Add(Globals.numIndex, 0);
+                    }
+                    //increment map value if the mat no. already exists in map
+                    else if (Globals.map.ContainsKey(Globals.numIndex) && !name.Equals("Unknown")) {
+                        int currentCount = Globals.map[Globals.numIndex];
+                        Globals.map[Globals.numIndex] = currentCount + 1;  
+                    }
+                    //check if mat no. has been recognized enough times. If so then add it to recognizedStudentNumbers
 
-                    if (!Globals.recognizedStudentNumbers.Contains(Globals.numIndex) && !name.Equals("Unknown"))
+                    if (Globals.map[Globals.numIndex] == Globals.recognizedThreshold)
                     {
                         Globals.recognizedStudentNumbers.Add(Globals.numIndex);
                     }

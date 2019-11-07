@@ -78,7 +78,7 @@ namespace UniFCR_GUI {
         private void exitButton_Click(object sender, EventArgs e)
         {
             faceAlgorithm.recognizationInProgress = true;
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             attendanceCam.stop();
             camRunning = false;
             this.Close();

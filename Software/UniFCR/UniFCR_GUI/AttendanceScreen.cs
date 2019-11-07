@@ -29,16 +29,14 @@ namespace UniFCR_GUI {
         {
             InitializeComponent();
             this.menuScreen = menuScreen;
+            database.LoadStudentsList();
 
             //Get number of enrolled students
-            DatabaseController dc = new DatabaseController();
-            dc.LoadStudentsList();
-            enrolledStudents = dc.student.Count;
+            enrolledStudents = database.student.Count;
 
             //Show loading screen first
             loadingPanel.BringToFront();
 
-            database.LoadStudentsList();
 
             //studentListView.View = View.Details;
             studentListView.View = View.List;

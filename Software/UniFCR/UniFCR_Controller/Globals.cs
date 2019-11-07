@@ -30,6 +30,6 @@ namespace UniFCR_Controller
         public static bool fileSaved = false; //checks whether the eigen file has been saved or not
         
         public static Dictionary<int, int> map = new Dictionary<int, int>();//used to store number of times a specific number has been recognized
-        public static int recognizedThreshold = 30;//how many times should a face be recognized before being marked as attended
+        public static int recognizedThreshold = 3;//how many times should a face be recognized before being marked as attended
     }
 }

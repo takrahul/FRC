@@ -13,6 +13,7 @@ using UniFCR_Database;
 namespace UniFCR_GUI {
     public partial class AttendanceScreen : Form {
 
+        #region Variables
         Form menuScreen;
         static Camera attendanceCam;
         Boolean camRunning = false;
@@ -20,11 +21,12 @@ namespace UniFCR_GUI {
         int attendance; //Number of attending students
         DatabaseController database = new DatabaseController();
         FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+        #endregion
 
         //=================================================================
         // CONSTRUCTOR + SIDEPANEL + LOADING SCREEN
         //=================================================================
-        #region
+        #region Constructor Sidepanel Loading Screen
         public AttendanceScreen(Form menuScreen)
         {
             InitializeComponent();
@@ -98,10 +100,11 @@ namespace UniFCR_GUI {
             studentListView.Anchor = AnchorStyles.Top;
         }
         #endregion
+
         //=================================================================
         // CAMERA
         //=================================================================
-        #region
+        #region Camera
         //Automatically start the camera when the window is being painted
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -157,7 +160,7 @@ namespace UniFCR_GUI {
         //=================================================================
         // UPDATE GUI 
         //=================================================================
-        #region
+        #region Update GUI
         delegate void updateAttendanceCallback();
         private void updateAttendance()
         {

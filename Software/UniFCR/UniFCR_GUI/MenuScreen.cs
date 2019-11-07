@@ -15,6 +15,7 @@ using System.IO;
 namespace UniFCR_GUI {
     public partial class MenuScreen : Form {
 
+        #region Variables
         //Variables for moving the window with the mouse
         private bool mouseDown;
         private Point lastLocation;
@@ -30,6 +31,7 @@ namespace UniFCR_GUI {
         private Boolean capturingInProgress = false;
 
         private FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+        #endregion
 
         public MenuScreen()
         {
@@ -44,10 +46,16 @@ namespace UniFCR_GUI {
             Globals.systemCameras = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
         }
 
-        //=================================================================
+        //====================================================
         // MAIN MENU
-        //=================================================================
-        #region
+        //====================================================
+        #region Main Menu
+
+        /// <summary>
+        /// This Method centers the panel containing the buttons in the main menu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuPanel_Paint(object sender, PaintEventArgs e)
         {
             //Center the buttons 
@@ -55,6 +63,13 @@ namespace UniFCR_GUI {
             int buttonPanelY = (this.Size.Height / 2) - (buttonPanel.Size.Height);
             buttonPanel.Location = new Point(buttonPanelX, buttonPanelY);
         }
+
+        /// <summary>
+        /// This Method is called when the start button is clicked. 
+        /// It hides the menu screen, initializes the attendance screen and then maximizes it.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startButton_Click(object sender, EventArgs e)
         {
             this.Visible = false;
@@ -69,9 +84,15 @@ namespace UniFCR_GUI {
             attendanceScreen.Show();
         }
 
+        /// <summary>
+        /// This Method is called when the exit button is clicked.
+        /// After showing a yes/no message box it saves a list of all students
+        /// in the database and marks if they attended.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitButton_Click(object sender, EventArgs e)
         {
-
             DialogResult dialogResult = MessageBox.Show("Do you want to save a list of all attended students?", "Save", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -100,13 +121,20 @@ namespace UniFCR_GUI {
             
             this.Close();
         }
-        #endregion
+        #endregion 
 
         //=================================================================
         // OPTIONS MENU
         //=================================================================
-        #region
-        //Show the options menu
+        #region Options Menu
+        
+        /// <summary>
+        /// When the Options Button is clicked this method hides the 
+        /// Button Panel and shows the Options Panel and populates
+        /// the Camera Dropdown List.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void optionsButton_Click(object sender, EventArgs e)
         {
             buttonPanel.Visible = false;
@@ -196,7 +224,7 @@ namespace UniFCR_GUI {
         //=================================================================
         // EVENT HANDLERS FOR MOVING AROUND THE WINDOW
         //=================================================================
-        #region
+        #region Event Handlers for moving around the window
         private void MenuScreen_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
@@ -223,7 +251,7 @@ namespace UniFCR_GUI {
         //=================================================================
         // TRAINING MODE
         //=================================================================
-        #region
+        #region Training Mode
         //Show training menu
         private void trainButton_Click(object sender, EventArgs e)
         {

@@ -31,14 +31,14 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.menuPanel = new System.Windows.Forms.Panel();
             this.optionsPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.optionsContentPanel = new System.Windows.Forms.Panel();
             this.optionsDeleteButton = new System.Windows.Forms.Button();
             this.optionsDeleteBox = new System.Windows.Forms.TextBox();
             this.thresholdTextBox = new System.Windows.Forms.TextBox();
             this.thresholdLabel = new System.Windows.Forms.Label();
             this.thresholdTrackBar = new System.Windows.Forms.TrackBar();
             this.cameraListBox = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.optionsBackPanel = new System.Windows.Forms.Panel();
             this.optionsBackButton = new System.Windows.Forms.Button();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.startButton = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@
             this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
             this.titleLabel = new System.Windows.Forms.Label();
             this.trainPanel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.trainButtonPanel = new System.Windows.Forms.TableLayoutPanel();
             this.trainCaptureButton = new System.Windows.Forms.Button();
             this.numberLabel = new System.Windows.Forms.Label();
             this.lastNameLabel = new System.Windows.Forms.Label();
@@ -68,14 +68,14 @@
             this.mainPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.optionsPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.optionsContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.optionsBackPanel.SuspendLayout();
             this.buttonPanel.SuspendLayout();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).BeginInit();
             this.trainPanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.trainButtonPanel.SuspendLayout();
             this.trainCamPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trainCamView)).BeginInit();
             this.trainLoadingPanel.SuspendLayout();
@@ -109,27 +109,27 @@
             // optionsPanel
             // 
             this.optionsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.optionsPanel.Controls.Add(this.panel1);
-            this.optionsPanel.Controls.Add(this.panel2);
+            this.optionsPanel.Controls.Add(this.optionsContentPanel);
+            this.optionsPanel.Controls.Add(this.optionsBackPanel);
             this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.optionsPanel.Location = new System.Drawing.Point(0, 0);
             this.optionsPanel.Name = "optionsPanel";
             this.optionsPanel.Size = new System.Drawing.Size(800, 345);
             this.optionsPanel.TabIndex = 5;
             // 
-            // panel1
+            // optionsContentPanel
             // 
-            this.panel1.Controls.Add(this.optionsDeleteButton);
-            this.panel1.Controls.Add(this.optionsDeleteBox);
-            this.panel1.Controls.Add(this.thresholdTextBox);
-            this.panel1.Controls.Add(this.thresholdLabel);
-            this.panel1.Controls.Add(this.thresholdTrackBar);
-            this.panel1.Controls.Add(this.cameraListBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 259);
-            this.panel1.TabIndex = 3;
+            this.optionsContentPanel.Controls.Add(this.optionsDeleteButton);
+            this.optionsContentPanel.Controls.Add(this.optionsDeleteBox);
+            this.optionsContentPanel.Controls.Add(this.thresholdTextBox);
+            this.optionsContentPanel.Controls.Add(this.thresholdLabel);
+            this.optionsContentPanel.Controls.Add(this.thresholdTrackBar);
+            this.optionsContentPanel.Controls.Add(this.cameraListBox);
+            this.optionsContentPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.optionsContentPanel.Location = new System.Drawing.Point(0, 0);
+            this.optionsContentPanel.Name = "optionsContentPanel";
+            this.optionsContentPanel.Size = new System.Drawing.Size(800, 259);
+            this.optionsContentPanel.TabIndex = 3;
             // 
             // optionsDeleteButton
             // 
@@ -210,14 +210,14 @@
             this.cameraListBox.Size = new System.Drawing.Size(434, 38);
             this.cameraListBox.TabIndex = 2;
             // 
-            // panel2
+            // optionsBackPanel
             // 
-            this.panel2.Controls.Add(this.optionsBackButton);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 262);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 83);
-            this.panel2.TabIndex = 4;
+            this.optionsBackPanel.Controls.Add(this.optionsBackButton);
+            this.optionsBackPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.optionsBackPanel.Location = new System.Drawing.Point(0, 262);
+            this.optionsBackPanel.Name = "optionsBackPanel";
+            this.optionsBackPanel.Size = new System.Drawing.Size(800, 83);
+            this.optionsBackPanel.TabIndex = 4;
             // 
             // optionsBackButton
             // 
@@ -341,7 +341,7 @@
             // trainPanel
             // 
             this.trainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.trainPanel.Controls.Add(this.tableLayoutPanel1);
+            this.trainPanel.Controls.Add(this.trainButtonPanel);
             this.trainPanel.Controls.Add(this.trainLoadingPanel);
             this.trainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trainPanel.Location = new System.Drawing.Point(0, 0);
@@ -350,35 +350,35 @@
             this.trainPanel.Size = new System.Drawing.Size(800, 500);
             this.trainPanel.TabIndex = 6;
             // 
-            // tableLayoutPanel1
+            // trainButtonPanel
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel1.Controls.Add(this.trainCaptureButton, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.numberLabel, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lastNameLabel, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.numberBox, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lastNameBox, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.trainCamPanel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.trainSaveButton, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.firstNameBox, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.firstNameLabel, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.trainBackButton, 2, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 500);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.trainButtonPanel.ColumnCount = 3;
+            this.trainButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.trainButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.trainButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.trainButtonPanel.Controls.Add(this.trainCaptureButton, 2, 1);
+            this.trainButtonPanel.Controls.Add(this.numberLabel, 2, 3);
+            this.trainButtonPanel.Controls.Add(this.lastNameLabel, 1, 3);
+            this.trainButtonPanel.Controls.Add(this.numberBox, 2, 4);
+            this.trainButtonPanel.Controls.Add(this.lastNameBox, 1, 4);
+            this.trainButtonPanel.Controls.Add(this.trainCamPanel, 0, 0);
+            this.trainButtonPanel.Controls.Add(this.trainSaveButton, 2, 0);
+            this.trainButtonPanel.Controls.Add(this.firstNameBox, 0, 4);
+            this.trainButtonPanel.Controls.Add(this.firstNameLabel, 0, 3);
+            this.trainButtonPanel.Controls.Add(this.trainBackButton, 2, 2);
+            this.trainButtonPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trainButtonPanel.Location = new System.Drawing.Point(0, 0);
+            this.trainButtonPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.trainButtonPanel.Name = "trainButtonPanel";
+            this.trainButtonPanel.RowCount = 5;
+            this.trainButtonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.trainButtonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.trainButtonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.trainButtonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.trainButtonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.trainButtonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.trainButtonPanel.Size = new System.Drawing.Size(800, 500);
+            this.trainButtonPanel.TabIndex = 0;
             // 
             // trainCaptureButton
             // 
@@ -445,13 +445,13 @@
             // trainCamPanel
             // 
             this.trainCamPanel.BackColor = System.Drawing.Color.Black;
-            this.tableLayoutPanel1.SetColumnSpan(this.trainCamPanel, 2);
+            this.trainButtonPanel.SetColumnSpan(this.trainCamPanel, 2);
             this.trainCamPanel.Controls.Add(this.trainCamView);
             this.trainCamPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trainCamPanel.Location = new System.Drawing.Point(0, 0);
             this.trainCamPanel.Margin = new System.Windows.Forms.Padding(0);
             this.trainCamPanel.Name = "trainCamPanel";
-            this.tableLayoutPanel1.SetRowSpan(this.trainCamPanel, 3);
+            this.trainButtonPanel.SetRowSpan(this.trainCamPanel, 3);
             this.trainCamPanel.Size = new System.Drawing.Size(532, 414);
             this.trainCamPanel.TabIndex = 1;
             this.trainCamPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.trainCamPanel_Paint);
@@ -580,8 +580,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 500);
-            this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.trainPanel);
+            this.Controls.Add(this.mainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuScreen";
@@ -589,17 +589,17 @@
             this.mainPanel.ResumeLayout(false);
             this.menuPanel.ResumeLayout(false);
             this.optionsPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.optionsContentPanel.ResumeLayout(false);
+            this.optionsContentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.thresholdTrackBar)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.optionsBackPanel.ResumeLayout(false);
             this.buttonPanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);
             this.titlePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uniFCRLogoBox)).EndInit();
             this.trainPanel.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.trainButtonPanel.ResumeLayout(false);
+            this.trainButtonPanel.PerformLayout();
             this.trainCamPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trainCamView)).EndInit();
             this.trainLoadingPanel.ResumeLayout(false);
@@ -625,7 +625,7 @@
         private System.Windows.Forms.Button optionsBackButton;
         private System.Windows.Forms.PictureBox uniFCRLogoBox;
         private System.Windows.Forms.Panel trainPanel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel trainButtonPanel;
         private System.Windows.Forms.Panel trainCamPanel;
         private Emgu.CV.UI.ImageBox trainCamView;
         private System.Windows.Forms.Button trainSaveButton;
@@ -642,8 +642,8 @@
         private System.Windows.Forms.Label loadingLabel;
         private System.Windows.Forms.Button trainCaptureButton;
         private System.Windows.Forms.ComboBox cameraListBox;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel optionsBackPanel;
+        private System.Windows.Forms.Panel optionsContentPanel;
         private System.Windows.Forms.TrackBar thresholdTrackBar;
         private System.Windows.Forms.Label thresholdLabel;
         private System.Windows.Forms.TextBox thresholdTextBox;

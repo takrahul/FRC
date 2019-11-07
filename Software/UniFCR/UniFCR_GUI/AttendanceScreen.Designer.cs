@@ -33,22 +33,24 @@
             this.infoPanel = new System.Windows.Forms.TableLayoutPanel();
             this.attendancePercentageCircle = new CircularProgressBar.CircularProgressBar();
             this.studentListView = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.numCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.firstNameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lastNameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.matNoCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.uniFCRLogoBox = new System.Windows.Forms.PictureBox();
             this.titleLabel = new System.Windows.Forms.Label();
             this.attendanceLabel = new System.Windows.Forms.Label();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
             this.camPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.camView = new Emgu.CV.UI.ImageBox();
             this.loadingPanel = new System.Windows.Forms.Panel();
             this.logoTextPanel = new System.Windows.Forms.Panel();
             this.loadingLogo = new System.Windows.Forms.PictureBox();
             this.loadingLabel = new System.Windows.Forms.Label();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainPanel.SuspendLayout();
             this.sidePanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
@@ -99,7 +101,7 @@
             this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.infoPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.infoPanel.Size = new System.Drawing.Size(198, 1030);
             this.infoPanel.TabIndex = 0;
@@ -115,8 +117,8 @@
             this.attendancePercentageCircle.InnerColor = System.Drawing.Color.Transparent;
             this.attendancePercentageCircle.InnerMargin = 2;
             this.attendancePercentageCircle.InnerWidth = -1;
-            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 495);
-            this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0);
+            this.attendancePercentageCircle.Location = new System.Drawing.Point(3, 595);
+            this.attendancePercentageCircle.Margin = new System.Windows.Forms.Padding(0, 100, 0, 100);
             this.attendancePercentageCircle.MarqueeAnimationSpeed = 2000;
             this.attendancePercentageCircle.Name = "attendancePercentageCircle";
             this.attendancePercentageCircle.OuterColor = System.Drawing.Color.LightSteelBlue;
@@ -141,16 +143,16 @@
             // 
             this.studentListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.studentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
+            this.numCol,
+            this.firstNameCol,
+            this.lastNameCol,
+            this.matNoCol});
             this.studentListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.studentListView.Font = new System.Drawing.Font("Century Gothic", 20F);
             this.studentListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
             this.studentListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.studentListView.HideSelection = false;
-            this.studentListView.Location = new System.Drawing.Point(0, 737);
+            this.studentListView.Location = new System.Drawing.Point(0, 937);
             this.studentListView.Margin = new System.Windows.Forms.Padding(0);
             this.studentListView.MultiSelect = false;
             this.studentListView.Name = "studentListView";
@@ -161,24 +163,21 @@
             this.studentListView.View = System.Windows.Forms.View.Details;
             this.studentListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.studentListView_ItemSelectionChanged);
             // 
-            // columnHeader1
+            // numCol
             // 
-            this.columnHeader1.Text = "No.";
+            this.numCol.Text = "No.";
             // 
-            // columnHeader2
+            // firstNameCol
             // 
-            this.columnHeader2.Text = "First Name";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.firstNameCol.Text = "FirstName";
             // 
-            // columnHeader3
+            // lastNameCol
             // 
-            this.columnHeader3.Text = "Last Name";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.lastNameCol.Text = "Last Name";
             // 
-            // columnHeader4
+            // matNoCol
             // 
-            this.columnHeader4.Text = "Mat. No";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.matNoCol.Text = "Mat. No.";
             // 
             // uniFCRLogoBox
             // 
@@ -211,7 +210,7 @@
             this.attendanceLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.attendanceLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.attendanceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(49)))), ((int)(((byte)(128)))));
-            this.attendanceLabel.Location = new System.Drawing.Point(3, 687);
+            this.attendanceLabel.Location = new System.Drawing.Point(3, 887);
             this.attendanceLabel.Margin = new System.Windows.Forms.Padding(0);
             this.attendanceLabel.Name = "attendanceLabel";
             this.attendanceLabel.Size = new System.Drawing.Size(192, 50);
@@ -249,7 +248,6 @@
             // camPanel
             // 
             this.camPanel.BackColor = System.Drawing.Color.Black;
-            this.camPanel.Controls.Add(this.panel1);
             this.camPanel.Controls.Add(this.camView);
             this.camPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.camPanel.Location = new System.Drawing.Point(0, 0);
@@ -257,14 +255,6 @@
             this.camPanel.Size = new System.Drawing.Size(1000, 1100);
             this.camPanel.TabIndex = 0;
             this.camPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.camPanel_Paint);
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 897);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1000, 203);
-            this.panel1.TabIndex = 6;
             // 
             // camView
             // 
@@ -326,6 +316,21 @@
             this.loadingLabel.TabIndex = 1;
             this.loadingLabel.Text = "UniFCR";
             // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "First Name";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Last Name";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Mat. No";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // AttendanceScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,12 +383,14 @@
         private System.Windows.Forms.Label loadingLabel;
         private System.Windows.Forms.Panel logoTextPanel;
         private System.Windows.Forms.Label titleLabel;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListView studentListView;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader numCol;
+        private CircularProgressBar.CircularProgressBar attendancePercentageCircle;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private CircularProgressBar.CircularProgressBar attendancePercentageCircle;
+        private System.Windows.Forms.ColumnHeader firstNameCol;
+        private System.Windows.Forms.ColumnHeader lastNameCol;
+        private System.Windows.Forms.ColumnHeader matNoCol;
     }
 }

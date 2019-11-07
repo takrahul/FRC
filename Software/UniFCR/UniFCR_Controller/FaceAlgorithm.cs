@@ -148,7 +148,7 @@ namespace UniFCR_Controller {
 
                     //Draw the label for each face detected and recognized
                     //Only draw if captureInProgress is set. This way this won't be called in parallel.
-                    //Surronded with try-catch for an AccessViolationException error. This error could happen if the algorithm tries to draw when
+                    //Surronded with try-catch for an AccessViolationException error. This error could happen if the algorithm tries to draw 
                     //after the attendance screen has been closed and frame has been set to null.
                      try {
                         if (Globals.captureInProgress)

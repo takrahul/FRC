@@ -8,9 +8,10 @@ using System.IO;
 using UniFCR_Database;
 
 
-
-
 namespace UniFCR_Controller {
+    /// <summary>
+    /// This class should be used for face detection and recognition.
+    /// </summary>
     public class FaceAlgorithm {
         public bool recognizationInProgress = false; //to make sure the face recognition only happens one at a time
         string name; //name of student recognized

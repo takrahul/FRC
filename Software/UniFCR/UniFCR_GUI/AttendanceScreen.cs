@@ -59,6 +59,11 @@ namespace UniFCR_GUI {
             }
         }
 
+        /// <summary>
+        /// Unselects a item as soon as it's selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void studentListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             if (e.IsSelected)
@@ -67,6 +72,11 @@ namespace UniFCR_GUI {
             }
         }
 
+        /// <summary>
+        /// Waits a bit for the FaceAlgorithm to finish and then goes back to the Main Menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitButton_Click(object sender, EventArgs e)
         {
             faceAlgorithm.recognizationInProgress = true;
@@ -78,7 +88,11 @@ namespace UniFCR_GUI {
             menuScreen.Visible = true;
         }
 
-        //While the attendance screen is preparing (calculating size, loading camera) show a loading screen
+        /// <summary>
+        /// While the attendance screen is preparing (calculating size, loading camera) show a loading screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void loadingPanel_Paint(object sender, PaintEventArgs e)
         {
             //Center the logo and the text on the loading screen
@@ -105,7 +119,11 @@ namespace UniFCR_GUI {
         // CAMERA
         //=================================================================
         #region Camera
-        //Automatically start the camera when the window is being painted
+        /// <summary>
+        /// Automatically start the camera when the window is being painted
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void camPanel_Paint(object sender, PaintEventArgs e)
         {
             //Making the camView fit in the camPanel without changing the aspect ration (~16:9)

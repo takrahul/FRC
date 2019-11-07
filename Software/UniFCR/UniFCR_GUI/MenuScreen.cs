@@ -153,7 +153,13 @@ namespace UniFCR_GUI {
             cameraListBox.DataSource = systemCameraNames;
         }
 
-        //When text was entered in the box and enter is pressed handle it
+        /// <summary>
+        /// This Method is called when the <c>thresholdTextBox</c> is 
+        /// selected and a key is pressed. If the Enter key was pressed the Value
+        /// of the <c>thresholdTrackBar</c> will be updated.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void thresholdTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             //If Enter key is pressed
@@ -173,17 +179,35 @@ namespace UniFCR_GUI {
             }
         }
 
+        /// <summary>
+        /// When the TrackBar slider is moved this Method updates the value
+        /// of the <c>thresholdTrackBar</c>.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void thresholdTrackBar_Scroll(object sender, EventArgs e)
         {
             //Globals.threshold = thresholdTrackBar.Value;
             thresholdTextBox.Text = thresholdTrackBar.Value + "";
         }
 
+        /// <summary>
+        /// This Method is called when the TextBox leaves the focus.
+        /// It updates the <c>thresholdTrackBar</c>.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void thresholdTextBox_Leave(object sender, EventArgs e)
         {
             thresholdTrackBar.Value = Int32.Parse(thresholdTextBox.Text);
         }
 
+        /// <summary>
+        /// This Method is called when the <c>optionsDeleteBox</c> enters the focus.
+        /// It clears the TextBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void optionsDeleteBox_Enter(object sender, EventArgs e)
         {
             optionsDeleteBox.Text = "";
@@ -206,7 +230,14 @@ namespace UniFCR_GUI {
             }
         }
 
-        //Hide options menu and show main menu again
+        /// <summary>
+        /// This Method is called when the Back Button in the Options 
+        /// Menu is pressed. It saves the selected camera, entered threshold 
+        /// and resets the <c>optionsDeleteBox</c>. Then it hides the Options 
+        /// Panel and shows the Button Panel again.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void optionsBackButton_Click(object sender, EventArgs e)
         {
             Globals.selectedCameraIndex = cameraListBox.SelectedIndex;
@@ -252,17 +283,29 @@ namespace UniFCR_GUI {
         // TRAINING MODE
         //=================================================================
         #region Training Mode
-        //Show training menu
+
+        /// <summary>
+        /// Show the <c>trainPanel</c>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainButton_Click(object sender, EventArgs e)
         {
+            buttonPanel.Visible = false;
+            buttonPanel.SendToBack();
+
             trainPanel.BringToFront();
             trainPanel.Visible = true;
 
             trainLoadingPanel.BringToFront();
             trainLoadingPanel.Visible = true;
-        }        
+        }
 
-        //Center the logo and the text on the loading screen
+        /// <summary>
+        /// Center the logo and the text on the loading screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainLoadingPanel_Paint(object sender, PaintEventArgs e)
         {
             int textLogoX = (this.Size.Width / 2) - (logoTextPanel.Size.Width / 2);
@@ -270,7 +313,11 @@ namespace UniFCR_GUI {
             logoTextPanel.Location = new Point(textLogoX, textLogoY);
         }
 
-        //Automatically start the camera when the training window is being painted
+        /// <summary>
+        /// Automatically start the camera when the training window is being painted
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainCamPanel_Paint(object sender, PaintEventArgs e)
         {
             //Fit the trainCamView into the trainCamPanel but don't change the aspect ratio (~16:9)
@@ -310,7 +357,11 @@ namespace UniFCR_GUI {
             }
         }
 
-        //When the capturing is done: save all images and data in the database
+        /// <summary>
+        /// When the capturing is done: save all images and data in the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainSaveButton_Click(object sender, EventArgs e)
         {
             if (firstNameBox.Text.Equals(""))
@@ -348,7 +399,11 @@ namespace UniFCR_GUI {
             }
         }
 
-        //Gets data from text fields and captures multiple pictures
+        /// <summary>
+        /// Captures multiple pictures
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainCaptureButton_Click(object sender, EventArgs e)
         {           
             if (capturingInProgress == false)
@@ -375,10 +430,18 @@ namespace UniFCR_GUI {
             }
         }
 
+        /// <summary>
+        /// Stops the camera and shows the Button Panel again.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainBackButton_Click(object sender, EventArgs e)
         {
             trainingCam.stop();
             camRunning = false;
+
+            buttonPanel.BringToFront();
+            buttonPanel.Visible = true;
 
             trainPanel.SendToBack();
             trainPanel.Visible = false;

@@ -3,7 +3,6 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using Emgu.CV.UI;
-using System.Threading;
 
 namespace UniFCR_Controller {
 

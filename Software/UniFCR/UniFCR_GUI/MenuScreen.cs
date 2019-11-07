@@ -96,8 +96,7 @@ namespace UniFCR_GUI {
             DialogResult dialogResult = MessageBox.Show("Do you want to save a list of all attended students?", "Save", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                List<StudentModel> students = new List<StudentModel>();
-                students = SqliteDataAccess.LoadStudents();
+                List<StudentModel> students = database.student;
                 var csv = new StringBuilder();
                 csv.Append("Last Name, First Name, Marticulation Number, Attended? \n");
                 for (int i = 0; i < students.Count(); i++)

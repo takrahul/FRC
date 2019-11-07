@@ -1,87 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using System.Drawing;
-using Emgu.CV.UI;
 using System.IO;
 using UniFCR_Database;
 
 
-
-
 namespace UniFCR_Controller {
+    /// <summary>
+    /// This class should be used for face detection and recognition.
+    /// </summary>
     public class FaceAlgorithm {
-        //private AttendanceScreen screen;
-        public Boolean recognizationInProgress = false;
-        String name;
+        public bool recognizationInProgress = false; //to make sure the face recognition only happens one at a time
+        string name; //name of student recognized
         MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
-        CascadeClassifier face = new CascadeClassifier("haarcascade_frontalface_default.xml");
+        //make sure this xml file is in the debug folder for this to work
+        readonly CascadeClassifier face = new CascadeClassifier("haarcascade_frontalface_default.xml");
 
+        //public constructor
         public FaceAlgorithm()
         {
-            List<StudentModel> students = new List<StudentModel>();
-            students = SqliteDataAccess.LoadStudents();
+            //load studentmodel objects from database 
+            DatabaseController dc = new DatabaseController();
+            dc.LoadStudentsList();
+            List <StudentModel> students = dc.student;
 
-            // DO NOT TOUCH
-            if (Globals.created == true)
+            if (Globals.created == false)
             {
-
-                //Load of previus trainned faces and labels for each image
-                //string Labelsinfo = File.ReadAllText("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/TrainedLabels.txt");
-
                 foreach (StudentModel m in students) 
                 {
+                    //go through every image of every student
                     foreach (byte[] b in m.Image)
                     {
+                        //fill up the studentNames list
                         Globals.studentNames.Add(m.GivenNames + " " + m.LastName);
-                        ImageConverter converter = new ImageConverter();
 
+                        //convert the image from a byte array into an Image<Gray, byte> object
+                        ImageConverter converter = new ImageConverter();
                         Bitmap bmp;
                         using (var ms = new MemoryStream(b))
                         {
                             bmp = new Bitmap(ms);
                         }
+                        //after conversion store in trainingImages list
                         Image<Gray, byte> trainedFaceImage = new Image<Gray, byte>(bmp);
                         Globals.trainingImages.Add(trainedFaceImage);
-                        Globals.labels.Add(m.GivenNames + " " + m.LastName);
-
+                        //fill up studentNumbers list as well
                         Globals.studentNumbers.Add(m.MatNo);
                     }
 
-
                 }
+                //after going through all images initialize numLabels and set created as false
                 Globals.numLabels = Globals.studentNames.Count;
-                string LoadFaces;
-
-
- /*               for (int tf = 0; tf < Globals.numLabels; tf++)
-                {
-                    LoadFaces = "face" + tf + ".bmp";
-
-                    
-                    //Globals.trainingImages.Add(new Image<Gray, byte>("D:/Documents/Team Oriented Project/Repo/Software/UniFCR/UniFCR_GUI/bin/Debug/TrainedFaces/" + LoadFaces));
-                    Globals.labels.Add(Globals.studentNames.ToArray()[tf]);
-                }
-                */
-
-                Globals.created = false;
+                Globals.created = true;
             }
         }
 
-        public Image<Bgr, byte> detectFaces(Image<Bgr, Byte> frame)
+        /// <summary>
+        /// Method detects faces
+        /// </summary>
+        /// <param name="frame">Frame from the camera</param>
+        /// <returns>Frame with all faces marked with rectangles</returns>
+        public Image<Bgr, byte> detectFaces(Image<Bgr, byte> frame)
         {
             Globals.processedDetectedFaces = new List<Image<Gray, byte>>();
-
-            //make sure this xml file is in the debug folder for this to work
-            Image<Gray, byte> gray = null;
-            Image<Gray, byte> result = null;
-            gray = frame.Convert<Gray, Byte>();
-            //MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
+            Image<Gray, byte> gray;
+            Image<Gray, byte> result;
+            //store the gray version of the frame in the gray variable
+            gray = frame.Convert<Gray, byte>();
+            //get the faces detected using the detectmultiscale method
             Globals.facesDetected = face.DetectMultiScale(gray, 1.2, 10, new Size(50, 50), Size.Empty);
             for (int i = 0; i < Globals.facesDetected.Length; i++)
             {
@@ -89,26 +78,31 @@ namespace UniFCR_Controller {
                 Globals.facesDetected[i].Y += (int)(Globals.facesDetected[i].Width * 0.22);
                 Globals.facesDetected[i].Height -= (int)(Globals.facesDetected[i].Height * 0.3);
                 Globals.facesDetected[i].Width -= (int)(Globals.facesDetected[i].Width * 0.35);
-                result = frame.Copy(Globals.facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                //result stores image of detected face that has been cropped and gray-scaled.
+                result = frame.Copy(Globals.facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, INTER.CV_INTER_CUBIC);
                 result._EqualizeHist();
                 //draw the face detected in the 0th (gray) channel with red color
                 frame.Draw(Globals.facesDetected[i], new Bgr(Color.Red), 2);
+                //store the image of the processed detected face in its list
                 Globals.processedDetectedFaces.Add(result);
             }
-
+            //return the frame with rectangles drawn over the faces
             return frame;
-        }
+        } 
 
-
-        public Image<Bgr, Byte> recognizeFaces(Image<Bgr, Byte> frame)
+        /// <summary>
+        /// This method takes a frame from the camera. It returns a frame with all faces marked and labeled.
+        /// </summary>
+        /// <param name="frame">Frame from the camera</param>
+        /// <returns>Frame with all faces marked and labeled</returns>
+        public Image<Bgr, byte> recognizeFaces(Image<Bgr, byte> frame)
         {
+            //first part of method is just like the detectFaces method
             Globals.processedDetectedFaces = new List<Image<Gray, byte>>();
-            Image<Gray, byte> gray = null;
-            Image<Gray, byte> result = null;
-            gray = frame.Convert<Gray, Byte>();
-            //Globals.facesDetected = gray.DetectHaarCascade(face, 1.2, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
+            Image<Gray, byte> gray;
+            Image<Gray, byte> result;
+            gray = frame.Convert<Gray, byte>();
             Globals.facesDetected = face.DetectMultiScale(gray, 1.2, 10, new Size(50, 50), Size.Empty);
-            //foreach (MCvAvgComp f in Globals.facesDetected[0])
             for(int i = 0; i<Globals.facesDetected.Length; i++)
             {
                 Globals.facesDetected[i].X += (int)(Globals.facesDetected[i].Height * 0.15);
@@ -117,49 +111,45 @@ namespace UniFCR_Controller {
                 Globals.facesDetected[i].Width -= (int)(Globals.facesDetected[i].Width * 0.35);
 
 
-                //result = frame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
-                result = frame.Copy(Globals.facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                result = frame.Copy(Globals.facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, INTER.CV_INTER_CUBIC);
                 result._EqualizeHist();
 				Globals.processedDetectedFaces.Add(result);
                 //draw the face detected in the 0th (gray) channel with red color
-                //frame.Draw(f.rect, new Bgr(Color.Red), 2);
                 frame.Draw(Globals.facesDetected[i], new Bgr(Color.Red), 2);
-
+                //after doing the detection phase go through all trainingImages list.
                 if (Globals.trainingImages.ToArray().Length != 0)
                 {
-                    //TermCriteria for face recognition with numbers of trained images like maxIteration
-                    //MCvTermCriteria termCrit = new MCvTermCriteria(Globals.ContTrain, 0.001);
-
-                    //Eigen face recognizer
-                    //EigenObjectRecognizer recognizer = new EigenObjectRecognizer(
-                    //Globals.trainingImages.ToArray(),
-                    //Globals.labels.ToArray(),
-                    //3000,
-                    //ref termCrit);
-
-                    //name = recognizer.Recognize(result);
-                    Classifier_Train Eigen_Recog = new Classifier_Train();
-                    Eigen_Recog.Set_Eigen_Threshold = 2000;
+                    //initalize instance of classifier_train and set its eiegn threshold
+                    Classifier_Train Eigen_Recog = new Classifier_Train
+                    {
+                        Set_Eigen_Threshold = 2000
+                    };
+                    //send cropped face to classifier_train class for recognition
+                    //name belonging to recognized face is returned by classifier_train
+                    //name is "unknown" if it's not recognized
                     name = Eigen_Recog.Recognise(result);
-                    //add mat no. to map if it doesn't already exist
+                    Eigen_Recog.Dispose();
+                    //add student number to map if it doesn't already exist
+                    //key is student number and value is number of times it has been recognized
                     if (!Globals.map.ContainsKey(Globals.numIndex) && !name.Equals("Unknown"))
                     {
                         Globals.map.Add(Globals.numIndex, 0);
                     }
-                    //increment map value if the mat no. already exists in map
+                    //increment map value if the student number already exists in map
                     else if (Globals.map.ContainsKey(Globals.numIndex) && !name.Equals("Unknown")) {
                         int currentCount = Globals.map[Globals.numIndex];
                         Globals.map[Globals.numIndex] = currentCount + 1;  
                     }
-                    //check if mat no. has been recognized enough times. If so then add it to recognizedStudentNumbers
-
+                    //check if student number has been recognized enough times. If so then add it to recognizedStudentNumbers
                     if (Globals.map[Globals.numIndex] == Globals.recognizedThreshold)
                     {
                         Globals.recognizedStudentNumbers.Add(Globals.numIndex);
                     }
 
                     //Draw the label for each face detected and recognized
-                    //frame.Draw(name, ref font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.LightGreen));
+                    //Only draw if captureInProgress is set. This way this won't be called in parallel.
+                    //Surronded with try-catch for an AccessViolationException error. This error could happen if the algorithm tries to draw 
+                    //after the attendance screen has been closed and frame has been set to null.
                      try {
                         if (Globals.captureInProgress)
                         {
@@ -169,13 +159,11 @@ namespace UniFCR_Controller {
                      catch (System.AccessViolationException e) {
                         Console.WriteLine("Error: " + e.Message);
                      }
-                    
+           
 
                 }
 
             }
-            
-
             return frame;
         }
     }

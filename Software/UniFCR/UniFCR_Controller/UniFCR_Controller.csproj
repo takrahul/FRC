@@ -66,10 +66,8 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="Classifier_Train.cs" />
-    <Compile Include="EigenObjectRecognizer.cs" />
     <Compile Include="FaceAlgorithm.cs" />
     <Compile Include="Globals.cs" />
-    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

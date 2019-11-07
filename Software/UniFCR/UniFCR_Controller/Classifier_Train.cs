@@ -1,21 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Emgu.CV.UI;
 using Emgu.CV;
 using Emgu.CV.Structure;
-using Emgu.CV.CvEnum;
 
 using System.IO;
 using System.Xml;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
-using System.Xml.Serialization;
-using System.Drawing.Imaging;
-using System.Drawing;
 using UniFCR_Controller;
 
 /// <summary>
@@ -36,10 +26,10 @@ class Classifier_Train : IDisposable
     List<Image<Gray, byte>> trainingImages = new List<Image<Gray, byte>>();//Images
     //TODO: see if this can be combined in Ditionary format this will remove support for old data
     List<string> Names_List = new List<string>(); //labels
-    List<int> Names_List_ID = new List<int>();
-    int ContTrain, NumLabels;
+    readonly List<int> Names_List_ID = new List<int>();
     float Eigen_Distance = 0;
     string Eigen_label;
+    int NumLabels;
     int Eigen_threshold = 2000;
 
     //Class Variables
@@ -103,23 +93,27 @@ class Classifier_Train : IDisposable
     /// <returns></returns>
     public string Recognise(Image<Gray, byte> Input_image, int Eigen_Thresh = -1)
     {
+        //initailize and fill up listOfInts
         Globals.listOfInts = new List<int>();
+        for (int i = 0; i < Globals.numLabels; i++)
+        {
+            Globals.listOfInts.Add(i);
+        }
+        //check if eigen xml file already exists
         if (File.Exists("../../../UniFCR_Controller/eigen.xml"))
         {
             Globals.fileSaved = true;
 
         }
-        for (int i = 0; i < Globals.numLabels; i++)
-        {
-            Globals.listOfInts.Add(i);
-        }
+       
+        //if eigen xml file does not exist, then train the recognizer, save the file, and set the fielSaved var to false
         if (Globals.fileSaved == false)
         {
             recognizer.Train(Globals.trainingImages.ToArray(), Globals.listOfInts.ToArray());
             this.Save_Eigen_Recogniser("../../../UniFCR_Controller/eigen.xml");
             Globals.fileSaved = true;
-            Console.WriteLine("Once");
         }
+        //if eigen file already exists then load and use it
         else
         {
             this.Load_Eigen_Recogniser("../../../UniFCR_Controller/eigen.xml");
@@ -138,8 +132,6 @@ class Classifier_Train : IDisposable
             Globals.numIndex = Globals.studentNumbers[ER.Label];
             Eigen_Distance = (float)ER.Distance;
             if (Eigen_Thresh > -1) Eigen_threshold = Eigen_Thresh;
-            //this.Save_Eigen_Recogniser("../../../UniFCR_Controller/eigen.xml");
-
 
             //Only use the post threshold rule if we are using an Eigen Recognizer 
             //since Fisher and LBHP threshold set during the constructor will work correctly 
@@ -295,7 +287,6 @@ class Classifier_Train : IDisposable
                     }
                 }
             }
-            ContTrain = NumLabels;
         }
         _IsTrained = true;
 
@@ -306,7 +297,7 @@ class Classifier_Train : IDisposable
     /// </summary>
     public void Dispose()
     {
-        recognizer = null;
+        recognizer.Dispose();
         trainingImages = null;
         Names_List = null;
         Error = null;
@@ -366,7 +357,6 @@ class Classifier_Train : IDisposable
                         }
                     }
                 }
-                ContTrain = NumLabels;
 
                 if (trainingImages.ToArray().Length != 0)
                 {

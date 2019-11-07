@@ -386,16 +386,23 @@ namespace UniFCR_GUI {
             }
             else
             {
-                String firstName = firstNameBox.Text;
-                String lastName = lastNameBox.Text;
-                int matNum = Int32.Parse(numberBox.Text);
-                database.saveStudentList(firstName, lastName, matNum, images);
-                firstNameBox.Text = "";
-                lastNameBox.Text = "";
-                numberBox.Text = "";
-                MessageBox.Show(firstName + " " + lastName + " has been added to the Database!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                images = new List<Image<Gray, byte>>();
-                images.Clear();
+                try
+                {
+                    String firstName = firstNameBox.Text;
+                    String lastName = lastNameBox.Text;
+                    int matNum = Int32.Parse(numberBox.Text);
+                    database.saveStudentList(firstName, lastName, matNum, images);
+                    firstNameBox.Text = "";
+                    lastNameBox.Text = "";
+                    numberBox.Text = "";
+                    MessageBox.Show(firstName + " " + lastName + " has been added to the Database!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    images = new List<Image<Gray, byte>>();
+                    images.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("There was an error while saving to the Database!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 

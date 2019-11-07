@@ -15,6 +15,7 @@ using System.IO;
 namespace UniFCR_GUI {
     public partial class MenuScreen : Form {
 
+        #region Variables
         //Variables for moving the window with the mouse
         private bool mouseDown;
         private Point lastLocation;
@@ -30,6 +31,7 @@ namespace UniFCR_GUI {
         private Boolean capturingInProgress = false;
 
         private FaceAlgorithm faceAlgorithm = new FaceAlgorithm();
+        #endregion
 
         public MenuScreen()
         {
@@ -44,10 +46,16 @@ namespace UniFCR_GUI {
             Globals.systemCameras = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
         }
 
-        //=================================================================
+        //====================================================
         // MAIN MENU
-        //=================================================================
-        #region
+        //====================================================
+        #region Main Menu
+
+        /// <summary>
+        /// This Method centers the panel containing the buttons in the main menu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuPanel_Paint(object sender, PaintEventArgs e)
         {
             //Center the buttons 
@@ -55,6 +63,13 @@ namespace UniFCR_GUI {
             int buttonPanelY = (this.Size.Height / 2) - (buttonPanel.Size.Height);
             buttonPanel.Location = new Point(buttonPanelX, buttonPanelY);
         }
+
+        /// <summary>
+        /// This Method is called when the start button is clicked. 
+        /// It hides the menu screen, initializes the attendance screen and then maximizes it.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startButton_Click(object sender, EventArgs e)
         {
             this.Visible = false;
@@ -69,9 +84,15 @@ namespace UniFCR_GUI {
             attendanceScreen.Show();
         }
 
+        /// <summary>
+        /// This Method is called when the exit button is clicked.
+        /// After showing a yes/no message box it saves a list of all students
+        /// in the database and marks if they attended.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitButton_Click(object sender, EventArgs e)
         {
-
             DialogResult dialogResult = MessageBox.Show("Do you want to save a list of all attended students?", "Save", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -100,13 +121,20 @@ namespace UniFCR_GUI {
             
             this.Close();
         }
-        #endregion
+        #endregion 
 
         //=================================================================
         // OPTIONS MENU
         //=================================================================
-        #region
-        //Show the options menu
+        #region Options Menu
+        
+        /// <summary>
+        /// When the Options Button is clicked this method hides the 
+        /// Button Panel and shows the Options Panel and populates
+        /// the Camera Dropdown List.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void optionsButton_Click(object sender, EventArgs e)
         {
             buttonPanel.Visible = false;
@@ -125,7 +153,13 @@ namespace UniFCR_GUI {
             cameraListBox.DataSource = systemCameraNames;
         }
 
-        //When text was entered in the box and enter is pressed handle it
+        /// <summary>
+        /// This Method is called when the <c>thresholdTextBox</c> is 
+        /// selected and a key is pressed. If the Enter key was pressed the Value
+        /// of the <c>thresholdTrackBar</c> will be updated.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void thresholdTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             //If Enter key is pressed
@@ -145,17 +179,35 @@ namespace UniFCR_GUI {
             }
         }
 
+        /// <summary>
+        /// When the TrackBar slider is moved this Method updates the value
+        /// of the <c>thresholdTrackBar</c>.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void thresholdTrackBar_Scroll(object sender, EventArgs e)
         {
             //Globals.threshold = thresholdTrackBar.Value;
             thresholdTextBox.Text = thresholdTrackBar.Value + "";
         }
 
+        /// <summary>
+        /// This Method is called when the TextBox leaves the focus.
+        /// It updates the <c>thresholdTrackBar</c>.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void thresholdTextBox_Leave(object sender, EventArgs e)
         {
             thresholdTrackBar.Value = Int32.Parse(thresholdTextBox.Text);
         }
 
+        /// <summary>
+        /// This Method is called when the <c>optionsDeleteBox</c> enters the focus.
+        /// It clears the TextBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void optionsDeleteBox_Enter(object sender, EventArgs e)
         {
             optionsDeleteBox.Text = "";
@@ -178,7 +230,14 @@ namespace UniFCR_GUI {
             }
         }
 
-        //Hide options menu and show main menu again
+        /// <summary>
+        /// This Method is called when the Back Button in the Options 
+        /// Menu is pressed. It saves the selected camera, entered threshold 
+        /// and resets the <c>optionsDeleteBox</c>. Then it hides the Options 
+        /// Panel and shows the Button Panel again.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void optionsBackButton_Click(object sender, EventArgs e)
         {
             Globals.selectedCameraIndex = cameraListBox.SelectedIndex;
@@ -196,7 +255,7 @@ namespace UniFCR_GUI {
         //=================================================================
         // EVENT HANDLERS FOR MOVING AROUND THE WINDOW
         //=================================================================
-        #region
+        #region Event Handlers for moving around the window
         private void MenuScreen_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
@@ -223,18 +282,30 @@ namespace UniFCR_GUI {
         //=================================================================
         // TRAINING MODE
         //=================================================================
-        #region
-        //Show training menu
+        #region Training Mode
+
+        /// <summary>
+        /// Show the <c>trainPanel</c>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainButton_Click(object sender, EventArgs e)
         {
+            buttonPanel.Visible = false;
+            buttonPanel.SendToBack();
+
             trainPanel.BringToFront();
             trainPanel.Visible = true;
 
             trainLoadingPanel.BringToFront();
             trainLoadingPanel.Visible = true;
-        }        
+        }
 
-        //Center the logo and the text on the loading screen
+        /// <summary>
+        /// Center the logo and the text on the loading screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainLoadingPanel_Paint(object sender, PaintEventArgs e)
         {
             int textLogoX = (this.Size.Width / 2) - (logoTextPanel.Size.Width / 2);
@@ -242,7 +313,11 @@ namespace UniFCR_GUI {
             logoTextPanel.Location = new Point(textLogoX, textLogoY);
         }
 
-        //Automatically start the camera when the training window is being painted
+        /// <summary>
+        /// Automatically start the camera when the training window is being painted
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainCamPanel_Paint(object sender, PaintEventArgs e)
         {
             //Fit the trainCamView into the trainCamPanel but don't change the aspect ratio (~16:9)
@@ -282,7 +357,11 @@ namespace UniFCR_GUI {
             }
         }
 
-        //When the capturing is done: save all images and data in the database
+        /// <summary>
+        /// When the capturing is done: save all images and data in the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainSaveButton_Click(object sender, EventArgs e)
         {
             if (firstNameBox.Text.Equals(""))
@@ -307,20 +386,31 @@ namespace UniFCR_GUI {
             }
             else
             {
-                String firstName = firstNameBox.Text;
-                String lastName = lastNameBox.Text;
-                int matNum = Int32.Parse(numberBox.Text);
-                database.saveStudentList(firstName, lastName, matNum, images);
-                firstNameBox.Text = "";
-                lastNameBox.Text = "";
-                numberBox.Text = "";
-                MessageBox.Show(firstName + " " + lastName + " has been added to the Database!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                images = new List<Image<Gray, byte>>();
-                images.Clear();
+                try
+                {
+                    String firstName = firstNameBox.Text;
+                    String lastName = lastNameBox.Text;
+                    int matNum = Int32.Parse(numberBox.Text);
+                    database.saveStudentList(firstName, lastName, matNum, images);
+                    firstNameBox.Text = "";
+                    lastNameBox.Text = "";
+                    numberBox.Text = "";
+                    MessageBox.Show(firstName + " " + lastName + " has been added to the Database!", "Training OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    images = new List<Image<Gray, byte>>();
+                    images.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("There was an error while saving to the Database!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
-        //Gets data from text fields and captures multiple pictures
+        /// <summary>
+        /// Captures multiple pictures
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainCaptureButton_Click(object sender, EventArgs e)
         {           
             if (capturingInProgress == false)
@@ -347,10 +437,18 @@ namespace UniFCR_GUI {
             }
         }
 
+        /// <summary>
+        /// Stops the camera and shows the Button Panel again.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trainBackButton_Click(object sender, EventArgs e)
         {
             trainingCam.stop();
             camRunning = false;
+
+            buttonPanel.BringToFront();
+            buttonPanel.Visible = true;
 
             trainPanel.SendToBack();
             trainPanel.Visible = false;

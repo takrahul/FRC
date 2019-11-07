@@ -31,7 +31,9 @@ namespace UniFCR_GUI {
             this.menuScreen = menuScreen;
 
             //Get number of enrolled students
-            enrolledStudents = SqliteDataAccess.LoadStudents().Count;
+            DatabaseController dc = new DatabaseController();
+            dc.LoadStudentsList();
+            enrolledStudents = dc.student.Count;
 
             //Show loading screen first
             loadingPanel.BringToFront();

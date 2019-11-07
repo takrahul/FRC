@@ -5,8 +5,10 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.UI;
 using System.Threading;
 
-namespace UniFCR_Controller {
-    public class Camera {
+namespace UniFCR_Controller
+{
+    public class Camera
+    {
 
         private Capture cam = null; //Camera
         public ImageBox cameraBox = null; //Component of the GUI that shows the cam feed (needed for resizing etc.)
@@ -39,7 +41,7 @@ namespace UniFCR_Controller {
         //=================================================================
         // CAMERA
         //=================================================================
-        public Camera (ImageBox box)
+        public Camera(ImageBox box)
         {
             this.cameraBox = box;
         }
@@ -76,12 +78,12 @@ namespace UniFCR_Controller {
             //Get current frame from the camera
             if (cam != null)
             {
-                Image < Bgr, Byte > grabbedFrame = cam.RetrieveBgrFrame();
+                Image<Bgr, Byte> grabbedFrame = cam.RetrieveBgrFrame();
                 if (grabbedFrame != null)
                 {
                     frame = grabbedFrame;
-                }                
-            }         
+                }
+            }
         }
 
         private delegate void DisplayImageDelegate(Image<Bgr, Byte> Image);

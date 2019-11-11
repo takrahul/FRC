@@ -7,7 +7,7 @@ using Emgu.CV.UI;
 namespace UniFCR_Controller {
 
     /// <summary>
-    /// Class <c>Camera</c> contains all methods neccesary to grab images from the Webcam and display them in the GUI.
+    /// Class <c>Camera</c> contains all methods neccesary to grab images from the Webcam and displaying them in the GUI.
     /// </summary>
     public class Camera {
 

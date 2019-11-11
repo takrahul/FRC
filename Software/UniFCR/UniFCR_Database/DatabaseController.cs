@@ -48,16 +48,25 @@ namespace UniFCR_Database
 
             //Save it in the database
             SqliteDataAccess.SavePerson(st);
-
-            //todo
-            // tabbing order in UI
-            // DB location
-            // popup after saving
-            // Add close/exit button to close app
-            // Upload pictures
-            // Read data from Database
-            // Surround save and read operations in a try catch block
         }
+
+        public bool deleteStudent(int matNum)
+        {
+            //Create a studentmodel object using the names and number
+            StudentModel st = new StudentModel
+            {
+                LastName = "",
+                GivenNames = "",
+                MatNo = matNum
+            };
+
+            return SqliteDataAccess.DeletePerson(st);
+
+            //string speech = "Hello, Your data has been deleted. Please log out now! Goodbye!";
+            //SpeechSynthesizer synth = new SpeechSynthesizer();
+            //synth.Speak(speech);
+        }
+
         /// <summary>
         /// Gets a list of all the full names from the database
         /// </summary>

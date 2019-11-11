@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -38,6 +39,7 @@ namespace UniFCR_Database
             return students;
         }
 
+
         /// <summary>
         /// Save a student in the database. This should only be used by the DatabaseController.
         /// </summary>
@@ -70,6 +72,31 @@ namespace UniFCR_Database
                     }
                 }
                 cnn.Close();
+
+            }
+        }
+        public static bool DeletePerson(StudentModel mt)
+        {
+            using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Open();
+
+                string query = "Delete from Student2 where MatNo = '" + mt.MatNo + "';Delete from ImageTable where MatNoID = '" + mt.MatNo + "'";
+
+                using (SQLiteCommand cmd = new SQLiteCommand(query))
+                {
+                    cmd.Connection = cnn;
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        cnn.Close();
+                        return true;
+                    } catch (Exception e)
+                    {
+                        return false;
+                    }
+
+                }
 
             }
         }

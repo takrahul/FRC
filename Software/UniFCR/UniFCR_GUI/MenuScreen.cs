@@ -96,6 +96,7 @@ namespace UniFCR_GUI {
             DialogResult dialogResult = MessageBox.Show("Do you want to save a list of all attended students?", "Save", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                database.LoadStudentsList();
                 List<StudentModel> students = database.student;
                 var csv = new StringBuilder();
                 csv.Append("Last Name, First Name, Marticulation Number, Attended? \n");
@@ -219,6 +220,14 @@ namespace UniFCR_GUI {
                 try
                 {
                     int enteredNumber = Int32.Parse(optionsDeleteBox.Text);
+                    if (database.deleteStudent(enteredNumber))
+                    {
+                        MessageBox.Show("Student was successfully deleted from the Database!", "Deletion successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } else
+                    {
+                        MessageBox.Show("There was an error while deleting the student from the Database! Please enter a correct Matriculation Number!", "Deletion failed!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
                     optionsDeleteBox.Text = "Enter Mat. No.";
                 }
                 catch (Exception ex)

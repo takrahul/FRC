@@ -46,9 +46,9 @@ namespace UniFCR_GUI {
             Globals.systemCameras = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
         }
 
-        //====================================================
+        //=================================================================
         // MAIN MENU
-        //====================================================
+        //=================================================================
         #region Main Menu
 
         /// <summary>

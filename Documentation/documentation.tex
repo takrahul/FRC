@@ -1,0 +1,111 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[noconfigs, english]{babel}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{subfig}
+\usepackage{multicol}
+ \setlength{\columnsep}{1cm} 
+
+\pagenumbering{arabic}
+\bibliographystyle{unsrt}
+  
+\usepackage{natbib}
+
+\usepackage[pdftex,
+            pdfauthor={Lukas Heimann},
+            pdftitle={Augmented Reality using Mobile Devices},
+            pdfsubject={Final Seminar Paper},
+            pdfkeywords={Augmented Reality, Mobile Devices, Applications for AR},
+            pdfproducer={Latex Texmaker JabRef},
+            pdfcreator={pdflatex}]{hyperref}
+
+
+\title{Team Oriented Project}
+\author{Lukas, Flo, Chisom, Abbas. Habib, Rahul \\
+	University of Applied Sciences Ulm  \\
+	Bachelor Computer Science 
+	}
+
+\date{\today} 
+
+\begin{document}
+\maketitle
+
+\newpage
+\section{individual contribution of Florian Kessler}
+In the team oriented project, I was mostly part of the algorithm subgroup. In the starting phase of the project, I gave an introduction of the basic functionalities of a supervised artificial neural network. In the following days, I did research about facial recognition algorithms and first found the Haar Cascade algorithm. After summarizing, finding a suitable way of implementing this method was the next important step. EmguCV in connection with OpenCV seemed like a suitable and practical possibility to create a facial recognition software. To plan the sprints, I documented the tasks and managed Jira along the journey. Furthermore, I recorded every working session in writing in a separate document. Having been a Scrum-Master for two sprints, I was responsible for the typical organizing tasks in the project:
+\begin{itemize}
+\item holding the daily scrum
+\item writing the to dos for the day on the whiteboard
+\item prioritizing daily tasks
+\item trying to help my team members if necessary
+\item holding and documenting a retrospective with the support of Dr. Balser
+\end{itemize}
+
+
+During the sprints, I was mostly pair programming with Abbas Bushehri. Together, we implemented the Haar Cascade algorithm which we later extended to the Principle Component Analysis (PCA) method. In the FaceAlgorithm class, we coded and used several components:
+\begin{itemize}
+\item CascadeClassifier: contains a few XML files, depending on which facial recognition algorithm you want to use. We used the Haar Cascade file containing descriptions of the makeup of a frontal face.
+\item detectFaces(Image<Bgr, byte> frame): this method is called before the recognition method and used on its own in the train mode. Each frame of the live feed is converted in a gray scale image as an array of bytes. In the List Globals.processedDetectedFaces, all the faces detected by the inbuilt DetectMultiScale method of the CascadeClassifier are saved. In the for-loop, the positions and dimensions of the red rectangles that are drawn in the GUI are calculated and the cropped images of the detected faces are added to processedDetectedFaces. In the end, the manipulated frame is returned to be used in the recognition method.
+\item recognizeFaces(Image<Bgr, byte> frame): until the frame.Draw(...) is being called, the method is the same as detectFaces(...). Since recognizeFaces(...) is being used separately in the attendance (start) mode, we decided to copy the recognition part. The list Globals.trainingImages contains all the images of faces saved from previous photo sessions. The Eigen\_threshold is an int value that basically defines the threshold of the AI deciding to recognize a detected person as someone that's stored in the database or a stranger (unknown) and is set in an instance of the class Classifier\_Train. The image of a frame is handed over to this instance Eigen\_Recog for it to recognize the result (manipulated image of face of frame). The Eigen\_Recog is now no longer needed and thus disposed. In Globals.map<int, int>, the matriculation number of a recognized student is saved and the amount of frames he/she has been recognized in a live feed session. This is done in case faulty recognition occurs that would otherwise mark this student immediately as attended wrongfully. Because of that, recognizedThreshold contains the number of frames a student has to be recognized in order to determine, whether he/she attends. If a person has not already been recognized and is known, a new entry is being made in the map with his/her matriculation and at first zero times recognized. Should the student already have an entry in the map and is being recognized again, his attendance counter increases. Lastly, the program checks whether the amount of time the student has been recognized satisfies the condition of the recognizedThreshold and if it does, he is added to recognizedStudentNumbers, which marks him/her as attended. A system access violation that occurred at times, when the live feed was displayed in the GUI panel, had to be caught.
+\end{itemize}
+
+We encountered some more bugs, for example: the program would show weird errors and nullpointer exceptions which we couldn't make any sense of. This was fixed by upgrading from VisualStudio 2017 to VisualStudio 2019. After that, we separated the code in a more suitable structure to have the GUI and the algorithm in different classes. This however was just a temporary structure and was later significantly changed again.
+\newpage
+
+\section{Individual Contributions (Abbas Bushehri)}
+\subsection{Webcam:}
+In the beginning of the project, we were given a webcam to use. However, after using it we determined that its quality was too low and the area it covered was too small. My laptop’s camera was better, but still not good enough. It was my task to pick a webcam that would meet the project’s requirements. I chose the C920 Pro HD Webcam. This webcam has a quality of 1080p and 30 FPS, and it comes with a wide angle. It could also be adjusted to mount on any laptop.
+
+\subsection{FaceAlgorithm First Version:}
+I was then put in charge of programming the first version of the FaceAlgorithm class. This class would implement both face detection and face recognition using the Emgu CV library. I started by implementing the face detection method separately. Once that worked I moved on to writing a method that saved a student’s face along with their data. This method would be called in the training mode, whose GUI had just been completed. We were planning on saving this data in a database, however the database was not finished yet. So instead I had the method store everything locally in a folder for now. Then I wrote the method for face recognition in the FaceAlgorithm class. This method relied on the local folder as well. The method also required a class called EigenObjectRecognizer that I got from the Internet. This class implemented the Emgu CV algorithms. The face recognition method was used in both the attendance mode and the training mode.
+
+\subsection{FaceAlgorithm with Database:}
+After the database was completed, I changed the FaceAlgorithm class to implement it. This included changing both the facial recognition method that needed to go through all the student images, and the class constructor. I also updated the method that saved the student data in training mode. This was all done in pair programming along with most of the team.
+
+\subsection{FaceAlgorithm with Globals:}
+The team decided to implement a stronger architecture for the program. This lead to splitting it into three packages, one for the GUI classes, one for the database classes, and one for the controller classes. The FaceAlgorithm class belonged to the controller package. As a team, we made sure that FaceAlgorithm was no longer directly connected to so many classes. The problem was there were many variables that had to be shared between the FaceAlgorithm and GUI classes for the program to work. I came up with the Globals class to solve this issue. Globals is a static class filled only with variables. These variables are all static and can be accessed by any class in the program. We also changed the face detection and recognition methods. Now they took the camera’s frame image as a parameter and returned a frame after processing.
+
+\subsection{PCA:}
+The face recognition method’s accuracy was not good enough. To improve this, Florian suggested we change the code to implement PCA and parallel optimization. Together we achieved this through pair programming. This lead to deleting the EigenObejctRecognzier class and replacing it with the Classifier\_Train class. Classifier\_Train implemented the improved algorithm we wanted. After implementing PCA, the program’s accuracy increased while the speed decreased. To fix this, we made the algorithm save and load the Eigen recognizer to a file instead of constantly initializing with the array of images. This did increase the program speed.
+
+Florian and I noticed a variable in the algorithm called the Eigen threshold. After doing some research, we decided to test this variable to find the value that best fit our program. We had Lukas add the option to change the variable during run-time into the GUI. We then determined that the best value for the threshold was 2000.
+
+\subsection{Threshold and Attendance List:}
+The team decided to implement a threshold for the attendance. If the number of times the student was recognized exceeded the threshold, then the student should be marked as attended. To implement this code I needed to add two variables to Globals. One of them is a dictionary where the key is the student’s matriculation number and the value is the number of times this student has been recognized so far. This dictionary should be updated every time the face recognition method is called. The second variable would be the threshold value itself. I wrote the code that implemented this threshold, and then Lukas added the option to set it in the options menu in the GUI.
+
+After this, Rahul came up with the idea to save the list of students and their attendance in a csv file. This file would be written after the program is closed, and if the user clicks Yes on the message box that appears. We decided the file should be added to a Lists folder. The program should check if the folder already exists, and if not create it. Since the attendance should be taken daily, the name of the file should depend on the current date For example, attendance\_07\_11 would be the filename on November 7. Also, if a file with the current date already exists, then it will be overwritten, since the program should only be run once a day. Using pair programming, Rahul and I implemented the saving of the attendance list in the code.
+
+\subsection{Error Handling:}
+During the project, there was a bug that I solved along with Florian and Lukas. The first was a system access violation exception. This error caused the program to crash randomly after returning to the main menu from the attendance screen. First we tried to use a try-catch but that didn’t stop the crashing. This error occurred because the FaceAlgorithm tries to return a frame after the attendance screen has already been closed. In the end, the best solution we could find was to call Thread.sleep(1000) before the attendance screen is closed and disposed. This makes the attendance screen wait one second. This is enough time for the FaceAlgorithm to return the last frame to the attendance screen and avoid this error.
+
+\newpage
+\section{Contributions to the project result – Lukas Heimann}
+I had two main responsibilities in the project. The first one was creating a good looking, easy to use, modern user interface. The other one was to write the Camera class that contains all the methods to grab frames from the webcam and then later display them in the GUI.
+
+For the GUI I went with a modern, flat UI design. The main colors of the interface are white and blue, to also match the general design of the THU. I created our Logo with open source icons from ===ICONSOURCEHERE===. All of the GUI elements are borderless and flat to give the interface a modern look and feel. We didn’t want to have too many different windows for the different parts of our software (main menu, options, attendance mode etc.). Therefore, I used only one form to display the main menu, options menu and training menu.
+
+\subsection{Menu Menu}
+The main menu contains 4 buttons.
+\begin{itemize}
+\item Start: starts the attendance mode
+\item Options: shows the options menu
+\item Train: shows the training menu
+\item Exit: closes the window and saves the attendance list as a .csv file
+\end{itemize}
+
+In the options menu there is a dropdown list containing all cameras that are connected to the computer so the user can choose which camera will be used in the attendance mode. Also, there is a text box where the user can enter a matriculation number. If they then press the “Delete” button the student with the matching matriculation number will be deleted form the database. 
+
+The training menu is used to enter students in the database. First, the user can enter a students name and matriculation number.  When the user presses the “Capture” button the software captures ten images of the face in the view of the camera. The images are only captured if the algorithm detects exactly one face in the frame. If they then press the capture button again the software captures ten more images. After enough images have been captured the user can press the “Save” button to then save the data in the database. 
+
+\subsection{Attendance Screen}
+This is the second window and the main part of our software. It contains the camera feed as well as the most important information for the professor.
+
+\subsubsection{The Camera Feed:}
+As our idea was to show the names of the students in the camera feed to help professors and lecturers remember the students names, I use a full screen window for the attendance screen. This way I get as much space as possible for the camera feed. The panel that shows the camera takes up 3/4 of the screen but the aspect ratio of the camera is preserved (16:9) so the picture doesn’t look stretched. 
+
+\subsubsection{The Side Panel:}
+The camera feed taking up 3/4 of the screen gives us enough space to put a sidebar on the right-hand side that contains the most important informations for the professor. At the top of the side panel there’s the UniFCR Logo. Then we have an percentage counter that shows the percentage of attended students. For this I decided to use the CircularProgressBar plug-in by Soroush Falahati. This creates a modern look and also gives a good visual feedback to the professor who wants to see how many students are currently attending the class. Right beneath that we have a label that also shows the total number of students who are currently attending the class. The last part of the side panel is the student list. This list contains all students that are enrolled in the course (in our case all students in the database). If a student is marked as attended the background color of their table entry changes to give a visual feedback to the professor which specific students are currently attending the lecture. I first wanted to show the full information about the student (first name, last name and matriculation number) in this list. But then the list was too big to fit in the side panel creating unwanted scrollbars. I tried to make the list scrollable by dragging the mouse to hide scrollbar from the UI but in the end this didn’t work out. So, I decided to just show the names of the students which made the list significantly smaller. 
+
+\end{document}

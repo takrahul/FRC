@@ -59,6 +59,38 @@ Our idea of creating a facial recognition software that detects and recognizes s
 
 
 
+\section{Requirements}
+\subsection{Functional Requirements}
+\begin{itemize}
+\item As a professor, I would like to receive an attendance counter on the amount of students attending, because I want to receive feedback on the popularity of my course
+\item As a professor, I would like to know who attends, because the course is mandatory
+\item As a professor, I would like to see a live feed of the camera on screen, because it gives me an overview of the student group
+\item As a professor, I would like to be able to choose the camera connected to my laptop, because one camera could get damaged
+\item As a professor, I would like to get a visual name display about the students seen in the live feed, because I want to remember each student's name
+\item As a developer, I would like to have a training mode, because I want to train the AI to recognize faces more accurately
+\item As a professor, I would like to have an organized and neat GUI, because I want to navigate the program quickly
+\item As a professor, I would like to save all attending students as a list in a file, because I want check, which student attended my lessons in the course of a semester
+\item As a professor, I would like to see a diagram that shows the attendance rate of the students in my lesson over the course of a semester.
+\item As a professor, I would like to receive feedback on who stayed until the end of my lecture, because I want to have feedback on the quality of my lectures
+\item As a developer, I would like to have a slider for the eigen threshold, because I want to adjust the eigen threshold live to find a fitting value
+\item As a developer, I would like to make use of the full resolution of the camera, because the facial recognition works best with a high resolution feed
+\end{itemize}
+
+\subsection{Non-Functional Requirements}
+\begin{itemize}
+\item Windows 10
+\item VisualStudio C\# 2019
+\item connectable camera with full hd resolution
+\item OpenCV
+\item EmguCV
+\end{itemize}
+
+
+
+\newpage
+
+
+
 \section{User View}
 When the user runs the UniFCR program, they're greeted with four buttons in the main menu as seen in figure \ref{fig:menu}:
 \begin{figure}[h!]
@@ -154,6 +186,7 @@ Whenever the program is loading after the TRAIN or START buttons are pressed, th
 
 
 
+
 \section{Technical Concenpt}
 \subsection{OpenCV Explanation}
 OpenCV is a library of programming functions aimed at computer vision. This means it can read images, write images, and detect objects in images. In the case of this project, OpenCV is needed for its facial detection and recognition capabilities. This project is written using C\#, which OpenCV does not support. However, there is Emgu CV which is a .Net wrapper for OpenCV. This means Emgu CV can be used for programming in C\#. During the project the following methods and functions were used from the Emgu CV library:
@@ -184,7 +217,25 @@ The Image object will be used for either storing the frame that is captured by t
 
 
 
-\section{Individual contribution of Florian Kessler}
+\section{Project Documentation}
+\subsection{Process Model and Team Organization}
+Our team followed the methodology of Scrum. In our project however, we didn't always stick to the same roles. We rotated the Scrum-Master a few times between Rahul Tak, Chisom Kobbe-Nwabufo and Florian Kessler. The development team consisted of Abbas Bushehri, Syed Habibullah, Lukas Heimann, Florian Kessler and Chisom Kobbe-Nwabufo. Within that development we created sub- groups and we ended up mostly doing pair-programming:
+\begin{itemize}
+\item GUI: Lukas Heimann
+\item Algorithm: Abbas Bushehri, Florian Kessler, Rahul Tak
+\item Diagrams: Syed Habibullah
+\item Database: Chisom Kobbe-Nwabufo
+\end{itemize}
+We organized our typical working day from Monday – Friday from 9:00 am to 4:00 pm. One homeoffice day was included which switched from Moday to Friday. On homeoffice days, a group Skype-conference was held to discuss results and ideas. The day started with a daily scrum where we also made a to do list for the day. Next, we set the priority of each daily task and started working on them. Two retrospectives were held with the support of Dr. Balser where we discussed our successes and problems of the recent sprints. Organizing the Git repository was mostly done by Lukas Heimann and Abbas Bushehri. We created branches for each team member and had the most updated software version on the master branch.
+
+
+
+\newpage
+
+
+
+
+\section{Individual Contribution -  Florian Kessler}
 In the team oriented project, I was mostly part of the algorithm subgroup. In the starting phase of the project, I gave an introduction of the basic functionalities of a supervised artificial neural network. In the following days, I did research about facial recognition algorithms and first found the Haar Cascade algorithm. After summarizing, finding a suitable way of implementing this method was the next important step. EmguCV in connection with OpenCV seemed like a suitable and practical possibility to create a facial recognition software. To plan the sprints, I documented the tasks and managed Jira along the journey. Furthermore, I recorded every working session in writing in a separate document. Having been a Scrum-Master for two sprints, I was responsible for the typical organizing tasks in the project:
 \begin{itemize}
 \item holding the daily scrum
@@ -209,7 +260,7 @@ We encountered some more bugs, for example: the program would show weird errors 
 
 
 
-\section{Individual Contributions (Abbas Bushehri)}
+\section{Individual Contributions - Abbas Bushehri}
 \subsection{Webcam:}
 In the beginning of the project, we were given a webcam to use. However, after using it we determined that its quality was too low and the area it covered was too small. My laptop’s camera was better, but still not good enough. It was my task to pick a webcam that would meet the project’s requirements. I chose the C920 Pro HD Webcam. This webcam has a quality of 1080p and 30 FPS, and it comes with a wide angle. It could also be adjusted to mount on any laptop.
 
@@ -240,10 +291,10 @@ During the project, there was a bug that I solved along with Florian and Lukas. 
 \newpage
 
 
-\section{Contributions to the project result – Lukas Heimann}
+\section{Individual Contributions – Lukas Heimann}
 I had two main responsibilities in the project. The first one was creating a good looking, easy to use, modern user interface. The other one was to write the Camera class that contains all the methods to grab frames from the webcam and then later display them in the GUI.
 
-For the GUI I went with a modern, flat UI design. The main colors of the interface are white and blue, to also match the general design of the THU. I created our Logo with open source icons from ===ICONSOURCEHERE===. All of the GUI elements are borderless and flat to give the interface a modern look and feel. We didn’t want to have too many different windows for the different parts of our software (main menu, options, attendance mode etc.). Therefore, I used only one form to display the main menu, options menu and training menu.
+For the GUI I went with a modern, flat UI design. The main colors of the interface are white and blue, to also match the general design of the THU. I created our Logo with open source icons from www.flaticon.com. All of the GUI elements are borderless and flat to give the interface a modern look and feel. We didn’t want to have too many different windows for the different parts of our software (main menu, options, attendance mode etc.). Therefore, I used only one form to display the main menu, options menu and training menu.
 
 \subsection{Main Menu}
 The main menu contains 4 buttons.

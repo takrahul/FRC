@@ -13,10 +13,10 @@
 \usepackage{natbib}
 
 \usepackage[pdftex,
-            pdfauthor={Lukas Heimann},
-            pdftitle={Augmented Reality using Mobile Devices},
-            pdfsubject={Final Seminar Paper},
-            pdfkeywords={Augmented Reality, Mobile Devices, Applications for AR},
+            pdfauthor={Lukas, Flo, Chisom, Abbas. Habib, Rahul},
+            pdftitle={Team-Oriented Project Documentation},
+            pdfsubject={Project Documentation},
+            pdfkeywords={team-oriented project, facial recognition, opencv},
             pdfproducer={Latex Texmaker JabRef},
             pdfcreator={pdflatex}]{hyperref}
 
@@ -32,8 +32,146 @@
 \begin{document}
 \maketitle
 
+
+
+
 \newpage
-\section{individual contribution of Florian Kessler}
+
+
+
+\tableofcontents
+
+
+
+\newpage
+
+\section{Motivation and project goal}
+\subsection{Motivation}
+For our team-oriented Project we had the task to make a software that uses face recognition. Our idea was to create a program that works as a digital attendance list. Usually when there is a mandatory course, the professor will pass around a list where everyone has to sign that they attended the lecture. However, this approach has some disadvantages for the students as well as for the professor. First of all, students could forget to sign the list. Also, this approach is prone to cheating as students can just sing the list for someone else too. But there are also disadvantages for the professor. They have to manually enter the data on a computer and check if students attended every lecture. These Problems could impact the students motivation and grades and also causes more work for the professors. 
+
+\subsection{Goals}
+Our idea of creating a facial recognition software that detects and recognizes students in the lecture room would solve these problems by creating the list at the end of the lecture and marking all students that it recognized as attended. An additional advantage of this software would be that we automatically show the names of all the students sitting in the classroom in the camera feed. This helps the professor to remember the names of students and can help to create a more comfortable learning environment for the students. The goal of our project was to create a proof of concept that shows that this idea could be used as an alternative to the attendance list on paper that is currently used. The software could also be improved to save more detailed statistics about the students attendance. 
+
+
+
+\newpage
+
+
+
+\section{User View}
+When the user runs the UniFCR program, they're greeted with four buttons in the main menu as seen in figure \ref{fig:menu}:
+
+\subsection{OPTIONS button}
+First there is the OPTIONS button. This is meant to be used to change some of the settings of the program. As shown below in figure \ref{fig:options} there are three options that can be changed:
+\begin{itemize}
+\item There is a drop-down list for selecting the camera. This should include the PC’s camera (if it exists) and any currently connected webcams. If a camera is connected after the program is opened it will not be shown in this list. It would only be shown after the program is opened again. 
+\item There is a slider for the threshold. The threshold defines the number of times a face should be recognized before that student is marked as attended. By default, the threshold is 30.
+\item There is a text box next to a DELETE button. If a student’s matriculation number is written and the button is pressed, then the student will be deleted from the database.
+\end{itemize}
+
+\subsection{TRAIN button}
+Next there is the TRAIN button. This button opens the training mode that should be used to add a student to the database. This mode implements face detection to help the student take pictures correctly, as shown in figure \ref{fig:train}. When the CAPTURE button is pressed, the camera takes ten pictures of the user. The user won’t be able to do anything until the camera is finished taking these pictures. The user can press the CAPTURE button multiple times to make sure they will have more pictures in the database. When the user is satisfied with the amount of pictures they have taken, they should make sure that their name and matriculation number has been written into the text boxes. Then the user should press the SAVE button. This will add all the student’s data to the database. If the text boxes were not filled up an error will be thrown. When done the user can press BACK to return to the main menu.
+
+\subsection{START button}
+The next button is the START button. This opens the attendance mode. Attendance mode implements face recognition. The name of the user is written on top of the rectangle that marks the detected face. On the right side there is a percentage counter that keeps track of the percentage of students that have been marked as attended. Below that is a list of all the student in the database. If a student is marked as attended then their name is highlighted blue. Figure \ref{fig:before} shows before the student is marked as attended, and figure \ref{fig:after} shows it after the student is marked. The user can press the BACK button to return to the main menu.  
+
+\subsection{EXIT button}
+Finally the main menu has the EXIT button. This closes the program. Before the program is closed, a pop-up window asks the user if they want to save the attendance list (figure \ref{fig:popup}). If the user presses yes, then a .csv file is created in a Lists folder as shown in figure \ref{fig:folder}. The file is named after the current date, and lists all the student’s data along with whether or not they were marked as attended, as shown in figure \ref{fig:csv}.
+\subsection{Loading screen}
+Whenever the program is loading after the TRAIN or START buttons are pressed, the following image is shown as a loading screen. The loading screen is shown in figure \ref{fig:load}.
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1.0\columnwidth]{images/menu}
+	\caption{Main menu of the program}
+	\label{fig:menu}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1.0\columnwidth]{images/options}
+	\caption{Options menu}
+	\label{fig:options}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1.0\columnwidth]{images/train}
+	\caption{Training mode}
+	\label{fig:train}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1.0\columnwidth]{images/before}
+	\caption{Attendance mode when it starts}
+	\label{fig:before}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1.0\columnwidth]{images/after}
+	\caption{Attendance mode after a student has been marked as attended}
+	\label{fig:after}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1.0\columnwidth]{images/popup}
+	\caption{Pop-up window appears after user tries to exit}
+	\label{fig:popup}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1.0\columnwidth]{images/folder}
+	\caption{Attendance lists saved in the Lists folder}
+	\label{fig:folder}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1.0\columnwidth]{images/csv}
+	\caption{Contents of an attendance list}
+	\label{fig:csv}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1.0\columnwidth]{images/load}
+	\caption{Loading screen image}
+	\label{fig:load}
+\end{figure}
+
+
+
+\newpage
+
+
+
+\section{Technical Concenpt}
+\subsection{OpenCV Explanation}
+OpenCV is a library of programming functions aimed at computer vision. This means it can read images, write images, and detect objects in images. In the case of this project, OpenCV is needed for its facial detection and recognition capabilities. This project is written using C\#, which OpenCV does not support. However, there is Emgu CV which is a .Net wrapper for OpenCV. This means Emgu CV can be used for programming in C\#. During the project the following methods and functions were used from the Emgu CV library:
+\subsubsection{Image}
+The Image object will be used for either storing the frame that is captured by the camera, the frame that will be shown to the user in the GUI, or a cropped view of a face that has been detected.  In Emgu CV the Image object is defined by the two generic parameters color and depth. We need the image to be gray-scaled with a depth of one byte for the algorithm to work. When we use the Image object for the camera frame it should not be gray-scaled. So we use \textit{Image\textless Gray, byte\textgreater} for storing the faces and \textit{Image\textless Bgr, byte\textgreater} for storing the camera frame. The Image object comes with many functions including:
+\begin{itemize}
+\item Convert(): This method converts an image into a different color and depth. This is method is used for converting the frame’s Image<Bgr, byte> into Image<Gray, byte> for the facial detection and recognition algorithms, and also for converting it back. It is also used to convert a Rectangle object, that was returned from the face detection, into an Image<Gray, byte>.
+\item Resize(): This method is used to resize the Image object. We use it to make sure all the Images of faces we take have the same size (100 pixels for both width and height). We also use it for setting the size of the Image the user sees in the GUI.
+\item Copy(): Used to copy an Image object from one variable to another.
+\item EqualizeHist(): Used to normalize the brightness and contrast of an Image. We used it for the Images that store the faces to improve algorithm accuracy.
+\item Draw(): Used to draw a rectangle of specified color and thickness. We used it to draw a red rectangle (with thickness of 2) surronding the detected faces.
+\end{itemize}
+\subsubsection{CasscadeClassifier} The CasscadeClassifier class is used for object detection. In our case, we use it for face detection. When a CasscadeClassifier object is initialized with a file (typically an xml file) that stores the classifier values. These classifier values depend on the type of object that is to be detected. We used an xml file from the internet. After the CasscadeClassifier is initialized, we only used one of the object’s methods:
+\begin{itemize}
+\item DetectMultiScale(): This method returns an array of Rectangle objects that stores all the objects detected that match the classifier values. In our case it returns a Rectangle array of faces. The parameters of this method include the Image object it should scan, which is the frame from the camera. We can also set the minimum and maximum size of a detected object.
+\end{itemize}
+\subsubsection{FaceRecognizer} The FaceRecognizer class is used for the facial recognition. FaceRecognizer is actually an abstract base class. There are three classes that are derived by FaceRecognizer: LBHPFaceRecognizer, FisherFaceRecognizer, and EigenFaceRecognizer. Each of these derived classes use different algorithms for facial recognition. We decided to use the EigenFaceRecognizer class. This class came with several methods and attributes:
+\begin{itemize}
+\item Eigen Threshold: The Eigen Threshold is an attribute used as a confidence value. The higher the threshold the more likely the algorithm will mark a face as unknown instead of assigning a person to it. If the threshold is too low, then a face will almost never be marked as unknown even if it should be. We decided to set this value to 2000. 
+\item Train(): The Train method trains the EigenFaceRecognizer object using a given set of images. This method has two parameters: the array of images that it should be trained with, and an array of integers. The integer array should have ascending integers starting from zero. The integer array should be the same size as the image array. The method needs this integer array, because later on it will need to return an index to the matched image.
+\item Load() and Save(): Instead of training using the Train method, the EigenFaceRecognizer can be trained by using the Load method to load an xml file containing the Eigen recognizer values. These values can also be saved in a file using the Save method.
+\item Predict(): This method does the facial recognition. It should only be called after the EigenFaceRecognizer has been trained. It takes an Image object as a parameter and returns an object of type PredictionResult. The Image we give this method, is the Image of the face that has been detected but not yet recognized. From the PredictionResult object we can access the Label attribute. The Label attribute is the index of the traininigImage (from the array that was given in the Train method) that matched the Image that was given for reorganization. We had an array of names that corresponded to the array of training images. So we can use the Label to get the name of the recognized student and return it. If the Predict method could not recognize the image then the Label is set to -1. In our code we made sure that if the Label is -1, then it sets the name as “Unknown”.
+\end{itemize}
+
+
+
+\newpage
+
+
+
+\section{Individual contribution of Florian Kessler}
 In the team oriented project, I was mostly part of the algorithm subgroup. In the starting phase of the project, I gave an introduction of the basic functionalities of a supervised artificial neural network. In the following days, I did research about facial recognition algorithms and first found the Haar Cascade algorithm. After summarizing, finding a suitable way of implementing this method was the next important step. EmguCV in connection with OpenCV seemed like a suitable and practical possibility to create a facial recognition software. To plan the sprints, I documented the tasks and managed Jira along the journey. Furthermore, I recorded every working session in writing in a separate document. Having been a Scrum-Master for two sprints, I was responsible for the typical organizing tasks in the project:
 \begin{itemize}
 \item holding the daily scrum
@@ -43,7 +181,6 @@ In the team oriented project, I was mostly part of the algorithm subgroup. In th
 \item holding and documenting a retrospective with the support of Dr. Balser
 \end{itemize}
 
-
 During the sprints, I was mostly pair programming with Abbas Bushehri. Together, we implemented the Haar Cascade algorithm which we later extended to the Principle Component Analysis (PCA) method. In the FaceAlgorithm class, we coded and used several components:
 \begin{itemize}
 \item CascadeClassifier: contains a few XML files, depending on which facial recognition algorithm you want to use. We used the Haar Cascade file containing descriptions of the makeup of a frontal face.
@@ -52,7 +189,12 @@ During the sprints, I was mostly pair programming with Abbas Bushehri. Together,
 \end{itemize}
 
 We encountered some more bugs, for example: the program would show weird errors and nullpointer exceptions which we couldn't make any sense of. This was fixed by upgrading from VisualStudio 2017 to VisualStudio 2019. After that, we separated the code in a more suitable structure to have the GUI and the algorithm in different classes. This however was just a temporary structure and was later significantly changed again.
+
+
+
 \newpage
+
+
 
 \section{Individual Contributions (Abbas Bushehri)}
 \subsection{Webcam:}
@@ -80,7 +222,11 @@ After this, Rahul came up with the idea to save the list of students and their a
 \subsection{Error Handling:}
 During the project, there was a bug that I solved along with Florian and Lukas. The first was a system access violation exception. This error caused the program to crash randomly after returning to the main menu from the attendance screen. First we tried to use a try-catch but that didn’t stop the crashing. This error occurred because the FaceAlgorithm tries to return a frame after the attendance screen has already been closed. In the end, the best solution we could find was to call Thread.sleep(1000) before the attendance screen is closed and disposed. This makes the attendance screen wait one second. This is enough time for the FaceAlgorithm to return the last frame to the attendance screen and avoid this error.
 
+
+
 \newpage
+
+
 \section{Contributions to the project result – Lukas Heimann}
 I had two main responsibilities in the project. The first one was creating a good looking, easy to use, modern user interface. The other one was to write the Camera class that contains all the methods to grab frames from the webcam and then later display them in the GUI.
 
@@ -108,4 +254,18 @@ As our idea was to show the names of the students in the camera feed to help pro
 \subsubsection{The Side Panel:}
 The camera feed taking up 3/4 of the screen gives us enough space to put a sidebar on the right-hand side that contains the most important informations for the professor. At the top of the side panel there’s the UniFCR Logo. Then we have an percentage counter that shows the percentage of attended students. For this I decided to use the CircularProgressBar plug-in by Soroush Falahati. This creates a modern look and also gives a good visual feedback to the professor who wants to see how many students are currently attending the class. Right beneath that we have a label that also shows the total number of students who are currently attending the class. The last part of the side panel is the student list. This list contains all students that are enrolled in the course (in our case all students in the database). If a student is marked as attended the background color of their table entry changes to give a visual feedback to the professor which specific students are currently attending the lecture. I first wanted to show the full information about the student (first name, last name and matriculation number) in this list. But then the list was too big to fit in the side panel creating unwanted scrollbars. I tried to make the list scrollable by dragging the mouse to hide scrollbar from the UI but in the end this didn’t work out. So, I decided to just show the names of the students which made the list significantly smaller. 
 
+
+
+\newpage
+
+
+
+\section{Outlook}
+In general, we are really satisfied with the result of our project. As we mentioned before, our software is more of a proof of concept that shows that this idea could actually be used to replace an analog attendance list on paper. But there are still some problems that need to be fixed first and functionalities that could be improved. 
+
+\subsection{Problems:}
+First of all, there is the problem with the training data. We need a way to get enough pictures of all students in the course so that the software can accurately recognize them. A possible solution would be to make an app for students that allows them to capture training data for the database themselves. Also, there is the problem with the inaccuracy of the recognition. To fix this problem we would have to implement a better neural-network and train it with more pictures and also try to use negative training data to further improve the accuracy. Another problem-solving approach would be to normalize the pictures captured in the training mode to possibly increase the accuracy of the detection. 
+
+\subsection{Improvements:}
+There are also some functionalities that could be improved in the future. One idea would be to collect more data about the students attendance. For instance, we could save the times when students were first and last recognized. That way the professor can also know if a student was late or left early. Another idea would be to automatically message the missing students to remind them that they need a medical certificate. It would also be useful to add more options to the options menu so the professor can for instance change camera settings like: resolution, framerate, brightness, contrast, etc. 
 \end{document}

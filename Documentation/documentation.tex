@@ -5,6 +5,7 @@
 \usepackage{url}
 \usepackage{subfig}
 \usepackage{multicol}
+\usepackage{float}
  \setlength{\columnsep}{1cm} 
 
 \pagenumbering{arabic}
@@ -60,7 +61,12 @@ Our idea of creating a facial recognition software that detects and recognizes s
 
 \section{User View}
 When the user runs the UniFCR program, they're greeted with four buttons in the main menu as seen in figure \ref{fig:menu}:
-
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=1.0\columnwidth]{images/menu}
+	\caption{Main menu of the program}
+	\label{fig:menu}
+\end{figure}
 \subsection{OPTIONS button}
 First there is the OPTIONS button. This is meant to be used to change some of the settings of the program. As shown below in figure \ref{fig:options} there are three options that can be changed:
 \begin{itemize}
@@ -69,70 +75,77 @@ First there is the OPTIONS button. This is meant to be used to change some of th
 \item There is a text box next to a DELETE button. If a student’s matriculation number is written and the button is pressed, then the student will be deleted from the database.
 \end{itemize}
 
-\subsection{TRAIN button}
-Next there is the TRAIN button. This button opens the training mode that should be used to add a student to the database. This mode implements face detection to help the student take pictures correctly, as shown in figure \ref{fig:train}. When the CAPTURE button is pressed, the camera takes ten pictures of the user. The user won’t be able to do anything until the camera is finished taking these pictures. The user can press the CAPTURE button multiple times to make sure they will have more pictures in the database. When the user is satisfied with the amount of pictures they have taken, they should make sure that their name and matriculation number has been written into the text boxes. Then the user should press the SAVE button. This will add all the student’s data to the database. If the text boxes were not filled up an error will be thrown. When done the user can press BACK to return to the main menu.
-
-\subsection{START button}
-The next button is the START button. This opens the attendance mode. Attendance mode implements face recognition. The name of the user is written on top of the rectangle that marks the detected face. On the right side there is a percentage counter that keeps track of the percentage of students that have been marked as attended. Below that is a list of all the student in the database. If a student is marked as attended then their name is highlighted blue. Figure \ref{fig:before} shows before the student is marked as attended, and figure \ref{fig:after} shows it after the student is marked. The user can press the BACK button to return to the main menu.  
-
-\subsection{EXIT button}
-Finally the main menu has the EXIT button. This closes the program. Before the program is closed, a pop-up window asks the user if they want to save the attendance list (figure \ref{fig:popup}). If the user presses yes, then a .csv file is created in a Lists folder as shown in figure \ref{fig:folder}. The file is named after the current date, and lists all the student’s data along with whether or not they were marked as attended, as shown in figure \ref{fig:csv}.
-\subsection{Loading screen}
-Whenever the program is loading after the TRAIN or START buttons are pressed, the following image is shown as a loading screen. The loading screen is shown in figure \ref{fig:load}.
-\begin{figure}[htb]
-	\centering
-		\includegraphics[width=1.0\columnwidth]{images/menu}
-	\caption{Main menu of the program}
-	\label{fig:menu}
-\end{figure}
-\begin{figure}[htb]
+\begin{figure}[h!]
+\begin{center}
 	\centering
 		\includegraphics[width=1.0\columnwidth]{images/options}
 	\caption{Options menu}
 	\label{fig:options}
+\end{center}
 \end{figure}
-\begin{figure}[htb]
+
+\subsection{TRAIN button}
+Next there is the TRAIN button. This button opens the training mode that should be used to add a student to the database. This mode implements face detection to help the student take pictures correctly, as shown in figure \ref{fig:train}. When the CAPTURE button is pressed, the camera takes ten pictures of the user. The user won’t be able to do anything until the camera is finished taking these pictures. The user can press the CAPTURE button multiple times to make sure they will have more pictures in the database. When the user is satisfied with the amount of pictures they have taken, they should make sure that their name and matriculation number has been written into the text boxes. Then the user should press the SAVE button. This will add all the student’s data to the database. If the text boxes were not filled up an error will be thrown. When done the user can press BACK to return to the main menu.
+\begin{figure}[h!]
+\begin{center}
 	\centering
 		\includegraphics[width=1.0\columnwidth]{images/train}
 	\caption{Training mode}
 	\label{fig:train}
+\end{center}
 \end{figure}
-\begin{figure}[htb]
-	\centering
-		\includegraphics[width=1.0\columnwidth]{images/before}
-	\caption{Attendance mode when it starts}
-	\label{fig:before}
-\end{figure}
-\begin{figure}[htb]
-	\centering
-		\includegraphics[width=1.0\columnwidth]{images/after}
-	\caption{Attendance mode after a student has been marked as attended}
-	\label{fig:after}
-\end{figure}
-\begin{figure}[htb]
+
+\subsection{START button}
+The next button is the START button. This opens the attendance mode. Attendance mode implements face recognition. The name of the user is written on top of the rectangle that marks the detected face. On the right side there is a percentage counter that keeps track of the percentage of students that have been marked as attended. Below that is a list of all the student in the database. If a student is marked as attended then their name is highlighted blue. Figure \ref{fig:before} shows before the student is marked as attended, and figure \ref{fig:after} shows it after the student is marked. The user can press the BACK button to return to the main menu.  
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{images/before}
+    \caption{Attendance mode when it starts}
+    \label{fig:before}
+  \end{figure}
+
+ \begin{figure}[H]
+    \includegraphics[width=1.0\textwidth]{images/after}
+    \caption{Attendance mode after a student has been marked as attended}
+    \label{fig:after}
+ \end{figure}
+
+\subsection{EXIT button}
+Finally the main menu has the EXIT button. This closes the program. Before the program is closed, a pop-up window asks the user if they want to save the attendance list (figure \ref{fig:popup}). If the user presses yes, then a .csv file is created in a Lists folder as shown in figure \ref{fig:folder}. The file is named after the current date, and lists all the student’s data along with whether or not they were marked as attended, as shown in figure \ref{fig:csv}.
+\begin{figure}[h!]
+\begin{center}
 	\centering
 		\includegraphics[width=1.0\columnwidth]{images/popup}
 	\caption{Pop-up window appears after user tries to exit}
 	\label{fig:popup}
+\end{center}
 \end{figure}
-\begin{figure}[htb]
+\begin{figure}[h!]
+\begin{center}
 	\centering
 		\includegraphics[width=1.0\columnwidth]{images/folder}
 	\caption{Attendance lists saved in the Lists folder}
 	\label{fig:folder}
+\end{center}
 \end{figure}
-\begin{figure}[htb]
+\begin{figure}[h!]
+\begin{center}
 	\centering
 		\includegraphics[width=1.0\columnwidth]{images/csv}
 	\caption{Contents of an attendance list}
 	\label{fig:csv}
+\end{center}
 \end{figure}
-
-\begin{figure}[htb]
+\subsection{Loading screen}
+Whenever the program is loading after the TRAIN or START buttons are pressed, the following image is shown as a loading screen. The loading screen is shown in figure \ref{fig:load}.
+\begin{figure}[h!]
+\begin{center}
 	\centering
 		\includegraphics[width=1.0\columnwidth]{images/load}
 	\caption{Loading screen image}
 	\label{fig:load}
+\end{center}
 \end{figure}
 
 

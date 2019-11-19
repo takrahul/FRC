@@ -1,0 +1,17 @@
+% Encoding: UTF-8
+
+@Misc{Logo1,
+  author       = {Smashicons},
+  title        = {Photo Camera Icon},
+  howpublished = {https://www.flaticon.com/free-icon/photo-camera\_149641},
+  note         = {Last Access: 15.11.2019},
+}
+
+@Misc{Logo2,
+  author       = {srip},
+  title        = {User Icon},
+  howpublished = {https://www.flaticon.com/free-icon/user\_1246351},
+  note         = {Last Access: 15.11.2019},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

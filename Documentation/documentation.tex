@@ -50,7 +50,7 @@
 
 \section{Motivation and Project Goal}
 \subsection{Motivation}
-For our team-oriented Project we had the task to make a software that uses face recognition. Our idea was to create a program that works as a digital attendance list. Usually when there is a mandatory course, the professor will pass around a list where everyone has to sign that they attended the lecture. However, this approach has some disadvantages for the students as well as for the professor. First of all, students could forget to sign the list. Also, this approach is prone to cheating as students can just sign the list for someone else, too. But there are also disadvantages for the professor. They have to manually enter the data on a computer and check if students attended every lecture. These Problems could impact the students motivation and grades while they also cause more work for the professors. 
+For our team-oriented Project we wanted to evaluate if facial recognition technology would be applicable to register the attendance of students in mandatory courses. Our idea was to create a software that works as a digital attendance list. Usually when there is a mandatory course, the professor will pass around a list where everyone has to sign that they attended the lecture. However, this approach has some disadvantages for the students as well as for the professor. First of all, students could forget to sign the list. Also, this approach is prone to cheating as students can just sign the list for someone else, too. But there are also disadvantages for the professor. They have to manually enter the data on a computer and check if students attended every lecture. These Problems could impact the students motivation and grades while they also cause more work for the professors. 
 
 \subsection{Goals}
 Our idea of creating a facial recognition software that detects and recognizes students in the lecture room would solve these problems by creating the list at the end of the lecture and marking all students that it recognized as attended. An additional advantage of this software would be that we automatically show the names of all the students sitting in the classroom in the camera feed. This helps the professor to remember the names of students and can help to create a more comfortable learning environment for the students. The goal of our project was to create a proof of concept that shows that this idea could be used as an alternative to the attendance list on paper that is currently used. The software could also be improved to save more detailed statistics about the students attendance. 
@@ -63,20 +63,7 @@ Our idea of creating a facial recognition software that detects and recognizes s
 
 \section{Requirements}
 \subsection{Functional Requirements}
-\begin{itemize}
-\item As a professor, I would like to receive an attendance counter on the amount of students attending, because I want to receive feedback on the popularity of my course
-\item As a professor, I would like to know who attends, because the course is mandatory
-\item As a professor, I would like to see a live feed of the camera on screen, because it gives me an overview of the student group
-\item As a professor, I would like to be able to choose the camera connected to my laptop, because one camera could get damaged
-\item As a professor, I would like to get a visual name display about the students seen in the live feed, because I want to remember each student's name
-\item As a developer, I would like to have a training mode, because I want to train the AI to recognize faces more accurately
-\item As a professor, I would like to have an organized and neat GUI, because I want to navigate the program quickly
-\item As a professor, I would like to save all attending students as a list in a file, because I want check, which student attended my lessons in the course of a semester
-\item As a professor, I would like to see a diagram that shows the attendance rate of the students in my lesson over the course of a semester.
-\item As a professor, I would like to receive feedback on who stayed until the end of my lecture, because I want to have feedback on the quality of my lectures
-\item As a developer, I would like to have a slider for the eigen threshold, because I want to adjust the eigen threshold live to find a fitting value
-\item As a developer, I would like to make use of the full resolution of the camera, because the facial recognition works best with a high resolution feed
-\end{itemize}
+There are certain fuctions our software should have at the end of the project. First of all it should be able to capture a live feed from a camera connected to the computer. Then it should have a fullscreen window that shows this camera feed. The images recorded by the camera should be proccessed by a face detection and face recognition algorithm. We want to store the training images of the students in a database. If the algorithm recognizes a student from the database we want to show their name in the camera feed. In the fullscreen window there should also be a info panel that shows important informations for the professor e.g. the number of attending students and also a list of missing students. There should be a recognization threshold (how many times does a student have to be recognized until they are marked as attended). The professor should be able to manually add students to the database. There should also be an option to select the camera which will be used. Also, there should be an option to delete certain students from the database. Furthermore we need an option to change the recognization threshold. 
 
 \subsection{Non-Functional Requirements}
 \begin{itemize}
@@ -277,7 +264,29 @@ Our team followed the methodology of Scrum. In our project however, we didn't al
 \end{itemize}
 We organized our typical working day from Monday – Friday from 9:00 am to 4:00 pm. One homeoffice day was included which switched from Moday to Friday. On homeoffice days, a group Skype-conference was held to discuss results and ideas. The day started with a daily scrum where we also made a to do list for the day. Next, we set the priority of each daily task and started working on them. Two retrospectives were held with the support of Dr. Balser where we discussed our successes and problems of the recent sprints. Organizing the Git repository was mostly done by Lukas Heimann and Abbas Bushehri. We created branches for each team member and had the most updated software version on the master branch.
 
+\subsection{Planning Documents}
+\subsubsection{Product Backlog}
+\begin{enumerate}
+\item As a professor, I would like to know who attends, because the course is mandatory
+\item As a professor, I would like to receive an attendance counter on the amount of students attending, because I want to receive feedback on the popularity of my course
+\item As a professor, I would like to see a live feed of the camera on screen, because it gives me an overview of the student group
+\item As a professor, I would like to have an organized and neat GUI, because I want to navigate the program quickly
+\item As a developer, I would like to make use of the full resolution of the camera, because the facial recognition works best with a high resolution feed
+\item As a professor, I would like to get a visual name display about the students seen in the live feed, because I want to remember each student's name
+\item As a developer, I would like to have a training mode, because I want to train the AI to recognize faces more accurately
+\item As a professor, I would like to be able to choose the camera connected to my laptop, because one camera could get damaged
+\item As a developer, I would like to have a slider for the eigen threshold, because I want to adjust the eigen threshold live to find a fitting value
+\item As a professor, I would like to save all attending students as a list in a file, because I want check, which student attended my lessons in the course of a semester
+\item As a professor, I would like to see a diagram that shows the attendance rate of the students in my lesson over the course of a semester.
+\item As a professor, I would like to receive feedback on who stayed until the end of my lecture, because I want to have feedback on the quality of my lectures
+\end{enumerate}
 
+\subsubsection{Use-Case Diagram}
+\begin{figure}[H]
+		\includegraphics[width=1.2\columnwidth]{images/use_case_diagram}
+	\caption{Use-Case Diagram}
+	\label{fig:folder}
+\end{figure}
 
 \newpage
 

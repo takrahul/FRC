@@ -169,7 +169,7 @@
             this.thresholdTextBox.Name = "thresholdTextBox";
             this.thresholdTextBox.Size = new System.Drawing.Size(100, 33);
             this.thresholdTextBox.TabIndex = 5;
-            this.thresholdTextBox.Text = "1";
+            this.thresholdTextBox.Text = "30";
             this.thresholdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.thresholdTextBox_KeyPress);
             this.thresholdTextBox.Leave += new System.EventHandler(this.thresholdTextBox_Leave);
             // 
@@ -192,7 +192,7 @@
             this.thresholdTrackBar.Size = new System.Drawing.Size(434, 45);
             this.thresholdTrackBar.TabIndex = 3;
             this.thresholdTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.thresholdTrackBar.Value = 1;
+            this.thresholdTrackBar.Value = 30;
             this.thresholdTrackBar.Scroll += new System.EventHandler(this.thresholdTrackBar_Scroll);
             // 
             // cameraListBox

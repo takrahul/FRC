@@ -77,7 +77,7 @@ namespace UniFCR_GUI {
         /// <param name="e"></param>
         private void exitButton_Click(object sender, EventArgs e)
         {
-            faceAlgorithm.recognizationInProgress = true;
+            faceAlgorithm.recognitionInProgress = true;
             Thread.Sleep(1000);
             attendanceCam.stop();
             camRunning = false;
@@ -153,9 +153,9 @@ namespace UniFCR_GUI {
         {
             if (attendanceCam.frame != null)
             {
-                if (faceAlgorithm.recognizationInProgress == false)
+                if (faceAlgorithm.recognitionInProgress == false)
                 {
-                    faceAlgorithm.recognizationInProgress = true;
+                    faceAlgorithm.recognitionInProgress = true;
                     Image<Bgr, Byte> frame = faceAlgorithm.recognizeFaces(attendanceCam.frame);
                     frame = frame.Resize((int)(camView.Width), (int)(camView.Height), Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                     attendanceCam.DisplayImage(frame);
@@ -166,7 +166,7 @@ namespace UniFCR_GUI {
                         updateAttendance();
                         updateListView();
                     }
-                    faceAlgorithm.recognizationInProgress = false;
+                    faceAlgorithm.recognitionInProgress = false;
                 }
             }
         }

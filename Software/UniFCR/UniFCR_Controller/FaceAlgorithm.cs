@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Emgu.CV;
-using Emgu.CV.Structure;
+﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
+using Emgu.CV.Structure;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using UniFCR_Database;
@@ -13,10 +13,11 @@ namespace UniFCR_Controller {
     /// This class should be used for face detection and recognition.
     /// </summary>
     public class FaceAlgorithm {
-        public bool recognizationInProgress = false; //to make sure the face recognition only happens one at a time
+        public bool recognitionInProgress = false; //to make sure the face recognition only happens one at a time
         string name; //name of student recognized
         MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
-        //make sure this xml file is in the debug folder for this to work
+
+        //xml file should be in the debug folder for this to work
         readonly CascadeClassifier face = new CascadeClassifier("haarcascade_frontalface_default.xml");
 
         //public constructor
@@ -120,15 +121,15 @@ namespace UniFCR_Controller {
                 if (Globals.trainingImages.ToArray().Length != 0)
                 {
                     //initalize instance of classifier_train and set its eiegn threshold
-                    Classifier_Train Eigen_Recog = new Classifier_Train
+                    TrainClassifier eigenRecog = new TrainClassifier
                     {
-                        Set_Eigen_Threshold = 2000
+                        setEigenThreshold = 2000
                     };
                     //send cropped face to classifier_train class for recognition
                     //name belonging to recognized face is returned by classifier_train
                     //name is "unknown" if it's not recognized
-                    name = Eigen_Recog.Recognise(result);
-                    Eigen_Recog.Dispose();
+                    name = eigenRecog.Recognize(result);
+                    eigenRecog.Dispose();
                     //add student number to map if it doesn't already exist
                     //key is student number and value is number of times it has been recognized
                     if (!Globals.map.ContainsKey(Globals.numIndex) && !name.Equals("Unknown"))

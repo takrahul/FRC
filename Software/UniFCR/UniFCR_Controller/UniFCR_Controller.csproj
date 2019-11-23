@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
-    <Compile Include="Classifier_Train.cs" />
+    <Compile Include="TrainClassifier.cs" />
     <Compile Include="FaceAlgorithm.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
